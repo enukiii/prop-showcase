@@ -1,0 +1,2 @@
+{% extends "base.html" %}
+{% block content %}<section class="page-heading"><p class="eyebrow">{{ eyebrow }}</p><h1>{{ heading|safe }}</h1><p>{{ intro }}</p></section><section class="content-grid">{% for item in items %}<article class="content-item"><span class="item-number">0{{ loop.index }}</span><h2>{{ item.title }}</h2><p>{{ item.text }}</p><a class="text-link" href="{{ url_for('contact') }}">Learn more <span>→</span></a></article>{% endfor %}</section>{% endblock %}

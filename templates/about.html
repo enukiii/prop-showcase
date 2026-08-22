@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}About SS Property{% endblock %}
+{% block content %}
+<section class="about-page">
+    <section class="about-copy about-intro-copy">
+        <p class="eyebrow">About us</p>
+        <h1>About <em>SS Property.</em></h1>
+        <p class="about-lead">At SS Property, we believe finding the right property goes beyond simply matching a budget with a listing. It is about understanding our clients' needs, identifying the right opportunities, and providing clear, practical advice throughout the entire property journey.</p>
+    </section>
+    <div class="team-heading"><p class="eyebrow">Our people</p><h1>Meet the <em>team.</em></h1></div>
+    <div class="about-image-grid">
+        <div class="team-member"><div class="wireframe-image about-image"><img src="{{ url_for('static', filename='img/Gary.jpeg') }}" alt="Gary Zhuo"></div><h2>Gary Zhuo</h2><p>Property Consultant</p></div>
+        <div class="team-member"><div class="wireframe-image about-image"><img src="{{ url_for('static', filename='img/Sean.jpeg') }}" alt="Sean Chen"></div><h2>Sean Chen</h2><p>Property Consultant</p></div>
+        <div class="team-member"><div class="wireframe-image about-image"><img src="{{ url_for('static', filename='img/Joyce.jpeg') }}" alt="Joyce Sim"></div><h2>Joyce Sim</h2><p>Property Consultant</p></div>
+        <div class="team-member"><div class="wireframe-image about-image"><img src="{{ url_for('static', filename='img/Lynn.jpeg') }}" alt="Lynn Sim"></div><h2>Lynn Sim</h2><p>Property Consultant</p></div>
+    </div>
+    <section class="about-copy">
+        <div class="about-specialties">
+            <article><span class="item-number">01</span><h2>What we specialise in</h2><p>We specialise in Singapore landed homes, luxury residences, Sentosa Cove properties and selected new developments, representing both buyers and sellers across the market.</p></article>
+            <article><span class="item-number">02</span><h2>Built around expertise</h2><p>Behind SS Property is a team of experienced real estate professionals supported by dedicated marketing, digital and operational capabilities. This allows us to combine market knowledge, extensive property sourcing and strong digital exposure to deliver a more complete service for our clients.</p></article>
+        </div>
+        <div class="about-columns">
+            <div><span class="item-number">03</span><h2>For buyers</h2><p>We help simplify the search by filtering through the market, comparing suitable options and negotiating with our clients' interests in mind.</p></div>
+            <div><span class="item-number">04</span><h2>For sellers</h2><p>We focus on positioning each property effectively, reaching the right audience and creating genuine opportunities to achieve the best possible outcome.</p></div>
+        </div>
+        <div class="about-values"><p class="eyebrow">Our approach</p><h2>Integrity. Teamwork. Results.</h2><p>Whether you are buying your next home, selling a property or exploring opportunities in Singapore real estate, SS Property is here to make the process clearer, more efficient and more personal.</p></div>
+    </section>
+</section>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}{{ listing.name }} — SS Property{% endblock %}
+{% block content %}
+<section class="property-detail-page">
+    <a class="back-link" href="{{ url_for('listings') }}">← Back to properties</a>
+    <div class="property-gallery" data-gallery>
+        {% for image in gallery %}<div class="gallery-slide wireframe-image {% if loop.first %}active{% endif %}"><span class="wireframe-label">PROPERTY IMAGE {{ loop.index }}</span></div>{% endfor %}
+        <div class="gallery-overlay"><p class="eyebrow">{{ listing.location }}</p><h1>{{ listing.name }}</h1><div class="property-overlay-meta"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span><span>{{ listing.details }}</span><strong>{{ listing.price }}</strong></div></div>
+        <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous image">←</button><button class="gallery-arrow gallery-next" type="button" aria-label="Next image">→</button>
+        <div class="gallery-count"><span class="gallery-current">01</span> / {{ gallery|length }}</div>
+    </div>
+    <div class="property-detail-summary"><p>Interested in this property?</p><a class="button button-dark" href="{{ url_for('contact') }}">Speak to SS Property <span>↗</span></a></div>
+</section>
+<script>
+(() => {
+    const gallery = document.querySelector('[data-gallery]');
+    if (!gallery) return;
+    const slides = [...gallery.querySelectorAll('.gallery-slide')];
+    const current = gallery.querySelector('.gallery-current');
+    let index = 0;
+    const show = (next) => { index = (next + slides.length) % slides.length; slides.forEach((slide, i) => slide.classList.toggle('active', i === index)); current.textContent = String(index + 1).padStart(2, '0'); };
+    gallery.querySelector('.gallery-prev').addEventListener('click', () => show(index - 1));
+    gallery.querySelector('.gallery-next').addEventListener('click', () => show(index + 1));
+    let startX = 0;
+    gallery.addEventListener('touchstart', event => { startX = event.touches[0].clientX; }, {passive: true});
+    gallery.addEventListener('touchend', event => { const distance = event.changedTouches[0].clientX - startX; if (Math.abs(distance) > 40) show(index + (distance < 0 ? 1 : -1)); }, {passive: true});
+})();
+</script>
+{% endblock %}
