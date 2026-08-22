@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}SS Property{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='portal-overrides.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='team-images.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='about-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='resources-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='postal-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='shared-listings.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='listing-size-final.css', v='2') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='site-consistency.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='team-photo-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='detail-wireframe.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='alignment-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='services-alignment-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='ux-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='listing-toolbar-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-detail.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='toolbar-alignment-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='listing-layout-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='listing-unified-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='header-final.css') }}">
+</head>
+<body class="property-portal">
+    <header class="site-header">
+        <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark">SS</span><span>Property</span></a>
+        <nav class="main-nav" aria-label="Main navigation">
+            {% for label, endpoint in nav_items %}
+            <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+            {% endfor %}
+        </nav>
+        <a class="header-action" href="{{ url_for('contact') }}">Book a conversation <span>↗</span></a>
+    </header>
+    <main>{% block content %}{% endblock %}</main>
+    {% if active_page not in ['home', 'postal-districts'] %}{% include '_just_listed.html' %}{% endif %}
+    <footer class="site-footer">
+        <div class="brand footer-brand"><span class="brand-mark">SS</span><span>Property</span></div>
+        <p>Property for better living.</p>
+        <small>© 2026 SS Property</small>
+    </footer>
+    <script>
+        document.querySelectorAll('.listing-card').forEach(card => {
+            const title = card.querySelector('h3');
+            if (!title) return;
+            card.setAttribute('tabindex', '0');
+            card.setAttribute('role', 'link');
+            const open = () => { window.location.href = '/property/' + encodeURIComponent(title.textContent.trim()); };
+            card.addEventListener('click', event => { if (!event.target.closest('button')) open(); });
+            card.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); open(); } });
+        });
+    </script>
+</body>
+</html>
