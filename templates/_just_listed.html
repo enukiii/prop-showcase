@@ -1,4 +1,0 @@
-<section class="shared-just-listed">
-    <div class="shared-section-heading"><div><p class="eyebrow">Latest homes</p><h2>Just Listed Properties For Sale</h2></div><a class="button button-dark" href="{{ url_for('listings') }}">View all listings <span>↗</span></a></div>
-    <div class="shared-listing-grid">{% for listing in featured_listings[:4] %}<article class="listing-card"><div class="listing-image wireframe-image"><span class="wireframe-label">PROPERTY IMAGE</span><span class="tag">Just listed</span><button class="save-button" aria-label="Save {{ listing.name }}">♡</button></div><div class="listing-meta"><div><p class="listing-location">{{ listing.location }}</p><h3>{{ listing.name }}</h3><div class="property-pills"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span></div><small>{{ listing.details }}</small></div><strong>{{ listing.price }}</strong></div></article>{% endfor %}</div>
-+</section>
