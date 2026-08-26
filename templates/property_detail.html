@@ -4,7 +4,7 @@
 <section class="property-detail-page">
     <a class="back-link" href="{{ url_for('listings') }}">← Back to properties</a>
     <div class="property-gallery" data-gallery>
-        {% for image in gallery %}<div class="gallery-slide wireframe-image {% if loop.first %}active{% endif %}"><span class="wireframe-label">PROPERTY IMAGE {{ loop.index }}</span></div>{% endfor %}
+        {% for image in gallery %}<div class="gallery-slide wireframe-image {% if loop.first %}active{% endif %}" style="background-image: url('{{ image }}');"><span class="wireframe-label">PROPERTY IMAGE {{ loop.index }}</span></div>{% endfor %}
         <div class="gallery-overlay"><p class="eyebrow">{{ listing.location }}</p><h1>{{ listing.name }}</h1><div class="property-overlay-meta"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span><span>{{ listing.details }}</span><strong>{{ listing.price }}</strong></div></div>
         {% if gallery|length > 1 %}
         <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous image">←</button><button class="gallery-arrow gallery-next" type="button" aria-label="Next image">→</button>
@@ -17,14 +17,9 @@
     </section>
     <section class="property-floor-plan">
         <div class="property-floor-plan-heading"><p class="eyebrow">Residence layout</p><h2>Floor plan</h2><p>Three generous levels connected by a private lift, with considered spaces for family living, entertaining and rest.</p></div>
-        <div class="floor-plan-wireframe" role="img" aria-label="Separate wireframe floor plans for the ground, second and third floors">
-            <div class="floor-plan-wireframe-title">FLOOR PLAN / WIRE FRAME</div>
-              <div class="floor-plan-image-grid"><div class="floor-plan-image"><b>1F / GROUND FLOOR</b><span class="room-wide">LIVING / DINING</span><span>DRY KITCHEN</span><span>WET KITCHEN</span><span>HELPER / STORE</span><span class="room-wide room-lift">PARKING / LIFT</span></div><div class="floor-plan-image"><b>2F / BEDROOM LEVEL</b><span class="room-wide">MASTER BEDROOM</span><span>ENSUITE 01</span><span>ENSUITE 02</span><span class="room-lift">LIFT</span></div><div class="floor-plan-image"><b>3F / BEDROOM LEVEL</b><span class="room-wide">ENSUITE 03</span><span>ENSUITE 04</span><span class="room-lift">LIFT</span></div><div class="floor-plan-image floor-plan-summary"><b>HOME AT A GLANCE</b><span>3 LEVELS</span><span>5 ENSUITE BEDROOMS</span><span>HOME LIFT</span><span>PRIVATE POOL</span><span class="room-wide room-lift">4,224 SQ FT LAND</span></div></div>
-        </div>
-        <div class="floor-plan-levels">
-            <article class="floor-plan-level"><div class="floor-plan-level-title"><span>01</span><strong>Ground floor</strong></div><div class="floor-plan-rooms ground-floor"><span>3-car parking</span><span>Living</span><span>Dining</span><span>Dry kitchen</span><span>Wet kitchen</span><span>Lift</span><span>Helper's room</span><span>Store</span></div></article>
-            <article class="floor-plan-level"><div class="floor-plan-level-title"><span>02</span><strong>Second floor</strong></div><div class="floor-plan-rooms upper-floor"><span>Master bedroom</span><span>Ensuite bedroom</span><span>Ensuite bedroom</span><span>Lift</span></div></article>
-            <article class="floor-plan-level"><div class="floor-plan-level-title"><span>03</span><strong>Third floor</strong></div><div class="floor-plan-rooms upper-floor"><span>Ensuite bedroom</span><span>Ensuite bedroom</span><span>Lift</span></div></article>
+        <div class="floor-plan-wireframe">
+            <div class="floor-plan-wireframe-title">FLOOR PLAN / PLOT 3</div>
+            <img class="floor-plan-full-image" src="{{ url_for('static', filename='img/farrer road floor plan.jpg') }}" alt="Complete floor plan for 96 Farrer Road, including the first storey, second storey, attic and roof plans">
         </div>
     </section>
     <section class="property-map">
@@ -71,13 +66,30 @@
     if (!gallery) return;
     const slides = [...gallery.querySelectorAll('.gallery-slide')];
     const current = gallery.querySelector('.gallery-current');
+    const prev = gallery.querySelector('.gallery-prev');
+    const next = gallery.querySelector('.gallery-next');
+    const count = gallery.querySelector('.gallery-count');
     let index = 0;
-    const show = (next) => { index = (next + slides.length) % slides.length; slides.forEach((slide, i) => slide.classList.toggle('active', i === index)); current.textContent = String(index + 1).padStart(2, '0'); };
-    gallery.querySelector('.gallery-prev')?.addEventListener('click', () => show(index - 1));
-    gallery.querySelector('.gallery-next')?.addEventListener('click', () => show(index + 1));
+    const syncControls = () => {
+        const isMobile = window.innerWidth <= 700;
+        const showControls = slides.length > 1 && isMobile;
+        prev?.style.setProperty('display', showControls ? 'flex' : 'none');
+        next?.style.setProperty('display', showControls ? 'flex' : 'none');
+        count?.style.setProperty('display', showControls ? 'block' : 'none');
+    };
+    const show = (next) => {
+        if (!slides.length) return;
+        index = (next + slides.length) % slides.length;
+        slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+        if (current) current.textContent = String(index + 1).padStart(2, '0');
+    };
+    prev?.addEventListener('click', () => show(index - 1));
+    next?.addEventListener('click', () => show(index + 1));
     let startX = 0;
     gallery.addEventListener('touchstart', event => { startX = event.touches[0].clientX; }, {passive: true});
     gallery.addEventListener('touchend', event => { const distance = event.changedTouches[0].clientX - startX; if (Math.abs(distance) > 40) show(index + (distance < 0 ? 1 : -1)); }, {passive: true});
+    syncControls();
+    window.addEventListener('resize', syncControls);
 })();
 (() => {
     const form = document.querySelector('[data-enquiry-form]');

@@ -160,7 +160,7 @@
         flex-direction: column;
         gap: 0;
         left: 0;
-        padding: 8px 6vw 16px;
+        padding: 0 0 12px;
         position: absolute;
         right: 0;
         top: 100%;
@@ -171,11 +171,29 @@
         display: flex;
     }
 
+    .property-portal .main-nav .nav-dropdown {
+        width: 100%;
+    }
+
+    .property-portal .main-nav .nav-dropdown > a {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .property-portal .main-nav > a,
+    .property-portal .main-nav .nav-dropdown > a {
+        background: #232323;
+        box-sizing: border-box;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+    }
+
     .property-portal .main-nav a {
-        border-bottom: 1px solid #2d2a24;
+        border-bottom: 1px solid #101010;
         color: #f4efe5 !important;
-        font-size: 11px;
-        padding: 13px 0;
+        font-size: 14px;
+        padding: 14px 2px;
         width: 100%;
     }
 
@@ -184,12 +202,13 @@
     }
 
     .property-portal .main-nav .mobile-menu-action {
+        background: #0b0b0b;
         border-bottom: 0;
         border-top: 1px solid #2d2a24;
         color: var(--gold-soft, #e0c27e) !important;
         display: block;
-        margin-top: 5px;
-        padding-top: 17px;
+        margin-top: 8px;
+        padding: 17px 2px 8px;
     }
 
     .property-portal .site-search {
@@ -424,9 +443,15 @@
         aspect-ratio: 1.2 / 1;
     }
 
+    .property-portal .home-card-grid .tag,
+    .property-portal .listing-page-grid .tag {
+        font-size: 8px;
+        padding: 5px 6px;
+    }
+
     .property-portal .home-card-grid .listing-meta,
     .property-portal .listing-page-grid .listing-meta {
-        min-height: 148px;
+        min-height: 184px;
         padding: 12px;
     }
 
@@ -467,7 +492,13 @@
     }
 
     .property-portal .property-gallery {
-        min-height: min(145vw, 620px);
+        min-height: 440px;
+        touch-action: pan-y;
+    }
+
+    .property-portal .gallery-arrow,
+    .property-portal .gallery-count {
+        display: flex !important;
     }
 
     .property-portal .gallery-overlay {
@@ -509,6 +540,34 @@
     .property-portal .property-overview h2 {
         font-size: 26px;
         margin-bottom: 26px;
+    }
+
+    .property-portal .listing-image,
+    .property-portal .gallery-slide,
+    .property-portal .wireframe-image {
+        background-color: transparent !important;
+        background-image: url("/static/img/farrer%20road%20landing%20image.png") !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+    }
+
+    .property-portal .wireframe-image .wireframe-label,
+    .property-portal .floor-plan-wireframe-title {
+        display: none !important;
+    }
+
+    .property-portal .floor-plan-wireframe {
+        background: transparent !important;
+        background-image: none !important;
+        border: 0 !important;
+        padding: 0 !important;
+    }
+
+    .property-portal .floor-plan-full-image {
+        display: block;
+        margin-top: 0;
+        width: 100%;
     }
 
     .property-portal .property-overview-copy > p {

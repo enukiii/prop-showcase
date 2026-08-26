@@ -1,0 +1,35 @@
+.property-portal .nav-dropdown-menu {
+    top: calc(100% + 6px);
+    background: var(--royal, #0e0e0e);
+    border: 1px solid var(--gold-soft, #e0c27e);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+}
+
+.property-portal .nav-dropdown::after {
+    content: "";
+    height: 6px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+}
+
+.property-portal .nav-dropdown-menu a {
+    color: var(--ink, #f4efe5) !important;
+}
+
+.property-portal .nav-dropdown-menu a:hover,
+.property-portal .nav-dropdown-menu a:focus {
+    background: var(--cream, #26211a);
+    color: var(--gold-soft, #e0c27e) !important;
+}
+
+.property-portal .nav-dropdown-arrow {
+    display: none;
+}
+
+@media (max-width: 850px) {
+    .property-portal .nav-dropdown-arrow {
+        display: inline-block;
+    }
+}

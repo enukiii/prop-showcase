@@ -51,6 +51,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='logo-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='mobile-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='nav-dropdown-theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='school-search.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='contact-faq.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='buy-with-us.css') }}">
 </head>
 <body class="property-portal">
     <header class="site-header">
@@ -62,7 +66,9 @@
         <button class="mobile-menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button>
         <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
             {% for label, endpoint in nav_items %}
+            {% if endpoint == 'listings' %}<div class="nav-dropdown"><a class="{% if active_page in ['listings', 'rent', 'school-search', 'postal-districts'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('for_rent') }}">For Rent</a><a href="{{ url_for('search_by_school') }}">Search by School</a><a href="{{ url_for('postal_districts') }}">Search by District</a></div></div>{% elif endpoint == 'launches' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('launches', category='landed') }}">Brand-New Landed</a><a href="{{ url_for('launches', category='condo') }}">Brand-New Condominium</a></div></div>{% elif endpoint == 'services' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('services') }}#sell-with-us">Sell With Us</a><a href="{{ url_for('buy_with_us') }}">Buy With Us</a><a href="{{ url_for('services') }}#home-valuation">Home Valuation</a></div></div>{% else %}
             <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+            {% endif %}
             {% endfor %}
             <a class="mobile-menu-action" href="{{ url_for('contact') }}">Book a conversation <span>↗</span></a>
         </nav>
@@ -98,16 +104,12 @@
             zh: { 'all-listings': '所有房源', 'new-launches': '新楼盘', services: '服务', resources: '资讯', 'about-us': '关于我们', contact: '联系我们', action: '预约咨询' }
         };
         const pageTranslations = {
-            'Brand-New Landed Properties For Sale in Singapore': '新加坡全新有地房产',
-            'Just Listed Properties For Sale': '最新上市房源',
-            'Featured Resale Listings': '精选转售房源',
-            'Featured properties for sale.': '精选房源',
-            'Just listed properties for sale.': '最新上市房源',
+            'Newly Launched Properties for sale': '最新上市房源',
+            'All properties for sale.': '精选房源',
             'Explore our selection of homes across Singapore, chosen for their location, quality and potential.': '探索我们精选的新加坡房源，兼顾地段、品质与发展潜力。',
             'Browse our latest new launch homes and developments.': '浏览我们最新推出的住宅与楼盘。',
             'View all new launches': '查看所有新楼盘',
             'View all listings': '查看所有房源',
-            'View all resale homes': '查看所有转售住宅',
             'Find my property': '寻找我的理想房产',
             'Search properties': '搜索房产',
             'District': '区域',

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Search by School — SS Property{% endblock %}
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">SS Property / Find a home</p>
+    <h1>Search by <em>school.</em></h1>
+    <p>Choose a school to view nearby properties.</p>
+    <form class="school-search-form" method="get" role="search">
+        <label for="school-search-input">Search schools</label>
+        <input id="school-search-input" name="q" type="search" value="{{ query }}" placeholder="Search schools" autocomplete="off">
+        <button type="submit" aria-label="Search schools">↗</button>
+    </form>
+</section>
+<section class="content-grid school-directory">
+    {% if schools %}
+    {% for school in schools %}
+    <a class="content-item school-directory-item" href="{{ url_for('listings', school=school) }}">
+        <span class="item-number">{{ '%02d'|format(loop.index) }}</span>
+        <h2>{{ school }}</h2>
+        <span class="school-arrow" aria-hidden="true">↗</span>
+    </a>
+    {% endfor %}
+    {% else %}
+    <div class="school-search-empty"><h2>No schools found</h2><p>Try another school name.</p></div>
+    {% endif %}
+</section>
+{% endblock %}

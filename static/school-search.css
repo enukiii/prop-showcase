@@ -1,0 +1,97 @@
+.property-portal .school-directory {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0 auto;
+    max-width: 1160px;
+    padding: 0 5vw 80px;
+}
+
+.property-portal .school-search-form {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+    margin-top: 24px;
+    max-width: 420px;
+}
+
+.property-portal .school-search-form label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+}
+
+.property-portal .school-search-form input {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    flex: 1;
+    font: inherit;
+    min-width: 0;
+    padding: 12px 14px;
+}
+
+.property-portal .school-search-form button {
+    background: var(--accent);
+    border: 0;
+    color: var(--paper);
+    cursor: pointer;
+    min-height: 43px;
+    min-width: 43px;
+}
+
+.property-portal .school-directory-item {
+    align-items: center;
+    background: var(--sage);
+    border: 1px solid var(--line);
+    display: grid;
+    gap: 14px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    min-height: 72px;
+    padding: 16px 18px;
+    transition: background .2s ease, border-color .2s ease;
+}
+
+.property-portal .school-directory-item:hover,
+.property-portal .school-directory-item:focus-visible {
+    background: var(--cream);
+    border-color: var(--accent);
+}
+
+.property-portal .school-directory-item .item-number {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 11px;
+}
+
+.property-portal .school-directory-item h2 {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0;
+}
+
+.property-portal .school-arrow {
+    color: var(--accent);
+    font-size: 17px;
+}
+
+.property-portal .school-search-empty {
+    grid-column: 1 / -1;
+    padding: 24px 0 40px;
+}
+
+.property-portal .school-search-empty h2,
+.property-portal .school-search-empty p {
+    margin: 0 0 8px;
+}
+
+@media (max-width: 700px) {
+    .property-portal .school-directory {
+        grid-template-columns: 1fr;
+        padding: 0 6vw 56px;
+    }
+}
