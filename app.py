@@ -65,8 +65,60 @@ PROPERTY_TYPES = [
     "Service Residence",
 ]
 
+def _format_area(value):
+    """Format a CSV area value for display without showing NaN."""
+    if pd.isna(value) or str(value).strip() == "":
+        return "Available on request"
+    return f"{int(float(value)):,} sq ft"
+
+
+def _format_price(value):
+    if pd.isna(value) or str(value).strip() == "":
+        return "Price on request"
+    price = str(value).strip()
+    return price.replace("$", "S$")
+
+
+def normalise_listing(row):
+    property_type = str(row["Type"]).strip()
+    property_type = {
+        "Semi D": "Semi-Detached House",
+        "Detached": "Detached House",
+    }.get(property_type, property_type)
+    house_number = str(row["House No"]).strip()
+    address = str(row["Address"]).strip()
+    bedrooms = str(row["Bedroom"]).strip()
+    bathrooms = str(row["Bathroom"]).strip()
+    land_size = _format_area(row["Land Size"])
+    built_up = _format_area(row["Build Up"])
+    remarks = "" if pd.isna(row["Remarks"]) else str(row["Remarks"]).strip()
+    condition = "" if pd.isna(row["Condition"]) else str(row["Condition"]).strip()
+
+    return {
+        "name": f"{house_number} {address}",
+        "location": address,
+        "type": property_type,
+        "condition": condition,
+        "tenure": str(row["Tenure"]).strip(),
+        "price": _format_price(row["Price"]),
+        "details": f"{bedrooms} beds  ·  {bathrooms} baths  ·  Land {land_size}",
+        "description": remarks or f"A {condition.lower()} {property_type.lower()} at {address}.",
+        "land_size": land_size,
+        "built_up": built_up,
+        "top": "" if pd.isna(row["TOP"]) else str(row["TOP"]).strip(),
+        "features": remarks,
+        "facing": str(row["Facing"]).strip(),
+        "developer": "" if pd.isna(row["Developer"]) else str(row["Developer"]).strip(),
+        "lister": "" if pd.isna(row["Lister"]) else str(row["Lister"]).strip(),
+        "privyr": "" if pd.isna(row["Privy"]) else str(row["Privy"]).strip(),
+        "image": "",
+        "tag": condition or "New",
+    }
+
+
 df = pd.read_csv("data/realDummyData.csv")
-LISTINGS = df.to_dict(orient="records")
+df.columns = df.columns.str.strip()
+LISTINGS = [normalise_listing(row) for _, row in df.iterrows()]
 
 # LISTINGS = [
 #     {
