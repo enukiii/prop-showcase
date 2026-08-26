@@ -24,15 +24,34 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='ux-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='listing-toolbar-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='property-detail.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-overview.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-overview-polish.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='overview-bullets.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-overview-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-dark-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='toolbar-alignment-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='listing-layout-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='listing-unified-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='contact-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='luxury-theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='blue-luxury-theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='black-gold-theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dark-luxury-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dark-scrollbar-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='shared-dark-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='about-dark-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dark-header-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='gold-tab-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dark-filter-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='farrer-photo-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='resources-dark-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='logo-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mobile-final.css') }}">
 </head>
 <body class="property-portal">
     <header class="site-header">
-        <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark">SS</span><span>Property</span></a>
+        <a class="brand" href="{{ url_for('home') }}" aria-label="SS Property"><img class="brand-logo" src="{{ url_for('static', filename='img/ssPropertyLOGO.png') }}" alt="SS Property"></a>
         <nav class="main-nav" aria-label="Main navigation">
             {% for label, endpoint in nav_items %}
             <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
@@ -43,7 +62,7 @@
     <main>{% block content %}{% endblock %}</main>
     {% if active_page not in ['home', 'postal-districts'] %}{% include '_just_listed.html' %}{% endif %}
     <footer class="site-footer">
-        <div class="brand footer-brand"><span class="brand-mark">SS</span><span>Property</span></div>
+        <div class="brand footer-brand"><img class="brand-logo" src="{{ url_for('static', filename='img/ssPropertyLOGO.png') }}" alt="SS Property"></div>
         <p>Property for better living.</p>
         <small>© 2026 SS Property</small>
     </footer>

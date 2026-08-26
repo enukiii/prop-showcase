@@ -9,6 +9,10 @@
         <button class="gallery-arrow gallery-prev" type="button" aria-label="Previous image">←</button><button class="gallery-arrow gallery-next" type="button" aria-label="Next image">→</button>
         <div class="gallery-count"><span class="gallery-current">01</span> / {{ gallery|length }}</div>
     </div>
+    <section class="property-overview">
+        <div><p class="eyebrow">Property overview</p><h2>About this property</h2></div>
+        <div class="property-overview-copy"><p>{{ listing.description|default('This ' ~ listing.type|lower ~ ' is located in ' ~ listing.location ~ ' and offers ' ~ listing.details|lower ~ '.') }}</p><div class="overview-facts"><span><b>Type</b>{{ listing.type }}</span><span><b>Tenure</b>{{ listing.tenure|default('Freehold') }}</span><span><b>Land size</b>{{ listing.land_size|default(listing.details) }}</span><span><b>Built-up</b>{{ listing.built_up|default('Available on request') }}</span><span><b>TOP</b>{{ listing.top|default('Available on request') }}</span><span><b>Price</b>{{ listing.price }}</span></div>{% if listing.features %}<div class="overview-extra"><b>Highlights</b><ul>{% for feature in listing.features.split(',') %}<li>{{ feature|trim }}</li>{% endfor %}{% if listing.parking %}<li>{{ listing.parking }}</li>{% endif %}</ul></div>{% endif %}{% if listing.schools %}<div class="overview-extra"><b>Schools & transport</b><ul><li>{{ listing.schools }}</li><li>{{ listing.mrt }}</li></ul></div>{% endif %}{% if listing.collection %}<div class="overview-extra"><b>Collection</b><ul><li>{{ listing.collection }}</li></ul></div>{% endif %}{% if listing.note %}<small class="property-note">{{ listing.note }}</small>{% endif %}</div>
+    </section>
     <div class="property-detail-summary"><p>Interested in this property?</p><a class="button button-dark" href="{{ url_for('contact') }}">Speak to SS Property <span>↗</span></a></div>
 </section>
 <script>
