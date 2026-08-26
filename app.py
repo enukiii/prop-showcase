@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 import pandas as pd
+from pathlib import Path
+import re
 
 app = Flask(__name__)
 
@@ -79,7 +81,7 @@ def _format_price(value):
     return price.replace("$", "S$")
 
 
-def normalise_listing(row):
+def normalise_listing(row, district):
     property_type = str(row["Type"]).strip()
     property_type = {
         "Semi D": "Semi-Detached House",
@@ -96,7 +98,8 @@ def normalise_listing(row):
 
     return {
         "name": f"{house_number} {address}",
-        "location": address,
+        "location": district,
+        "address": address,
         "type": property_type,
         "condition": condition,
         "tenure": str(row["Tenure"]).strip(),
@@ -116,9 +119,30 @@ def normalise_listing(row):
     }
 
 
-df = pd.read_csv("data/realDummyData.csv")
-df.columns = df.columns.str.strip()
-LISTINGS = [normalise_listing(row) for _, row in df.iterrows()]
+def load_listings():
+    district_names = {
+        district.split(" ", 1)[0]: district
+        for district in SINGAPORE_DISTRICTS
+    }
+    listings = []
+
+    for csv_path in sorted(Path("data").glob("SSP Listing - D*.csv")):
+        match = re.fullmatch(r"SSP Listing - (D\d+)\.csv", csv_path.name)
+        if not match:
+            continue
+        district_code = match.group(1).upper()
+        district = district_names.get(district_code, district_code)
+        dataframe = pd.read_csv(csv_path)
+        dataframe.columns = dataframe.columns.str.strip()
+        listings.extend(
+            normalise_listing(row, district)
+            for _, row in dataframe.iterrows()
+        )
+
+    return listings
+
+
+LISTINGS = load_listings()
 
 # LISTINGS = [
 #     {
