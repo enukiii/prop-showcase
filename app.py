@@ -72,136 +72,20 @@ LISTINGS = [
         "tenure": "Freehold",
         "price": "S$17,500,000",
         "details": "5 ensuite bedrooms  ·  5 baths  ·  Land 4,224 sq ft",
-        "description": "A brand-new 2.5-storey detached home in Gallop Park Road with a private swimming pool, home lift and generous built-up space.",
+        "description": "A brand-new three-level detached residence in the Gallop Park Road collection, offering 4,224 sq ft of freehold land and approximately 7,250 sq ft of built-up space. Designed for generous family living, the home brings together five ensuite bedrooms, a private swimming pool, a home lift and practical indoor-outdoor entertaining areas in a highly sought-after D10 setting.",
         "land_size": "4,224 sq ft",
         "built_up": "7,250 sq ft",
         "top": "June 2026",
         "features": "5 ensuite bedrooms, home lift, swimming pool",
         "parking": "3 cars on site; outside street parking available",
         "schools": "Nanyang Primary within 1km; Raffles Girls' Primary and Singapore Chinese Girls within 1-2km",
+        "schools_list": "Nanyang Primary|Raffles Girls' Primary|St Margaret's Secondary|Hwa Chong Institution|Nanyang Girls' High|Singapore Chinese Girls|St Joseph's Institution|Anglo-Chinese School (Primary)|Anglo-Chinese School (Barker Road)",
         "mrt": "550m to Botanic Gardens MRT",
-        "collection": "Gallop Park Road Collection: Plot 2 Semi-Detached House, Land 2,583 sq ft / Built-up approx. 5,231 sq ft, S$12.5 million.",
+        "floor_plan": "1F: Park 3 cars, lift, living, dining, dry kitchen, wet kitchen, bathroom, helper's room and bathroom, store room|2F: Lift, master bedroom and 2 ensuite bedrooms|3F: Lift and 2 ensuite bedrooms",
+        "collection": "Gallop Park Road Collection: Plot 1 Semi-Detached, 2,957 sq ft land / approx. 5,607 sq ft built-up, S$13.5 million (sold); Plot 2 Semi-Detached, 2,583 sq ft land / approx. 5,231 sq ft built-up, S$12.5 million; Plot 3 Detached, 4,224 sq ft land / approx. 7,250 sq ft built-up, S$17.5 million.",
         "note": "Information and measurements are approximate and subject to final survey; they do not form part of any offer, contract, or warranty.",
         "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85",
         "tag": "Featured",
-    },
-    {
-        "name": "Aster Penthouse",
-        "location": "D03 Alexandra / Commonwealth / Tiong Bahru",
-        "type": "Penthouse",
-        "price": "S$2,100,000",
-        "details": "3 beds  ·  2 baths  ·  1,840 sq ft",
-        "image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85",
-        "tag": "New",
-    },
-    {
-        "name": "Cedar Ridge",
-        "location": "D28 Seletar / Yio Chu Kang",
-        "type": "Detached Bungalow",
-        "price": "S$1,750,000",
-        "details": "5 beds  ·  4 baths  ·  3,110 sq ft",
-        "image": "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=85",
-        "tag": "Private",
-    },
-    {
-        "name": "Maple Grove House",
-        "location": "D11 Newton / Novena / Watten Estate",
-        "type": "Detached House",
-        "tenure": "Freehold",
-        "price": "S$2,950,000",
-        "details": "4 beds  ·  3 baths  ·  2,680 sq ft",
-        "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85",
-        "tag": "Just listed",
-    },
-    {
-        "name": "Willow Lane",
-        "location": "D15 East Coast / Marine Parade",
-        "type": "Semi-Detached House",
-        "tenure": "Freehold",
-        "price": "S$1,980,000",
-        "details": "4 beds  ·  2 baths  ·  2,110 sq ft",
-        "image": "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=85",
-        "tag": "Just listed",
-    },
-    {
-        "name": "The Orchard",
-        "location": "D19 Serangoon / Kovan",
-        "type": "Terraced House",
-        "tenure": "Freehold",
-        "price": "S$895,000",
-        "details": "3 beds  ·  2 baths  ·  1,540 sq ft",
-        "image": "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=85",
-        "tag": "New",
-    },
-    {
-        "name": "Ashwood Place",
-        "location": "D16 Bedok / Upper East Coast",
-        "type": "Detached Bungalow",
-        "tenure": "Freehold",
-        "price": "S$1,425,000",
-        "details": "5 beds  ·  3 baths  ·  2,940 sq ft",
-        "image": "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=85",
-        "tag": "Just listed",
-    },
-    {
-        "name": "Linden Mews",
-        "location": "D20 Ang Mo Kio / Bishan / Thomson",
-        "type": "Townhouse",
-        "tenure": "Freehold",
-        "price": "S$1,675,000",
-        "details": "3 beds  ·  2 baths  ·  1,720 sq ft",
-        "image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85",
-        "tag": "Featured",
-    },
-    {
-        "name": "Rosewood Court",
-        "location": "D09 Orchard / River Valley",
-        "type": "Corner Terrace",
-        "tenure": "Freehold",
-        "price": "S$2,250,000",
-        "details": "4 beds  ·  3 baths  ·  2,280 sq ft",
-        "image": "https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=1200&q=85",
-        "tag": "Featured",
-    },
-    {
-        "name": "Oakfield Manor",
-        "location": "D21 Upper Bukit Timah / Clementi Park",
-        "type": "Good Class Bungalow",
-        "tenure": "Freehold",
-        "price": "S$3,200,000",
-        "details": "6 beds  ·  4 baths  ·  3,680 sq ft",
-        "image": "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85",
-        "tag": "New",
-    },
-    {
-        "name": "Elm Park House",
-        "location": "D14 Eunos / Geylang / Paya Lebar",
-        "type": "Terraced House",
-        "tenure": "Freehold",
-        "price": "S$1,350,000",
-        "details": "3 beds  ·  2 baths  ·  1,690 sq ft",
-        "image": "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=85",
-        "tag": "Featured",
-    },
-    {
-        "name": "Meadow View",
-        "location": "D23 Hillview / Dairy Farm / Bukit Batok",
-        "type": "Cluster House",
-        "tenure": "Freehold",
-        "price": "S$2,700,000",
-        "details": "5 beds  ·  4 baths  ·  3,250 sq ft",
-        "image": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85",
-        "tag": "Featured",
-    },
-    {
-        "name": "Marina One Residence",
-        "location": "D01 Raffles Place / Marina Bay",
-        "type": "Luxury Apartment",
-        "tenure": "99-year Leasehold",
-        "price": "S$2,480,000",
-        "details": "2 beds  ·  2 baths  ·  1,120 sq ft",
-        "image": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=85",
-        "tag": "New",
     },
 ]
 
@@ -225,8 +109,9 @@ def listings():
     property_types = PROPERTY_TYPES
     selected_district = request.args.get("district", "")
     selected_type = request.args.get("type", "")
-    filtered_listings = [listing for listing in LISTINGS if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type)]
-    return render_template("listings.html", **page_context("listings", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type))
+    query = request.args.get("q", "").strip()
+    filtered_listings = [listing for listing in LISTINGS if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold())]
+    return render_template("listings.html", **page_context("listings", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type, query=query))
 
 
 @app.route("/new-launches")
@@ -236,8 +121,9 @@ def launches():
     property_types = PROPERTY_TYPES
     selected_district = request.args.get("district", "")
     selected_type = request.args.get("type", "")
-    filtered_listings = [listing for listing in launch_listings if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type)]
-    return render_template("listings.html", **page_context("launches", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type))
+    query = request.args.get("q", "").strip()
+    filtered_listings = [listing for listing in launch_listings if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold())]
+    return render_template("listings.html", **page_context("launches", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type, query=query))
 
 
 @app.route("/property/<path:property_name>")
