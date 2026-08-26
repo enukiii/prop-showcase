@@ -1,0 +1,134 @@
+.property-portal .buy-with-us-story {
+    align-items: stretch;
+    display: grid;
+    gap: clamp(36px, 7vw, 100px);
+    grid-template-columns: minmax(0, .95fr) minmax(280px, .75fr);
+    margin: 0 auto;
+    padding: 0 0 80px;
+    max-width: 1160px;
+    width: calc(100% - 10vw);
+}
+
+.property-portal .buy-with-us-copy {
+    align-self: center;
+    max-width: 620px;
+}
+
+.property-portal .buy-with-us-copy .eyebrow {
+    color: var(--accent);
+    margin-bottom: 18px;
+}
+
+.property-portal .buy-with-us-copy h2 {
+    border-top: 1px solid var(--line);
+    font-family: var(--sans);
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 24px;
+    padding-top: 24px;
+}
+
+.property-portal .buy-with-us-copy p {
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.75;
+    margin: 0 0 18px;
+}
+
+.property-portal .buy-with-us-copy .button {
+    margin-top: 14px;
+}
+
+.property-portal .buy-with-us-image {
+    min-height: 440px;
+    overflow: hidden;
+    position: relative;
+}
+
+.property-portal .buy-with-us-image img {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.property-portal .buy-with-us-image span {
+    background: var(--royal-deep);
+    bottom: 18px;
+    color: var(--gold-soft);
+    font-family: var(--mono);
+    font-size: 10px;
+    left: 18px;
+    padding: 8px 10px;
+    position: absolute;
+}
+
+.property-portal .sell-highlights {
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 28px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 auto;
+    padding: 28px 0 80px;
+    max-width: 1160px;
+    width: calc(100% - 10vw);
+}
+
+.property-portal .sell-highlights div {
+    border-left: 1px solid var(--accent);
+    padding-left: 16px;
+}
+
+.property-portal .sell-highlights span {
+    color: var(--accent);
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    margin-bottom: 18px;
+}
+
+.property-portal .sell-highlights strong {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+.property-portal .sell-highlights p {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 250px;
+}
+
+@media (max-width: 700px) {
+    .property-portal .buy-with-us-copy {
+        padding-bottom: 0;
+    }
+
+    .property-portal .buy-with-us-story {
+        display: flex;
+        flex-direction: column;
+        gap: 34px;
+        padding-bottom: 54px;
+        width: calc(100% - 12vw);
+    }
+
+    .property-portal .buy-with-us-copy h2 {
+        font-size: 20px;
+    }
+
+    .property-portal .buy-with-us-copy p {
+        font-size: 14px;
+    }
+
+    .property-portal .buy-with-us-image {
+        min-height: 280px;
+    }
+
+    .property-portal .sell-highlights {
+        grid-template-columns: 1fr;
+        padding-bottom: 56px;
+        width: calc(100% - 12vw);
+    }
+}

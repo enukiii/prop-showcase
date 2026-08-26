@@ -1,0 +1,103 @@
+.property-portal .contact-faq {
+    background: var(--paper);
+    border-top: 1px solid var(--line);
+    padding: 72px 5vw 86px;
+}
+
+.property-portal .contact-faq-inner {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0 auto;
+    max-width: 1280px;
+}
+
+.property-portal .contact-faq-heading,
+.property-portal .faq-list {
+    max-width: none;
+    width: 100%;
+}
+
+.property-portal .contact-faq-heading {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.property-portal .faq-list {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.property-portal .contact-faq-heading h2 {
+    font-family: var(--sans);
+    font-size: clamp(28px, 3vw, 42px);
+    font-weight: 600;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.property-portal .contact-faq-heading h2 em {
+    font-family: var(--serif);
+    font-weight: 500;
+}
+
+.property-portal .faq-list details {
+    border-top: 1px solid var(--line);
+    padding: 18px 0;
+}
+
+.property-portal .faq-list details:last-child {
+    border-bottom: 1px solid var(--line);
+}
+
+.property-portal .faq-list summary {
+    color: var(--ink);
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    list-style: none;
+    padding-right: 28px;
+    position: relative;
+}
+
+.property-portal .faq-list summary::-webkit-details-marker {
+    display: none;
+}
+
+.property-portal .faq-list summary::after {
+    color: var(--accent);
+    content: "+";
+    font-family: var(--mono);
+    font-size: 18px;
+    position: absolute;
+    right: 0;
+    top: -3px;
+}
+
+.property-portal .faq-list details[open] summary::after {
+    content: "-";
+}
+
+.property-portal .faq-list details p {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.65;
+    margin: 12px 0 0;
+    max-width: 560px;
+}
+
+@media (max-width: 700px) {
+    .property-portal .contact-faq {
+        padding: 52px 6vw 62px;
+    }
+
+    .property-portal .contact-faq-inner {
+        display: block;
+    }
+
+    .property-portal .faq-list {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 34px;
+    }
+}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Types of Properties in Singapore — SS Property{% endblock %}
+{% block content %}
+<section class="property-types-page">
+    <div class="property-types-heading">
+        <p class="eyebrow">SS Property / Resources</p>
+        <h1>Types of properties <em>in Singapore.</em></h1>
+        <p>Explore the main categories of homes available in Singapore and the property types within each one.</p>
+    </div>
+    <section class="property-types-grid">
+        {% for group in property_groups %}
+        <article class="property-type-group">
+            <span class="item-number">0{{ loop.index }}</span>
+            <h2>{{ group.title }}</h2>
+            <p>{{ group.description }}</p>
+            <ul>
+                {% for property_type in group.types %}
+                <li><strong>{{ property_type.name }}</strong><span>{{ property_type.description }}</span></li>
+                {% endfor %}
+            </ul>
+        </article>
+        {% endfor %}
+    </section>
+</section>
+{% endblock %}
