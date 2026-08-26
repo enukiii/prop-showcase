@@ -24,6 +24,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='ux-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='listing-toolbar-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='property-detail.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-enquiry.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-map.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-floor-plan.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='property-overview.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='property-overview-polish.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='overview-bullets.css') }}">
@@ -52,13 +55,24 @@
 <body class="property-portal">
     <header class="site-header">
         <a class="brand" href="{{ url_for('home') }}" aria-label="SS Property"><img class="brand-logo" src="{{ url_for('static', filename='img/ssPropertyLOGO.png') }}" alt="SS Property"></a>
-        <nav class="main-nav" aria-label="Main navigation">
+        <div class="mobile-header-tools">
+            <button class="mobile-search-toggle" type="button" aria-controls="site-search" aria-expanded="false" aria-label="Open search">⌕</button>
+            <button class="language-toggle" type="button" aria-label="Switch language" data-language="en"><span>EN</span><span>中文</span></button>
+        </div>
+        <button class="mobile-menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button>
+        <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
             {% for label, endpoint in nav_items %}
             <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
             {% endfor %}
+            <a class="mobile-menu-action" href="{{ url_for('contact') }}">Book a conversation <span>↗</span></a>
         </nav>
         <a class="header-action" href="{{ url_for('contact') }}">Book a conversation <span>↗</span></a>
     </header>
+    <form class="site-search" id="site-search" action="{{ url_for('listings') }}" method="get" role="search">
+        <label for="site-search-input">Search properties</label>
+        <input id="site-search-input" name="q" type="search" placeholder="Search by name, district or property type" autocomplete="off">
+        <button type="submit" aria-label="Search properties">↗</button>
+    </form>
     <main>{% block content %}{% endblock %}</main>
     {% if active_page not in ['home', 'postal-districts'] %}{% include '_just_listed.html' %}{% endif %}
     <footer class="site-footer">
@@ -67,6 +81,138 @@
         <small>© 2026 SS Property</small>
     </footer>
     <script>
+        const searchToggle = document.querySelector('.mobile-search-toggle');
+        const siteSearch = document.querySelector('.site-search');
+        searchToggle?.addEventListener('click', () => {
+            const isOpen = searchToggle.getAttribute('aria-expanded') === 'true';
+            searchToggle.setAttribute('aria-expanded', String(!isOpen));
+            siteSearch?.classList.toggle('is-open', !isOpen);
+            if (!isOpen) document.querySelector('#site-search-input')?.focus();
+        });
+
+            const scrollBefore = window.scrollY;
+            const mainBefore = document.querySelector('main')?.getBoundingClientRect().top;
+        const languageToggle = document.querySelector('.language-toggle');
+        const languageLabels = {
+            en: { 'all-listings': 'All Listings', 'new-launches': 'New Launches', services: 'Services', resources: 'Resources', 'about-us': 'About Us', contact: 'Contact', action: 'Book a conversation' },
+            zh: { 'all-listings': '所有房源', 'new-launches': '新楼盘', services: '服务', resources: '资讯', 'about-us': '关于我们', contact: '联系我们', action: '预约咨询' }
+        };
+        const pageTranslations = {
+            'Brand-New Landed Properties For Sale in Singapore': '新加坡全新有地房产',
+            'Just Listed Properties For Sale': '最新上市房源',
+            'Featured Resale Listings': '精选转售房源',
+            'Featured properties for sale.': '精选房源',
+            'Just listed properties for sale.': '最新上市房源',
+            'Explore our selection of homes across Singapore, chosen for their location, quality and potential.': '探索我们精选的新加坡房源，兼顾地段、品质与发展潜力。',
+            'Browse our latest new launch homes and developments.': '浏览我们最新推出的住宅与楼盘。',
+            'View all new launches': '查看所有新楼盘',
+            'View all listings': '查看所有房源',
+            'View all resale homes': '查看所有转售住宅',
+            'Find my property': '寻找我的理想房产',
+            'Search properties': '搜索房产',
+            'District': '区域',
+            'Property type': '房产类型',
+            'All districts': '所有区域',
+            'All property types': '所有房产类型',
+            'Property for better living.': '为更美好的生活寻找理想房产。'
+        };
+        const originalPageText = new Map();
+        const languageElements = document.querySelectorAll('h1, h2, .button, .listing-page-head p:last-child, .listing-toolbar strong, .district-filter label, .site-search label, .site-footer p');
+        languageElements.forEach(element => {
+            originalPageText.set(element, element.matches('.button') ? element.firstChild.textContent.trim() : element.textContent.trim());
+        });
+        const reserveLanguageSpace = () => {
+            languageElements.forEach(element => {
+                const original = originalPageText.get(element);
+                const translation = pageTranslations[original];
+                if (!translation || element.dataset.languageSpaceReserved) return;
+                const originalHeight = element.getBoundingClientRect().height;
+                const originalWidth = element.getBoundingClientRect().width;
+                const textNode = element.matches('.button') ? element.firstChild : element;
+                const originalText = textNode.textContent;
+                textNode.textContent = translation;
+                const translatedHeight = element.getBoundingClientRect().height;
+                const translatedWidth = element.getBoundingClientRect().width;
+                textNode.textContent = originalText;
+                element.style.minHeight = `${Math.ceil(Math.max(originalHeight, translatedHeight))}px`;
+                if (element.matches('.button')) {
+                    const stableWidth = `${Math.ceil(Math.max(originalWidth, translatedWidth))}px`;
+                    element.style.minWidth = stableWidth;
+                    element.style.width = stableWidth;
+                }
+                element.dataset.languageSpaceReserved = 'true';
+            });
+            document.querySelectorAll('.main-nav > a:not(.mobile-menu-action)').forEach(link => {
+                if (link.dataset.languageSpaceReserved) return;
+                const endpoint = link.getAttribute('href')?.split('/').pop();
+                const english = languageLabels.en[endpoint];
+                const chinese = languageLabels.zh[endpoint];
+                if (!english || !chinese) return;
+                const original = link.textContent;
+                const originalWidth = link.getBoundingClientRect().width;
+                link.textContent = chinese;
+                const translatedWidth = link.getBoundingClientRect().width;
+                link.textContent = original;
+                link.style.minWidth = `${Math.ceil(Math.max(originalWidth, translatedWidth))}px`;
+                link.dataset.languageSpaceReserved = 'true';
+            });
+        };
+        reserveLanguageSpace();
+        const setLanguage = nextLanguage => {
+            languageToggle.dataset.language = nextLanguage;
+            document.documentElement.lang = nextLanguage === 'zh' ? 'zh-CN' : 'en';
+            const labels = languageLabels[nextLanguage];
+            document.querySelectorAll('.main-nav > a:not(.mobile-menu-action)').forEach(link => {
+                const endpoint = link.getAttribute('href')?.split('/').pop();
+                if (endpoint && labels[endpoint]) link.textContent = labels[endpoint];
+            });
+            document.querySelectorAll('.header-action, .mobile-menu-action').forEach(link => {
+                link.firstChild.textContent = labels.action;
+            });
+            document.querySelectorAll('h1, h2, .button, .listing-page-head p:last-child, .listing-toolbar strong, .district-filter label, .site-search label, .site-footer p').forEach(element => {
+                const original = originalPageText.get(element);
+                if (!original) return;
+                const translation = pageTranslations[original];
+                if (nextLanguage === 'zh' && translation) {
+                    if (element.matches('.button')) element.firstChild.textContent = translation;
+                    else element.textContent = translation;
+                } else if (nextLanguage === 'en') {
+                    if (element.matches('.button')) element.firstChild.textContent = original;
+                    else element.textContent = original;
+                }
+            });
+            document.querySelectorAll('.listing-toolbar strong').forEach(element => {
+                const match = originalPageText.get(element)?.match(/^(\d+) properties found$/);
+                if (match) element.textContent = nextLanguage === 'zh' ? `${match[1]} 套房源` : `${match[1]} properties found`;
+            });
+            document.querySelectorAll('select option').forEach(option => {
+                const original = option.dataset.originalText || option.textContent.trim();
+                option.dataset.originalText = original;
+                if (nextLanguage === 'zh') option.textContent = pageTranslations[original] || original;
+                else option.textContent = original;
+            });
+            const searchInput = document.querySelector('#site-search-input');
+            if (searchInput) searchInput.placeholder = nextLanguage === 'zh' ? '按名称、区域或房产类型搜索' : 'Search by name, district or property type';
+            languageToggle.classList.toggle('is-zh', nextLanguage === 'zh');
+            localStorage.setItem('ss-property-language', nextLanguage);
+            requestAnimationFrame(() => {
+                const mainAfter = document.querySelector('main')?.getBoundingClientRect().top;
+                const shift = mainAfter - mainBefore;
+                window.scrollTo(0, Math.max(0, scrollBefore + shift));
+            });
+        };
+        languageToggle?.addEventListener('click', () => setLanguage(languageToggle.dataset.language === 'en' ? 'zh' : 'en'));
+        if (localStorage.getItem('ss-property-language') === 'zh') setLanguage('zh');
+
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const mainNavigation = document.querySelector('.main-nav');
+        mobileMenuToggle?.addEventListener('click', () => {
+            const isOpen = mobileMenuToggle.getAttribute('aria-expanded') === 'true';
+            mobileMenuToggle.setAttribute('aria-expanded', String(!isOpen));
+            mobileMenuToggle.setAttribute('aria-label', isOpen ? 'Open navigation' : 'Close navigation');
+            mainNavigation?.classList.toggle('is-open', !isOpen);
+        });
+
         document.querySelectorAll('.listing-card').forEach(card => {
             const title = card.querySelector('h3');
             if (!title) return;

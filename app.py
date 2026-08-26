@@ -229,8 +229,9 @@ def listings():
     property_types = PROPERTY_TYPES
     selected_district = request.args.get("district", "")
     selected_type = request.args.get("type", "")
-    filtered_listings = [listing for listing in LISTINGS if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type)]
-    return render_template("listings.html", **page_context("listings", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type))
+    query = request.args.get("q", "").strip()
+    filtered_listings = [listing for listing in LISTINGS if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold())]
+    return render_template("listings.html", **page_context("listings", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type, query=query))
 
 
 @app.route("/new-launches")
@@ -240,8 +241,9 @@ def launches():
     property_types = PROPERTY_TYPES
     selected_district = request.args.get("district", "")
     selected_type = request.args.get("type", "")
-    filtered_listings = [listing for listing in launch_listings if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type)]
-    return render_template("listings.html", **page_context("launches", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type))
+    query = request.args.get("q", "").strip()
+    filtered_listings = [listing for listing in launch_listings if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold())]
+    return render_template("listings.html", **page_context("launches", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type, query=query))
 
 
 @app.route("/property/<path:property_name>")
