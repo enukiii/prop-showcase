@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Sell Your Property With Us - SS Property{% endblock %}
+{% block content %}
+<section class="page-heading">
+    <p class="eyebrow">SS Property / Sell With Us</p>
+    <h1>Sell Your Property <em>With Us</em></h1>
+    <p>Set the price. We will shape the story, reach the right audience and guide the sale.</p>
+</section>
+<section class="buy-with-us-story">
+    <div class="buy-with-us-copy">
+        <p class="eyebrow">Our approach</p>
+        <h2>Price You Decide, Property We Market</h2>
+        <p>Whether you are selling a home, a shop lot or a new development, we help you move forward with clarity and purpose.</p>
+        <p>Every property has a story. We position yours with thoughtful presentation, focused digital reach and marketing that connects it with the right buyer.</p>
+        <p>From smaller homes to major developments, our team brings the same care to every brief, creating genuine interest and a smoother path to completion.</p>
+        <a class="button button-dark" href="{{ url_for('contact') }}">Start a conversation <span>↗</span></a>
+    </div>
+    <div class="buy-with-us-image">
+        <img src="{{ url_for('static', filename='img/HousesIMG/Coronation B7000/Coronation B7000 Landing.PNG') }}" alt="Landed property represented by SS Property">
+        <span>Presented with intention</span>
+    </div>
+</section>
+<section class="sell-highlights" aria-label="Selling service highlights">
+    <div><span>01</span><strong>Strong visibility</strong><p>Digital tools and creative marketing that make your property easier to find.</p></div>
+    <div><span>02</span><strong>Qualified interest</strong><p>Clear positioning that brings the right people into the conversation.</p></div>
+    <div><span>03</span><strong>Steady guidance</strong><p>Practical support from the first decision through to completion.</p></div>
+</section>
+{% endblock %}

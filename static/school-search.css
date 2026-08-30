@@ -1,19 +1,4 @@
-.property-portal .school-directory {
-    display: grid;
-    gap: 12px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    margin: 0 auto;
-    max-width: 1160px;
-    padding: 0 5vw 80px;
-}
-
-.property-portal .school-search-form {
-    align-items: center;
-    display: flex;
-    gap: 8px;
-    margin-top: 24px;
-    max-width: 420px;
-}
+.property-portal .school-search-hero{background:linear-gradient(115deg,#17140f 0%,#252219 62%,#1a1a18 100%);border-bottom:1px solid #403a33;display:grid;gap:38px;grid-template-columns:minmax(0,1fr) minmax(320px,.7fr);padding:68px max(5vw,calc((100vw - 1160px)/2)) 54px}.property-portal .school-search-hero .eyebrow{color:#d6b565;margin:0 0 16px}.property-portal .school-search-hero h1{color:#f4efe5;font-family:var(--sans);font-size:clamp(38px,4.5vw,62px);font-weight:600;letter-spacing:0;line-height:1;margin:0 0 18px}.property-portal .school-search-hero h1 em{font-family:var(--serif);font-weight:500}.property-portal .school-search-hero>div>p:last-child{color:#b8afa1;font-size:16px;line-height:1.6;margin:0;max-width:460px}.property-portal .school-search-form{align-self:end;display:grid;gap:8px;grid-template-columns:minmax(0,1fr) 48px}.property-portal .school-search-form label{clip:rect(0 0 0 0);height:1px;overflow:hidden;position:absolute;width:1px}.property-portal .school-search-form input{background:#11110f;border:1px solid #655b4b;color:#f4efe5;font:inherit;min-width:0;padding:15px 16px}.property-portal .school-search-form input:focus{border-color:#d6b565;outline:1px solid #d6b565}.property-portal .school-search-form button{background:#d6b565;border:0;color:#17130d;cursor:pointer;font-size:20px;min-height:50px}.property-portal .school-directory-section{margin:0 auto;max-width:1160px;padding:40px 5vw 88px}.property-portal .school-directory-toolbar{align-items:center;border-bottom:1px solid #5a5041;display:flex;justify-content:space-between;padding:0 0 14px}.property-portal .school-directory-toolbar p,.property-portal .school-directory-toolbar span{color:#b8afa1;font-family:var(--mono);font-size:10px;margin:0;text-transform:uppercase}.property-portal .school-directory-toolbar strong{color:#d6b565;font-weight:500}.property-portal .school-directory{display:grid;column-gap:46px;grid-template-columns:repeat(2,minmax(0,1fr))}.property-portal .school-directory-item{align-items:center;border-bottom:1px solid #403a33;color:inherit;display:grid;gap:14px;grid-template-columns:38px minmax(0,1fr) 22px;min-height:70px;padding:12px 2px;text-decoration:none;transition:background .18s ease,color .18s ease}.property-portal .school-directory-item[hidden]{display:none}.property-portal .school-directory-item:hover,.property-portal .school-directory-item:focus-visible{background:#24231f;outline:0;padding-left:10px;padding-right:10px}.property-portal .school-directory-item .item-number{color:#d6b565;font-family:var(--mono);font-size:10px}.property-portal .school-directory-item h2{color:#f4efe5;font-family:var(--sans);font-size:14px;font-weight:500;line-height:1.35;margin:0}.property-portal .school-arrow{color:#d6b565;font-size:17px;text-align:right}.property-portal .school-search-empty{grid-column:1/-1;padding:30px 0}.property-portal .school-search-empty h2{color:#f4efe5;font-family:var(--sans);margin:0 0 8px}.property-portal .school-search-empty p{color:#b8afa1;margin:0}@media(max-width:700px){.property-portal .school-search-hero{display:block;padding:44px 6vw 38px}.property-portal .school-search-hero h1{font-size:38px}.property-portal .school-search-form{margin-top:28px}.property-portal .school-directory-section{padding:28px 6vw 58px}.property-portal .school-directory{grid-template-columns:1fr}.property-portal .school-directory-item{grid-template-columns:32px minmax(0,1fr) 22px;min-height:64px}.property-portal .school-directory-item h2{font-size:13px}}
 
 .property-portal .school-search-form label {
     position: absolute;
@@ -93,5 +78,118 @@
     .property-portal .school-directory {
         grid-template-columns: 1fr;
         padding: 0 6vw 56px;
+    }
+}
+
+.property-portal .school-directory-item {
+    border-radius: 7px;
+}
+
+.property-portal .school-directory-toolbar {
+    border-bottom: 0;
+}
+
+/* Match the Search by District resource-page presentation. */
+.property-portal .school-search-hero {
+    background: #151515;
+    border-bottom: 0;
+    display: block;
+    padding: 46px 5vw 0;
+}
+
+.property-portal .school-search-hero > div,
+.property-portal .school-search-form,
+.property-portal .school-directory-section {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1160px;
+}
+
+.property-portal .school-search-hero h1 {
+    font-size: clamp(42px, 6vw, 76px);
+    font-weight: 600;
+    letter-spacing: -0.05em;
+    line-height: 0.98;
+    margin-bottom: 24px;
+}
+
+.property-portal .school-search-hero > div > p:last-child {
+    color: #b8afa1;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    max-width: 560px;
+}
+
+.property-portal .school-search-form {
+    align-items: stretch;
+    display: flex;
+    margin-top: 0;
+    max-width: 560px;
+}
+
+.property-portal .school-search-form input {
+    background: #201f1c;
+    border: 1px solid #403a33;
+    border-radius: 5px 0 0 5px;
+    min-height: 46px;
+}
+
+.property-portal .school-search-form button {
+    border-radius: 0 5px 5px 0;
+    min-height: 46px;
+    min-width: 46px;
+}
+
+.property-portal .school-directory-section {
+    background: #151515;
+    padding: 36px 5vw 80px;
+}
+
+.property-portal .school-directory-toolbar {
+    padding-bottom: 16px;
+}
+
+.property-portal .school-directory {
+    column-gap: 10px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    row-gap: 10px;
+}
+
+.property-portal .school-directory-item {
+    background: #201f1c;
+    border-color: #403a33;
+    border-radius: 5px;
+    min-height: 66px;
+    padding: 12px;
+}
+
+.property-portal .school-directory-item h2 {
+    color: #f4efe5;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.property-portal .school-directory-item:hover,
+.property-portal .school-directory-item:focus-visible {
+    background: #201f1c;
+    border-color: #c6a15b;
+}
+
+@media (max-width: 700px) {
+    .property-portal .school-search-hero {
+        padding: 32px 6vw 0;
+    }
+
+    .property-portal .school-search-hero h1 {
+        font-size: 48px;
+    }
+
+    .property-portal .school-directory-section {
+        padding: 28px 6vw 60px;
+    }
+
+    .property-portal .school-directory {
+        grid-template-columns: 1fr;
     }
 }

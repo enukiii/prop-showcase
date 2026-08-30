@@ -55,6 +55,8 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='school-search.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='contact-faq.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='buy-with-us.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home-valuation.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='legal-pages.css') }}">
 </head>
 <body class="property-portal">
     <header class="site-header">
@@ -66,7 +68,7 @@
         <button class="mobile-menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button>
         <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
             {% for label, endpoint in nav_items %}
-            {% if endpoint == 'listings' %}<div class="nav-dropdown"><a class="{% if active_page in ['listings', 'rent', 'school-search', 'postal-districts'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('for_rent') }}">For Rent</a><a href="{{ url_for('search_by_school') }}">Search by School</a><a href="{{ url_for('postal_districts') }}">Search by District</a></div></div>{% elif endpoint == 'launches' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('launches', category='landed') }}">Brand-New Landed</a><a href="{{ url_for('launches', category='condo') }}">Brand-New Condominium</a></div></div>{% elif endpoint == 'services' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('services') }}#sell-with-us">Sell With Us</a><a href="{{ url_for('buy_with_us') }}">Buy With Us</a><a href="{{ url_for('services') }}#home-valuation">Home Valuation</a></div></div>{% else %}
+            {% if endpoint == 'listings' %}<div class="nav-dropdown"><a class="{% if active_page in ['listings', 'rent', 'school-search', 'postal-districts'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('for_rent') }}">For Rent</a><a href="{{ url_for('search_by_school') }}">Search by School</a><a href="{{ url_for('postal_districts') }}">Search by District</a></div></div>{% elif endpoint == 'launches' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('launches', category='landed') }}">Brand-New Landed</a><a href="{{ url_for('launches', category='condo') }}">Brand-New Condominium</a></div></div>{% elif endpoint == 'services' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('sell_with_us') }}">Sell With Us</a><a href="{{ url_for('buy_with_us') }}">Buy With Us</a><a href="{{ url_for('home_valuation') }}">Home Valuation</a></div></div>{% elif endpoint == 'resources' %}<div class="nav-dropdown"><a class="{% if active_page in ['resources', 'market-trends', 'news-articles'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('market_trends') }}">Market Trends</a><a href="{{ url_for('news_articles') }}">News Articles</a></div></div>{% else %}
             <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
             {% endif %}
             {% endfor %}
@@ -83,8 +85,12 @@
     {% if active_page not in ['home', 'postal-districts'] %}{% include '_just_listed.html' %}{% endif %}
     <footer class="site-footer">
         <div class="brand footer-brand"><img class="brand-logo" src="{{ url_for('static', filename='img/ssPropertyLOGO.png') }}" alt="SS Property"></div>
-        <p>Property for better living.</p>
-        <small>© 2026 SS Property</small>
+        <small class="footer-legal-notice">A Team from SRI Pte Ltd (CEA Licence No. XXXXXXX) Copyright © 2026. All Rights Reserved.</small>
+        <nav class="footer-legal" aria-label="Legal information">
+            <a href="{{ url_for('disclaimer') }}">Disclaimer</a>
+            <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
+            <a href="{{ url_for('data_protection') }}">Data Protection</a>
+        </nav>
     </footer>
     <script>
         const searchToggle = document.querySelector('.mobile-search-toggle');
@@ -104,8 +110,8 @@
             zh: { 'all-listings': '所有房源', 'new-launches': '新楼盘', services: '服务', resources: '资讯', 'about-us': '关于我们', contact: '联系我们', action: '预约咨询' }
         };
         const pageTranslations = {
-            'Newly Launched Properties for sale': '最新上市房源',
-            'All properties for sale.': '精选房源',
+            'Newly Launched Properties For Sale': '最新上市房源',
+            'All properties For Sale.': '精选房源',
             'Explore our selection of homes across Singapore, chosen for their location, quality and potential.': '探索我们精选的新加坡房源，兼顾地段、品质与发展潜力。',
             'Browse our latest new launch homes and developments.': '浏览我们最新推出的住宅与楼盘。',
             'View all new launches': '查看所有新楼盘',
@@ -115,8 +121,7 @@
             'District': '区域',
             'Property type': '房产类型',
             'All districts': '所有区域',
-            'All property types': '所有房产类型',
-            'Property for better living.': '为更美好的生活寻找理想房产。'
+            'All property types': '所有房产类型'
         };
         const originalPageText = new Map();
         const languageElements = document.querySelectorAll('h1, h2, .button, .listing-page-head p:last-child, .listing-toolbar strong, .district-filter label, .site-search label, .site-footer p');

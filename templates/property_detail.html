@@ -15,22 +15,48 @@
         <div><p class="eyebrow">Property overview</p><h2>About this property</h2></div>
         <div class="property-overview-copy"><p>{{ listing.description|default('This ' ~ listing.type|lower ~ ' is located in ' ~ listing.location ~ ' and offers ' ~ listing.details|lower ~ '.') }}</p><div class="overview-facts"><span><b>Type</b>{{ listing.type }}</span><span><b>Tenure</b>{{ listing.tenure|default('Freehold') }}</span><span><b>Land size</b>{{ listing.land_size|default(listing.details) }}</span><span><b>Built-up</b>{{ listing.built_up|default('Available on request') }}</span><span><b>TOP</b>{{ listing.top|default('Available on request') }}</span><span><b>Price</b>{{ listing.price }}</span></div>{% if listing.features %}<div class="overview-extra"><b>Highlights</b><ul>{% for feature in listing.features.split(',') %}<li>{{ feature|trim }}</li>{% endfor %}{% if listing.parking %}<li>{{ listing.parking }}</li>{% endif %}</ul></div>{% endif %}{% if listing.floor_plan %}<div class="overview-extra"><b>Floor plan</b><ul>{% for floor in listing.floor_plan.split('|') %}<li>{{ floor }}</li>{% endfor %}</ul></div>{% endif %}{% if listing.schools %}<div class="overview-extra"><b>Schools & transport</b><ul>{% for school in listing.schools_list.split('|') %}<li>{{ school }}</li>{% endfor %}<li>{{ listing.mrt }}</li></ul></div>{% endif %}{% if listing.collection %}<div class="overview-extra"><b>Gallop Park Road collection</b><ul><li>{{ listing.collection }}</li></ul></div>{% endif %}{% if listing.note %}<small class="property-note">{{ listing.note }}</small>{% endif %}</div>
     </section>
+    {% if listing.interior_images %}
+    <section class="property-interior-carousel" data-interior-carousel aria-label="Interior photographs">
+        <div class="interior-carousel-heading"><p class="eyebrow">Interior gallery</p></div>
+        <div class="interior-carousel-track">
+            {% for image in listing.interior_images %}
+            <div class="interior-carousel-slide {% if loop.first %}active{% endif %}"><img src="{{ image }}" alt="Interior of {{ listing.name }}, photo {{ loop.index }}"></div>
+            {% endfor %}
+        </div>
+        <button class="interior-carousel-arrow interior-carousel-prev" type="button" aria-label="Previous interior photo">←</button>
+        <button class="interior-carousel-arrow interior-carousel-next" type="button" aria-label="Next interior photo">→</button>
+        <div class="interior-carousel-meta"><span class="interior-carousel-count">01 / {{ listing.interior_images|length }}</span><div class="interior-carousel-dots">{% for image in listing.interior_images %}<button type="button" aria-label="Show interior photo {{ loop.index }}" class="{% if loop.first %}active{% endif %}"></button>{% endfor %}</div></div>
+    </section>
+    {% endif %}
+    {% if listing.floor_plan_images %}
     <section class="property-floor-plan">
         <div class="property-floor-plan-heading"><p class="eyebrow">Residence layout</p><h2>Floor plan</h2><p>Three generous levels connected by a private lift, with considered spaces for family living, entertaining and rest.</p></div>
         <div class="floor-plan-wireframe">
-            <div class="floor-plan-wireframe-title">FLOOR PLAN / PLOT 3</div>
-            <img class="floor-plan-full-image" src="{{ url_for('static', filename='img/farrer road floor plan.jpg') }}" alt="Complete floor plan for 96 Farrer Road, including the first storey, second storey, attic and roof plans">
+            <div class="floor-plan-image-set" data-floor-plan-set>{% for plan in listing.floor_plan_images %}<img class="floor-plan-full-image" src="{{ plan }}" alt="Floor plan {{ loop.index }} for {{ listing.name }}" data-floor-plan-thumb>{% endfor %}</div>
         </div>
     </section>
+    {% endif %}
+    {% if listing.video_url %}
+    <section class="property-floor-plan property-video-section">
+        <div class="property-floor-plan-heading"><p class="eyebrow">Residence tour</p><h2>Video tour</h2><p>Explore the home and its surroundings in more detail.</p></div>
+        <div class="property-video">
+            <iframe src="{{ listing.video_url }}" title="Property video for {{ listing.name }}" loading="lazy" allowfullscreen></iframe>
+        </div>
+    </section>
+    {% endif %}
+    <div class="floor-plan-lightbox" data-floor-plan-lightbox>
+        <button type="button" class="floor-plan-lightbox-close" aria-label="Close floor plan preview">✕</button>
+        <img src="" alt="Enlarged floor plan">
+    </div>
     <section class="property-map">
         <div class="property-map-heading">
             <div><p class="eyebrow">Location</p><h2>Find your way to {{ listing.name }}</h2></div>
-            <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query=96+Farrer+Road+Singapore" target="_blank" rel="noopener">Open in Google Maps <span>↗</span></a>
+            <a class="text-link" href="https://www.google.com/maps/search/?api=1&amp;query={{ (listing.name ~ ' Singapore') | urlencode }}" target="_blank" rel="noopener">Open in Google Maps <span>↗</span></a>
         </div>
         <div class="property-map-frame">
-            <iframe title="Map showing 96 Farrer Road, Singapore" src="https://www.google.com/maps?q=96+Farrer+Road+Singapore&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe title="Map showing {{ listing.name }}, Singapore" src="https://www.google.com/maps?q={{ (listing.name ~ ' Singapore') | urlencode }}&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-        <p class="property-map-note">Approximately 550m from Botanic Gardens MRT station.</p>
+        <p class="property-map-note">{{ listing.mrt|default('Nearby MRT and transport details available on request.') }}</p>
     </section>
     <section class="property-enquiry" style="--enquiry-image: url('{{ listing.image }}');">
         <div class="property-enquiry-copy">
@@ -60,6 +86,47 @@
         </form>
     </section>
 </section>
+<script>
+(() => {
+    const lightbox = document.querySelector('[data-floor-plan-lightbox]');
+    if (!lightbox) return;
+    const lightboxImg = lightbox.querySelector('img');
+    const closeBtn = lightbox.querySelector('.floor-plan-lightbox-close');
+    document.querySelectorAll('[data-floor-plan-thumb]').forEach(thumb => {
+        thumb.addEventListener('click', () => {
+            lightboxImg.src = thumb.src;
+            lightboxImg.alt = thumb.alt;
+            lightbox.classList.add('is-open');
+        });
+    });
+    const close = () => lightbox.classList.remove('is-open');
+    closeBtn?.addEventListener('click', close);
+    lightbox.addEventListener('click', event => { if (event.target === lightbox) close(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') close(); });
+})();
+</script>
+<script>
+(() => {
+    const carousel = document.querySelector('[data-interior-carousel]');
+    if (!carousel) return;
+    const slides = [...carousel.querySelectorAll('.interior-carousel-slide')];
+    const dots = [...carousel.querySelectorAll('.interior-carousel-dots button')];
+    const count = carousel.querySelector('.interior-carousel-count');
+    let index = 0;
+    const show = nextIndex => {
+        index = (nextIndex + slides.length) % slides.length;
+        slides.forEach((slide, slideIndex) => slide.classList.toggle('active', slideIndex === index));
+        dots.forEach((dot, dotIndex) => dot.classList.toggle('active', dotIndex === index));
+        count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+    };
+    carousel.querySelector('.interior-carousel-prev').addEventListener('click', () => show(index - 1));
+    carousel.querySelector('.interior-carousel-next').addEventListener('click', () => show(index + 1));
+    dots.forEach((dot, dotIndex) => dot.addEventListener('click', () => show(dotIndex)));
+    let startX = 0;
+    carousel.addEventListener('touchstart', event => { startX = event.touches[0].clientX; }, {passive: true});
+    carousel.addEventListener('touchend', event => { const distance = event.changedTouches[0].clientX - startX; if (Math.abs(distance) > 40) show(index + (distance < 0 ? 1 : -1)); }, {passive: true});
+})();
+</script>
 <script>
 (() => {
     const gallery = document.querySelector('[data-gallery]');
