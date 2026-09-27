@@ -1,0 +1,40 @@
+.property-portal .about-page .about-intro-copy {
+    margin-bottom: clamp(32px, 5vw, 56px);
+}
+
+.property-portal .about-page .about-story {
+    display: grid;
+    gap: 22px;
+    max-width: 900px;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.property-portal .about-page .about-story p {
+    color: #b8afa1;
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.8;
+    margin: 0;
+    text-transform: none;
+}
+
+.property-portal .about-page .about-story strong {
+    color: #f4efe5;
+    font-weight: 600;
+}
+
+.property-portal .about-page .about-story [id] {
+    scroll-margin-top: 100px;
+}
+
+@media (max-width: 700px) {
+    .property-portal .about-page .about-story {
+        gap: 18px;
+    }
+
+    .property-portal .about-page .about-story p {
+        font-size: 14px;
+        line-height: 1.75;
+    }
+}

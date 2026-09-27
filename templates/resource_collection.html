@@ -2,10 +2,14 @@
 {% block title %}{{ heading|striptags }} | SS Property{% endblock %}
 {% block content %}
 <section class="resources-page resource-collection-page">
+    <a class="resource-back-link" href="{{ url_for('resources') }}">← All resources</a>
     <div class="resources-heading"><p class="eyebrow">{{ eyebrow }}</p><h1>{{ heading|safe }}</h1><p>{{ intro }}</p></div>
     <section class="resource-collection-grid">
         {% for article in articles %}
-        <article class="resource-collection-item"><a class="resource-collection-image" href="{{ article.url }}" target="_blank" rel="noopener noreferrer"><img src="{{ article.image }}" alt="{{ article.title }}"><span>{{ article.image_credit }}</span></a><div class="resource-collection-copy"><span class="item-number">0{{ loop.index }}</span><h2>{{ article.title }}</h2><p>{{ article.text }}</p><a class="resource-source" href="{{ article.url }}" target="_blank" rel="noopener noreferrer">Source: {{ article.source }} <b aria-hidden="true">↗</b></a></div></article>
+        <article class="resource-collection-item">
+            <a class="resource-collection-image" href="{{ article.url }}" target="_blank" rel="noopener noreferrer"><img src="{{ article.image }}" alt="{{ article.title }}"><span>{{ article.image_credit }}</span></a>
+            <div class="resource-collection-copy"><span class="item-number">0{{ loop.index }}</span><h2>{{ article.title }}</h2><p>{{ article.text }}</p><a class="resource-source" href="{{ article.url }}" target="_blank" rel="noopener noreferrer">Read at {{ article.source }} <b aria-hidden="true">↗</b></a></div>
+        </article>
         {% endfor %}
     </section>
 </section>

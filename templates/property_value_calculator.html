@@ -3,16 +3,17 @@
 {% block content %}
 <section class="resources-page valuation-calc-page">
     <div class="resources-heading">
-        <p class="eyebrow">SS Property / Resources</p>
-        <h1>What is your property <em>worth?</em></h1>
-        <p>Enter your property's address to get an instant estimate of its current market value in Singapore.</p>
+        <a class="resource-back-link" href="{{ url_for('resources') }}">← All resources</a>
+        <p class="eyebrow">SS Property / Planning tool</p>
+        <h1>Explore an indicative<br>property <em>value.</em></h1>
+        <p>Adjust the details below to see a benchmark-based estimate for a Singapore property. It is a starting point for research, not a formal valuation.</p>
     </div>
     <div class="valuation-calculator">
         <form class="valuation-calc-form" data-valuation-form>
             <fieldset>
                 <legend>Your property</legend>
                 <label><span>Property address</span><input name="address" type="text" placeholder="e.g. 12 Orchard Road, Singapore" autocomplete="street-address" required></label>
-                <label><span>District</span><select name="district" data-district-select required>{% for district in districts %}<option value="{{ district }}">{{ district }}</option>{% endfor %}</select><small class="valuation-calc-field-note" data-district-note>Detected automatically from your address — adjust if needed.</small></label>
+                <label><span>District</span><select name="district" data-district-select required><option value="" selected disabled>Select a district</option>{% for district in districts %}<option value="{{ district }}">{{ district }}</option>{% endfor %}</select><small class="valuation-calc-field-note" data-district-note>Enter an address to try automatic detection, or choose a district.</small></label>
                 <div class="valuation-calc-row">
                     <label><span>Property category</span><select name="category"><option value="landed">Landed house</option><option value="condo">Condominium / apartment</option><option value="hdb">HDB flat</option></select></label>
                     <label><span>Tenure</span><select name="tenure"><option value="freehold">Freehold / 999-year</option><option value="leasehold">99-year leasehold</option></select></label>
@@ -21,7 +22,7 @@
             <fieldset>
                 <legend>Size &amp; condition</legend>
                 <div class="valuation-calc-row">
-                    <label><span>Floor / land area (sq ft)</span><input name="area" type="number" min="200" step="10" value="1800" required></label>
+                    <label><span>Floor / land area (sq ft)</span><input name="area" type="number" min="200" step="10" placeholder="e.g. 1,800" required></label>
                     <label><span>Condition</span><select name="condition"><option value="1.05">Renovated / like new</option><option value="1" selected>Good, well-maintained</option><option value="0.9">Needs renovation</option></select></label>
                 </div>
             </fieldset>
@@ -118,20 +119,21 @@
         const tenureMultiplier = tenure === 'freehold' ? 1.05 : 0.85;
         const psf = basePsf * tenureMultiplier * condition;
         const estimatedValue = psf * area;
+        const hasEstimateInputs = Boolean(district && area > 0);
 
         results.querySelector('[data-out="heading"]').textContent = address ? `Estimated value for ${address}` : 'Estimated market value';
-        results.querySelector('[data-out="value"]').textContent = formatCurrency(estimatedValue);
-        results.querySelector('[data-out="range"]').textContent = formatCurrency(estimatedValue * 0.92) + ' – ' + formatCurrency(estimatedValue * 1.08);
-        results.querySelector('[data-out="psf"]').textContent = 'S$' + Math.round(psf).toLocaleString('en-SG') + ' psf';
-        results.querySelector('[data-out="area"]').textContent = area.toLocaleString('en-SG') + ' sq ft';
+        results.querySelector('[data-out="value"]').textContent = hasEstimateInputs ? formatCurrency(estimatedValue) : (district ? 'Enter an area' : 'Select a district');
+        results.querySelector('[data-out="range"]').textContent = hasEstimateInputs ? formatCurrency(estimatedValue * 0.92) + ' – ' + formatCurrency(estimatedValue * 1.08) : 'Add property details to see an indicative range';
+        results.querySelector('[data-out="psf"]').textContent = district ? 'S$' + Math.round(psf).toLocaleString('en-SG') + ' psf' : '—';
+        results.querySelector('[data-out="area"]').textContent = area ? area.toLocaleString('en-SG') + ' sq ft' : '—';
 
         let visibleCount = 0;
         cards.forEach(card => {
-            const matches = card.dataset.district === district && card.dataset.category === category;
+            const matches = hasEstimateInputs && card.dataset.district === district && card.dataset.category === category;
             card.hidden = !matches;
             if (matches) visibleCount += 1;
         });
-        compsEmpty.hidden = visibleCount > 0;
+        compsEmpty.hidden = visibleCount > 0 || !hasEstimateInputs;
     };
 
     form.addEventListener('input', recalculate);

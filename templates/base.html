@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='portal-overrides.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='team-images.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='about-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='about-story.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='resources-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='postal-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='shared-listings.css') }}">
@@ -52,7 +53,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='logo-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='mobile-final.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='nav-dropdown-theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='nav-dropdown-theme.css', v='5') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='school-search.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='contact-faq.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='buy-with-us.css') }}">
@@ -63,6 +64,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='home-gcb.css', v='2') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='home-image-carousel.css', v='5') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='property-type-multiselect.css', v='2') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='services-revamp.css', v='1') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='service-subpages.css', v='1') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='resources-revamp.css', v='1') }}">
 </head>
 <body class="property-portal">
     <header class="site-header">
@@ -87,7 +91,7 @@
                             {"icon": "home", "title": "Brand-New Landed", "text": "Newly built homes, ready for a new chapter.", "url": url_for('launches', category='landed')},
                             {"icon": "refresh", "title": "Resale Landed", "text": "Established homes in familiar neighbourhoods.", "url": url_for('listings', category='landed')},
                             {"icon": "building", "title": "Condos & Apartments", "text": "Find your next city or neighbourhood home.", "url": url_for('listings', category='condo')},
-                            {"icon": "gem", "title": "Luxury Apartments", "text": "Explore distinctive premium residences.", "url": url_for('listings', type='Luxury Apartment')},
+                            {"icon": "gem", "title": "Good Class Bungalows", "text": "Explore Singapore's most exclusive landed homes.", "url": url_for('listings', type='Good Class Bungalow')},
                         ],
                         col2_heading="More ways to explore",
                         col2_items=[
@@ -123,8 +127,30 @@
                         ],
                         promo={"eyebrow": "Plan your next move", "heading": "Buying something brand new?", "text": "Get guidance on finding and choosing your next home.", "cta": "Speak to our team", "url": url_for('contact'), "image": featured_listings[2].image},
                         footer_note="Get to know our agent team.",
-                        footer_link_label="Find out how we can help you",
-                        footer_link_url=url_for('about')
+                        footer_link_label="Meet our team",
+                        footer_link_url=url_for('our_people')
+                    ) }}
+                </div>
+            </div>
+            {% elif endpoint == 'about' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page in ['about', 'our-people'] %}active{% endif %}" href="{{ url_for('about') }}">{{ label }}</a>
+                <div class="nav-dropdown-menu nav-dropdown-menu-about">
+                    {{ megamenu(
+                        eyebrow="About SS Property",
+                        view_all_label="Our Company",
+                        view_all_url=url_for('about'),
+                        col1_heading="Get to know us",
+                        col1_items=[
+                            {"title": "Our Company", "text": "Get to know SS Property and our approach.", "url": url_for('about')},
+                            {"title": "Our Team", "text": "Meet the people behind your next move.", "url": url_for('our_people')},
+                        ],
+                        col2_heading="",
+                        col2_items=[],
+                        promo={},
+                        footer_note="Looking for the right advisor?",
+                        footer_link_label="Meet our team",
+                        footer_link_url=url_for('our_people')
                     ) }}
                 </div>
             </div>
@@ -146,7 +172,7 @@
                             {"icon": "calculator", "title": "Home Valuation", "text": "A considered view of your property's worth.", "url": url_for('home_valuation')},
                             {"icon": "chart", "title": "Property Value Calculator", "text": "Estimate what your property is worth.", "url": url_for('property_value_calculator')},
                         ],
-                        promo={"eyebrow": "Work with us", "heading": "Advice you can rely on.", "text": "From first search to final signature, our advisors guide every step.", "cta": "Meet our team", "url": url_for('about')},
+                        promo={"eyebrow": "Work with us", "heading": "Advice you can rely on.", "text": "From first search to final signature, our advisors guide every step.", "cta": "Meet our team", "url": url_for('our_people')},
                         footer_note="Have a property to sell?",
                         footer_link_label="Request a free valuation",
                         footer_link_url=url_for('home_valuation')

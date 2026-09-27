@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block title %}Property Services | SS Property{% endblock %}
+{% block content %}
+<section class="services-page">
+    <header class="services-hero">
+        <div class="services-hero-inner">
+            <div class="services-hero-copy">
+                <p class="eyebrow">SS Property <span>/</span> Our services</p>
+                <h1>Property decisions,<br><em>made clearer.</em></h1>
+                <p class="services-hero-intro">Good advice makes every move feel more manageable. We help buyers, sellers and landlords navigate Singapore property with thoughtful guidance and a plan built around what matters to them.</p>
+                <div class="services-hero-actions">
+                    <a class="services-primary-link" href="{{ url_for('contact') }}">Start a conversation <span aria-hidden="true">↗</span></a>
+                    <a class="services-secondary-link" href="#services">Explore our services <span aria-hidden="true">↓</span></a>
+                </div>
+            </div>
+            <aside class="services-hero-note" aria-label="Our service approach">
+                <span class="services-note-index">SS / 01</span>
+                <div class="services-note-rule"></div>
+                <p>Local knowledge.<br><em>Personal advice.</em><br>Support at every step.</p>
+                <span class="services-note-caption">A more considered property journey</span>
+            </aside>
+        </div>
+    </header>
+
+    <section class="services-offers" id="services" aria-labelledby="services-heading">
+        <div class="services-section-heading">
+            <div>
+                <p class="eyebrow">How we can help</p>
+                <h2 id="services-heading">The right support<br><em>for your next move.</em></h2>
+            </div>
+            <p>Whether you are searching for a home, preparing to sell or leasing a property, our team brings the details together and keeps you informed throughout.</p>
+        </div>
+        <div class="services-card-grid">
+            {% for service in services %}
+            <article class="services-card">
+                <div class="services-card-top"><span>{{ service.number }}</span><span class="services-card-line" aria-hidden="true"></span></div>
+                <p class="services-card-eyebrow">{{ service.eyebrow }}</p>
+                <h3>{{ service.title }}</h3>
+                <p class="services-card-copy">{{ service.text }}</p>
+                <a class="services-card-link" href="{{ url_for(service.link_endpoint) }}">{{ service.link_label }} <span aria-hidden="true">→</span></a>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="services-process" aria-labelledby="services-process-heading">
+        <div class="services-process-intro">
+            <p class="eyebrow">A thoughtful approach</p>
+            <h2 id="services-process-heading">Clear from the<br><em>first conversation.</em></h2>
+            <p>Every property journey is different. We take time to understand yours, then bring the right advice and next steps into focus.</p>
+        </div>
+        <div class="services-process-steps">
+            <article><span>01</span><div><h3>Understand</h3><p>We listen to your goals, priorities and timing before recommending a direction.</p></div></article>
+            <article><span>02</span><div><h3>Plan</h3><p>We shape a considered strategy around the property, the market and your needs.</p></div></article>
+            <article><span>03</span><div><h3>Move forward</h3><p>We guide the details, keep communication clear and support you through each next step.</p></div></article>
+        </div>
+    </section>
+
+    <section class="services-contact-cta" aria-labelledby="services-contact-heading">
+        <div>
+            <p class="eyebrow">Your next chapter</p>
+            <h2 id="services-contact-heading">Let’s make your<br><em>next move clearer.</em></h2>
+        </div>
+        <a class="services-primary-link" href="{{ url_for('contact') }}">Talk to our team <span aria-hidden="true">↗</span></a>
+    </section>
+</section>
+{% endblock %}

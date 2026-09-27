@@ -1,18 +1,19 @@
 {% extends "base.html" %}
 {% block title %}Buy Property With Us - SS Property{% endblock %}
 {% block content %}
+<section class="service-detail-page service-buy-page">
 <section class="page-heading">
     <p class="eyebrow">SS Property / Buy With Us</p>
-    <h1>Find Your Next Home <em>With Us</em></h1>
-    <p>Tell us what matters to you. We will help you find, assess and secure the right property.</p>
+    <h1>Find a home that feels <em>right.</em></h1>
+    <p>A clear, considered search—shaped around the way you want to live and what matters most to you.</p>
 </section>
 <section class="buy-with-us-story">
     <div class="buy-with-us-copy">
         <p class="eyebrow">Our approach</p>
-        <h2>A Search Shaped Around You</h2>
-        <p>Whether you are searching for your first home, a larger family space or an investment property, we begin with the way you want to live.</p>
-        <p>We bring together suitable listings, local insight and clear comparisons, so you can make decisions with confidence at every stage.</p>
-        <p>From the first viewing to the final offer, our team handles the details and keeps the process moving.</p>
+        <h2>Your priorities set the direction.</h2>
+        <p>Start with what matters: the neighbourhood, the space, your budget and the plans you have for the years ahead. We use those priorities to focus the search—not add more noise to it.</p>
+        <p>We help you compare suitable properties, understand the details behind each option and prepare for viewings and negotiations with a clearer picture of the market.</p>
+        <p>From the first shortlist through to completion, you have a team to guide the process and keep each next step clear.</p>
         <a class="button button-dark" href="{{ url_for('contact') }}">Begin your search <span>↗</span></a>
     </div>
     <div class="buy-with-us-image">
@@ -21,8 +22,9 @@
     </div>
 </section>
 <section class="sell-highlights" aria-label="Buying service highlights">
-    <div><span>01</span><strong>Considered shortlist</strong><p>A focused selection based on your needs, location and budget.</p></div>
-    <div><span>02</span><strong>Clear comparison</strong><p>Practical context on layouts, value and local amenities.</p></div>
-    <div><span>03</span><strong>Steady guidance</strong><p>Support from viewing and negotiation through to completion.</p></div>
+    <div><span>01</span><strong>A focused shortlist</strong><p>Options that reflect your needs, location and budget.</p></div>
+    <div><span>02</span><strong>Useful context</strong><p>Clear comparisons on layout, value and neighbourhood.</p></div>
+    <div><span>03</span><strong>Guidance throughout</strong><p>Support from viewings and offers through to completion.</p></div>
 </section>
+ </section>
 {% endblock %}

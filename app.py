@@ -315,10 +315,10 @@ def property_detail(property_name):
 
 @app.route("/services")
 def services():
-    return render_template("text_page.html", **page_context("services", eyebrow="Our services", heading="A better way to <em>move.</em>", intro="From the first conversation to the final signature, our advice is clear, considered, and entirely yours.", items=[
-        {"title": "Buying, thoughtfully", "text": "A calm, informed search shaped around how you want to live, with access to homes you will not find everywhere.", "link_endpoint": "buy_with_us"},
-        {"title": "Selling, beautifully", "text": "We tell the story of your home with precision, introduce it to the right people, and handle every detail."},
-        {"title": "Letting, simply", "text": "Long-term partnerships for landlords who care about their property and the people who live in it."},
+    return render_template("services.html", **page_context("services", services=[
+        {"number": "01", "eyebrow": "For buyers", "title": "Find a home that fits your life.", "text": "A focused search shaped around your priorities. Compare suitable homes, understand the market and make your next move with a clear plan.", "link_endpoint": "buy_with_us", "link_label": "Explore buying"},
+        {"number": "02", "eyebrow": "For sellers", "title": "Bring your property to the right people.", "text": "Thoughtful pricing, considered presentation and purposeful marketing—supported by clear advice from the first conversation to completion.", "link_endpoint": "sell_with_us", "link_label": "Explore selling"},
+        {"number": "03", "eyebrow": "For landlords", "title": "Make leasing feel simpler.", "text": "Practical support to help you prepare, market and lease your property, while finding tenants who are the right fit.", "link_endpoint": "contact", "link_label": "Talk to our team"},
     ]))
 
 
@@ -421,6 +421,11 @@ def property_types_resource():
 @app.route("/about-us")
 def about():
     return render_template("about.html", **page_context("about"))
+
+
+@app.route("/our-people")
+def our_people():
+    return render_template("about.html", **page_context("our-people"))
 
 
 @app.route("/contact")

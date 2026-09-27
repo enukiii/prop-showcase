@@ -1,21 +1,41 @@
 {% extends "base.html" %}
-{% block title %}Resources — SS Property{% endblock %}
+{% block title %}Property Resources | SS Property{% endblock %}
 {% block content %}
-<section class="resources-page">
-    <div class="resources-heading"><p class="eyebrow">SS Property / Resources</p><h1>Property resources</h1><p>Useful guides and local insight to help you make confident property decisions in Singapore.</p></div>
-    <div class="resources-grid">
-        <article class="resource-card">
-            <div class="resource-card-image wireframe-image"><span class="wireframe-label">MAP IMAGE</span></div>
-            <div class="resource-card-body"><h2>Singapore Postal Districts Map</h2><a class="resource-read-more" href="{{ url_for('postal_districts') }}">Read More <span>↗</span></a></div>
+<section class="resources-page resources-hub-page">
+    <header class="resources-hub-hero">
+        <div>
+            <p class="eyebrow">SS Property / Resources</p>
+            <h1>Useful insight for<br><em>your next move.</em></h1>
+            <p>Explore practical guides, market updates and planning tools for making sense of Singapore property.</p>
+        </div>
+        <div class="resources-hub-index" aria-label="Five resource collections">
+            <span>Knowledge, made useful</span>
+            <strong>05</strong>
+            <span>Guides &amp; tools</span>
+        </div>
+    </header>
+
+    <section class="resources-hub-grid" aria-label="Explore property resources">
+        <article class="resources-hub-card">
+            <div class="resources-hub-card-art resources-art-market"><span>01 / MARKET</span><b>Signals<br>to watch.</b></div>
+            <div class="resources-hub-card-copy"><p class="eyebrow">Market insight</p><h2>Market trends</h2><p>Official data and useful context to help you follow Singapore’s property market.</p><a href="{{ url_for('market_trends') }}">Explore market trends <span aria-hidden="true">↗</span></a></div>
         </article>
-        <article class="resource-card">
-            <div class="resource-card-image wireframe-image"><span class="wireframe-label">PROPERTY TYPES</span></div>
-            <div class="resource-card-body"><h2>Types of Properties in Singapore</h2><a class="resource-read-more" href="{{ url_for('property_types_resource') }}">Read More <span>↗</span></a></div>
+        <article class="resources-hub-card">
+            <div class="resources-hub-card-art resources-art-news"><span>02 / PERSPECTIVES</span><b>Stories<br>that matter.</b></div>
+            <div class="resources-hub-card-copy"><p class="eyebrow">News &amp; explainers</p><h2>Property news</h2><p>Follow policy updates, market announcements and stories shaping local property.</p><a href="{{ url_for('news_articles') }}">Read the latest <span aria-hidden="true">↗</span></a></div>
         </article>
-        <article class="resource-card">
-            <div class="resource-card-image wireframe-image"><span class="wireframe-label">PROPERTY VALUE CALCULATOR</span></div>
-            <div class="resource-card-body"><h2>Property Value Calculator</h2><a class="resource-read-more" href="{{ url_for('property_value_calculator') }}">Read More <span>↗</span></a></div>
+        <article class="resources-hub-card">
+            <div class="resources-hub-card-art resources-art-districts"><span>03 / PLACE</span><b>Find your<br>district.</b></div>
+            <div class="resources-hub-card-copy"><p class="eyebrow">Neighbourhood guide</p><h2>Postal districts</h2><p>Browse Singapore’s 28 postal districts and explore the areas behind each code.</p><a href="{{ url_for('postal_districts') }}">Explore districts <span aria-hidden="true">↗</span></a></div>
         </article>
-    </div>
+        <article class="resources-hub-card">
+            <div class="resources-hub-card-art resources-art-types"><span>04 / PROPERTY</span><b>Know your<br>options.</b></div>
+            <div class="resources-hub-card-copy"><p class="eyebrow">Property basics</p><h2>Types of properties</h2><p>Get familiar with Singapore’s main residential property categories and terms.</p><a href="{{ url_for('property_types_resource') }}">Browse property types <span aria-hidden="true">↗</span></a></div>
+        </article>
+        <article class="resources-hub-card resources-hub-card-featured">
+            <div class="resources-hub-card-art resources-art-value"><span>05 / PLANNING TOOL</span><b>Start with<br>an estimate.</b></div>
+            <div class="resources-hub-card-copy"><p class="eyebrow">Planning tool</p><h2>Property value calculator</h2><p>Explore an indicative estimate using district, property type and size benchmarks.</p><a href="{{ url_for('property_value_calculator') }}">Estimate a value <span aria-hidden="true">↗</span></a></div>
+        </article>
+    </section>
 </section>
 {% endblock %}

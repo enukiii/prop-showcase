@@ -89,6 +89,12 @@
         font-weight: 600;
     }
 
+    .property-portal .nav-dropdown-menu .mega-menu a:hover,
+    .property-portal .nav-dropdown-menu .mega-menu a:focus-visible {
+        background-color: transparent !important;
+        color: var(--gold-soft, #e0c27e) !important;
+    }
+
     .property-portal .mega-view-all span {
         margin-left: 4px;
     }
@@ -96,8 +102,12 @@
     .property-portal .mega-menu-columns {
         display: grid;
         gap: 40px;
-        grid-template-columns: 1fr 1fr minmax(260px, 300px);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
         padding: 26px 0 8px;
+    }
+
+    .property-portal .mega-menu-columns-single {
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .property-portal .mega-column-heading {
@@ -118,9 +128,9 @@
         padding: 10px !important;
     }
 
-    .property-portal .mega-item:hover,
-    .property-portal .mega-item:focus-visible {
-        background: var(--cream, #26211a);
+    .property-portal .nav-dropdown-menu .mega-item:hover,
+    .property-portal .nav-dropdown-menu .mega-item:focus-visible {
+        background: rgba(214, 181, 101, .08) !important;
     }
 
     .property-portal .mega-item:hover strong,
@@ -246,4 +256,5 @@
         padding: 10px 2px !important;
     }
 }
+
 
