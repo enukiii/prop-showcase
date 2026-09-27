@@ -69,6 +69,11 @@ PROPERTY_TYPES = [
 ]
 
 SCHOOLS = json.loads((Path(app.root_path) / "static" / "schools.json").read_text(encoding="utf-8-sig"))
+MRT_LINES = json.loads((Path(app.root_path) / "static" / "mrt_lines.json").read_text(encoding="utf-8-sig"))
+PSF_BENCHMARKS = json.loads((Path(app.root_path) / "static" / "psf_benchmarks.json").read_text(encoding="utf-8-sig"))
+
+LANDED_TYPES = {"Terraced House", "Inter-Terrace House", "Corner Terrace", "Semi-Detached House", "Detached House", "Detached Bungalow", "Good Class Bungalow", "Cluster House", "Strata Landed"}
+CONDO_TYPES = {"Condominium", "Executive Condominium", "Luxury Apartment", "Penthouse", "Service Residence"}
 
 LISTINGS = [
     {
@@ -226,7 +231,6 @@ LISTINGS = [
 ]
 
 
-
 def page_context(active_page, **extra):
     return {"active_page": active_page, "nav_items": NAV_ITEMS, **extra}
 
@@ -239,9 +243,10 @@ def shared_property_context():
 def home():
     launch_listings = [listing for listing in LISTINGS if listing.get("is_launch")]
     just_listed = [listing for listing in reversed(LISTINGS) if not listing.get("is_launch")][:4]
+    gcb_listings = [listing for listing in LISTINGS if listing["type"] == "Good Class Bungalow"]
     return render_template(
         "home.html",
-        **page_context("home", launch_listings=launch_listings, just_listed_listings=just_listed),
+        **page_context("home", launch_listings=launch_listings, just_listed_listings=just_listed, gcb_listings=gcb_listings),
     )
 
 
@@ -249,12 +254,16 @@ def home():
 def listings():
     districts = SINGAPORE_DISTRICTS
     property_types = PROPERTY_TYPES
-    selected_district = request.args.get("district", "")
-    selected_type = request.args.get("type", "")
+    selected_districts = request.args.getlist("district")
+    selected_types = request.args.getlist("type")
+    selected_category = request.args.get("category", "").strip().casefold()
+    sale_status = request.args.get("status", "").strip().casefold()
     query = request.args.get("q", "").strip()
     selected_school = request.args.get("school", "").strip()
-    filtered_listings = [listing for listing in LISTINGS if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold()) and (not selected_school or selected_school.casefold() in [school.casefold() for school in listing.get("schools_list", "").split("|")])]
-    return render_template("listings.html", **page_context("listings", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type, query=query, selected_school=selected_school))
+    selected_mrt = request.args.get("mrt", "").strip()
+    category_types = LANDED_TYPES if selected_category == "landed" else CONDO_TYPES if selected_category == "condo" else None
+    filtered_listings = [listing for listing in LISTINGS if (not selected_districts or listing["location"] in selected_districts) and (not selected_types or listing["type"] in selected_types) and (not category_types or listing["type"] in category_types) and (sale_status != "resale" or not listing.get("is_launch")) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold()) and (not selected_school or selected_school.casefold() in [school.casefold() for school in listing.get("schools_list", "").split("|")]) and (not selected_mrt or selected_mrt.casefold() in listing.get("mrt", "").casefold())]
+    return render_template("listings.html", **page_context("listings", listings=filtered_listings, districts=districts, property_types=property_types, selected_districts=selected_districts, selected_types=selected_types, query=query, selected_school=selected_school, selected_mrt=selected_mrt))
 
 
 @app.route("/new-launches")
@@ -262,20 +271,18 @@ def launches():
     launch_listings = [listing for listing in LISTINGS if listing.get("is_launch")]
     districts = SINGAPORE_DISTRICTS
     property_types = PROPERTY_TYPES
-    selected_district = request.args.get("district", "")
-    selected_type = request.args.get("type", "")
+    selected_districts = request.args.getlist("district")
+    selected_types = request.args.getlist("type")
     launch_category = request.args.get("category", "").strip().casefold()
     query = request.args.get("q", "").strip()
-    landed_types = {"Terraced House", "Inter-Terrace House", "Corner Terrace", "Semi-Detached House", "Detached House", "Detached Bungalow", "Good Class Bungalow", "Cluster House", "Strata Landed"}
-    condo_types = {"Condominium", "Executive Condominium", "Luxury Apartment", "Penthouse", "Service Residence"}
-    category_types = landed_types if launch_category == "landed" else condo_types if launch_category == "condo" else None
-    filtered_listings = [listing for listing in launch_listings if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type) and (not category_types or listing["type"] in category_types) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold())]
-    return render_template("listings.html", **page_context("launches", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type, query=query, launch_category=launch_category))
+    category_types = LANDED_TYPES if launch_category == "landed" else CONDO_TYPES if launch_category == "condo" else None
+    filtered_listings = [listing for listing in launch_listings if (not selected_districts or listing["location"] in selected_districts) and (not selected_types or listing["type"] in selected_types) and (not category_types or listing["type"] in category_types) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold())]
+    return render_template("listings.html", **page_context("launches", listings=filtered_listings, districts=districts, property_types=property_types, selected_districts=selected_districts, selected_types=selected_types, query=query, launch_category=launch_category))
 
 
 @app.route("/for-rent")
 def for_rent():
-    return render_template("listings.html", **page_context("rent", listings=[], districts=SINGAPORE_DISTRICTS, property_types=PROPERTY_TYPES, selected_district="", selected_type="", query=""))
+    return render_template("listings.html", **page_context("rent", listings=[], districts=SINGAPORE_DISTRICTS, property_types=PROPERTY_TYPES, selected_districts=[], selected_types=[], query=""))
 
 
 @app.route("/search-by-school")
@@ -283,6 +290,18 @@ def search_by_school():
     query = request.args.get("q", "").strip()
     schools = [school for school in SCHOOLS if not query or query.casefold() in school.casefold()]
     return render_template("school_search.html", **page_context("school-search", schools=schools, query=query))
+
+
+@app.route("/search-by-mrt")
+def search_by_mrt():
+    query = request.args.get("q", "").strip()
+    lines = []
+    for line in MRT_LINES:
+        stations = [station for station in line["stations"] if not query or query.casefold() in station.casefold()]
+        if stations:
+            lines.append({**line, "stations": stations})
+    total_stations = sum(len(line["stations"]) for line in lines)
+    return render_template("mrt_search.html", **page_context("mrt-search", lines=lines, query=query, total_stations=total_stations))
 
 
 @app.route("/property/<path:property_name>")
@@ -344,6 +363,29 @@ def news_articles():
 @app.route("/resources/postal-districts")
 def postal_districts():
     return render_template("postal_districts.html", **page_context("resources", districts=SINGAPORE_DISTRICTS))
+
+
+def parse_price(price_text):
+    digits = "".join(char for char in price_text if char.isdigit())
+    return int(digits) if digits else None
+
+
+def listing_category(property_type):
+    if property_type in LANDED_TYPES:
+        return "landed"
+    if property_type in CONDO_TYPES:
+        return "condo"
+    return "hdb"
+
+
+@app.route("/resources/property-value-calculator")
+def property_value_calculator():
+    priced_listings = [
+        {**listing, "category": listing_category(listing["type"])}
+        for listing in sorted(LISTINGS, key=lambda listing: parse_price(listing["price"]) or 0)
+        if parse_price(listing["price"])
+    ]
+    return render_template("property_value_calculator.html", **page_context("resources", districts=SINGAPORE_DISTRICTS, psf_benchmarks=PSF_BENCHMARKS, listings=priced_listings, parse_price=parse_price))
 
 
 @app.route("/resources/property-types")

@@ -193,3 +193,43 @@
         grid-template-columns: 1fr;
     }
 }
+
+.property-portal .mrt-line-group {
+    margin: 34px 0 0;
+}
+
+.property-portal .mrt-line-heading {
+    align-items: center;
+    display: flex;
+    gap: 12px;
+    margin: 0 0 16px;
+}
+
+.property-portal .mrt-line-badge {
+    border-radius: 4px;
+    color: #fff;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .03em;
+    padding: 5px 10px;
+}
+
+.property-portal .mrt-line-heading h2 {
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.property-portal .mrt-directory-section .school-directory {
+    column-gap: 46px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (max-width: 700px) {
+    .property-portal .mrt-directory-section .school-directory {
+        grid-template-columns: 1fr;
+    }
+}

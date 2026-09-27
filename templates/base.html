@@ -1,4 +1,5 @@
 <!doctype html>
+{% from "_nav_megamenu.html" import megamenu %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -56,7 +57,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='contact-faq.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='buy-with-us.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='home-valuation.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-value-calculator.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='legal-pages.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='footer-property-links.css', v='3') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home-gcb.css', v='2') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home-image-carousel.css', v='5') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-type-multiselect.css', v='2') }}">
 </head>
 <body class="property-portal">
     <header class="site-header">
@@ -68,7 +74,112 @@
         <button class="mobile-menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button>
         <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
             {% for label, endpoint in nav_items %}
-            {% if endpoint == 'listings' %}<div class="nav-dropdown"><a class="{% if active_page in ['listings', 'rent', 'school-search', 'postal-districts'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('for_rent') }}">For Rent</a><a href="{{ url_for('search_by_school') }}">Search by School</a><a href="{{ url_for('postal_districts') }}">Search by District</a></div></div>{% elif endpoint == 'launches' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('launches', category='landed') }}">Brand-New Landed</a><a href="{{ url_for('launches', category='condo') }}">Brand-New Condominium</a></div></div>{% elif endpoint == 'services' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('sell_with_us') }}">Sell With Us</a><a href="{{ url_for('buy_with_us') }}">Buy With Us</a><a href="{{ url_for('home_valuation') }}">Home Valuation</a></div></div>{% elif endpoint == 'resources' %}<div class="nav-dropdown"><a class="{% if active_page in ['resources', 'market-trends', 'news-articles'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('market_trends') }}">Market Trends</a><a href="{{ url_for('news_articles') }}">News Articles</a></div></div>{% else %}
+            {% if endpoint == 'listings' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page in ['listings', 'rent', 'school-search', 'mrt-search', 'postal-districts'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+                <div class="nav-dropdown-menu">
+                    {{ megamenu(
+                        eyebrow="Find a property",
+                        view_all_label="View All Listings",
+                        view_all_url=url_for('listings'),
+                        col1_heading="By property type",
+                        col1_items=[
+                            {"icon": "home", "title": "Brand-New Landed", "text": "Newly built homes, ready for a new chapter.", "url": url_for('launches', category='landed')},
+                            {"icon": "refresh", "title": "Resale Landed", "text": "Established homes in familiar neighbourhoods.", "url": url_for('listings', category='landed')},
+                            {"icon": "building", "title": "Condos & Apartments", "text": "Find your next city or neighbourhood home.", "url": url_for('listings', category='condo')},
+                            {"icon": "gem", "title": "Luxury Apartments", "text": "Explore distinctive premium residences.", "url": url_for('listings', type='Luxury Apartment')},
+                        ],
+                        col2_heading="More ways to explore",
+                        col2_items=[
+                            {"icon": "key", "title": "Properties for Rent", "text": "Find a home for your next chapter.", "url": url_for('for_rent')},
+                            {"icon": "pin", "title": "Search by District", "text": "Explore the neighbourhoods you love.", "url": url_for('postal_districts')},
+                            {"icon": "cap", "title": "Search by School", "text": "Find properties near your preferred schools.", "url": url_for('search_by_school')},
+                            {"icon": "grid", "title": "Search by MRT", "text": "Find homes near your preferred MRT line.", "url": url_for('search_by_mrt')},
+                        ],
+                        promo={"eyebrow": "Landed living", "heading": "Space to make your own.", "text": "Explore Singapore's landed neighbourhoods, from terraces to detached homes.", "cta": "Explore landed homes", "url": url_for('listings', category='landed'), "image": featured_listings[0].image},
+                        footer_note="Thinking of selling your property?",
+                        footer_link_label="Discover our seller services",
+                        footer_link_url=url_for('sell_with_us')
+                    ) }}
+                </div>
+            </div>
+            {% elif endpoint == 'launches' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+                <div class="nav-dropdown-menu">
+                    {{ megamenu(
+                        eyebrow="Discover what's next",
+                        view_all_label="All New Launches",
+                        view_all_url=url_for('launches'),
+                        col1_heading="New homes",
+                        col1_items=[
+                            {"icon": "home", "title": "Brand-New Landed", "text": "Newly built terraces, semi-Ds and bungalows.", "url": url_for('launches', category='landed')},
+                            {"icon": "building", "title": "Condos & Apartments", "text": "Explore new residential developments.", "url": url_for('launches', category='condo')},
+                        ],
+                        col2_heading="More project types",
+                        col2_items=[
+                            {"icon": "gem", "title": "Executive Condominiums", "text": "Hybrid living with private-condo features.", "url": url_for('launches', type='Executive Condominium')},
+                            {"icon": "grid", "title": "Mixed Developments", "text": "Residences alongside retail and lifestyle.", "url": url_for('launches', type='Mixed Development')},
+                        ],
+                        promo={"eyebrow": "Plan your next move", "heading": "Buying something brand new?", "text": "Get guidance on finding and choosing your next home.", "cta": "Speak to our team", "url": url_for('contact'), "image": featured_listings[2].image},
+                        footer_note="Get to know our agent team.",
+                        footer_link_label="Find out how we can help you",
+                        footer_link_url=url_for('about')
+                    ) }}
+                </div>
+            </div>
+            {% elif endpoint == 'services' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+                <div class="nav-dropdown-menu">
+                    {{ megamenu(
+                        eyebrow="Our services",
+                        view_all_label="All Services",
+                        view_all_url=url_for('services'),
+                        col1_heading="For buyers & sellers",
+                        col1_items=[
+                            {"icon": "key", "title": "Buy With Us", "text": "A calm, informed search shaped around you.", "url": url_for('buy_with_us')},
+                            {"icon": "handshake", "title": "Sell With Us", "text": "Positioning and negotiation, handled with care.", "url": url_for('sell_with_us')},
+                        ],
+                        col2_heading="Tools & guidance",
+                        col2_items=[
+                            {"icon": "calculator", "title": "Home Valuation", "text": "A considered view of your property's worth.", "url": url_for('home_valuation')},
+                            {"icon": "chart", "title": "Property Value Calculator", "text": "Estimate what your property is worth.", "url": url_for('property_value_calculator')},
+                        ],
+                        promo={"eyebrow": "Work with us", "heading": "Advice you can rely on.", "text": "From first search to final signature, our advisors guide every step.", "cta": "Meet our team", "url": url_for('about')},
+                        footer_note="Have a property to sell?",
+                        footer_link_label="Request a free valuation",
+                        footer_link_url=url_for('home_valuation')
+                    ) }}
+                </div>
+            </div>
+            {% elif endpoint == 'resources' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page in ['resources', 'market-trends', 'news-articles'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+                <div class="nav-dropdown-menu">
+                    {{ megamenu(
+                        eyebrow="Guides & insight",
+                        view_all_label="All Resources",
+                        view_all_url=url_for('resources'),
+                        col1_heading="Market insight",
+                        col1_items=[
+                            {"icon": "chart", "title": "Market Trends", "text": "Signals buyers and sellers watch closely.", "url": url_for('market_trends')},
+                            {"icon": "news", "title": "News Articles", "text": "Property news and explainers, curated.", "url": url_for('news_articles')},
+                        ],
+                        col2_heading="Planning tools",
+                        col2_items=[
+                            {"icon": "calculator", "title": "Property Value Calculator", "text": "Estimate what your property is worth.", "url": url_for('property_value_calculator')},
+                            {"icon": "layers", "title": "Types of Properties", "text": "Understand Singapore's property categories.", "url": url_for('property_types_resource')},
+                            {"icon": "pin", "title": "Postal Districts", "text": "Make sense of Singapore's district map.", "url": url_for('postal_districts')},
+                        ],
+                        promo={"eyebrow": "Plan ahead", "heading": "Know before you buy.", "text": "Understand costs, districts and property types before you commit.", "cta": "Browse resources", "url": url_for('resources')},
+                        footer_note="Curious what your home is worth?",
+                        footer_link_label="Get a home valuation",
+                        footer_link_url=url_for('home_valuation')
+                    ) }}
+                </div>
+            </div>
+            {% else %}
             <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
             {% endif %}
             {% endfor %}
@@ -84,13 +195,48 @@
     <main>{% block content %}{% endblock %}</main>
     {% if active_page not in ['home', 'postal-districts'] %}{% include '_just_listed.html' %}{% endif %}
     <footer class="site-footer">
-        <div class="brand footer-brand"><img class="brand-logo" src="{{ url_for('static', filename='img/ssPropertyLOGO.png') }}" alt="SS Property"></div>
-        <small class="footer-legal-notice">A Team from SRI Pte Ltd (CEA Licence No. L3002382K) Copyright © 2026. All Rights Reserved.</small>
-        <nav class="footer-legal" aria-label="Legal information">
-            <a href="{{ url_for('disclaimer') }}">Disclaimer</a>
-            <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
-            <a href="{{ url_for('data_protection') }}">Data Protection</a>
+        <nav class="footer-property-links" aria-label="Property listings">
+            <section class="footer-link-group">
+                <h2>Property for sale in Singapore</h2>
+                <a href="{{ url_for('listings') }}">All Properties for Sale</a>
+                <a href="{{ url_for('launches', category='landed') }}">Landed Properties (New Launch)</a>
+                <a href="{{ url_for('listings', category='landed', status='resale') }}">Landed Properties (Resale)</a>
+                <a href="{{ url_for('listings', category='condo') }}">Condominiums and Apartments</a>
+                <a href="{{ url_for('listings', type='Luxury Apartment') }}">Luxury Apartments</a>
+                <a href="{{ url_for('listings', type='Light Industrial') }}">Commercial</a>
+                <a href="{{ url_for('listings', type='Shophouse') }}">Shophouses</a>
+                <a href="{{ url_for('for_rent') }}">Properties for Rent</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>Buy brand new landed homes in Singapore</h2>
+                <a href="{{ url_for('launches', category='landed') }}">All Brand New Landed Properties</a>
+                <a href="{{ url_for('launches', category='landed', type='Inter-Terrace House') }}">Brand New Inter Terraces</a>
+                <a href="{{ url_for('launches', category='landed', type='Corner Terrace') }}">Brand New Corner Terraces</a>
+                <a href="{{ url_for('launches', category='landed', type='Semi-Detached House') }}">Brand New Semi-Detached Houses</a>
+                <a href="{{ url_for('launches', category='landed', type='Detached House') }}">Brand New Detached Houses</a>
+                <a href="{{ url_for('launches', category='landed', type='Detached Bungalow') }}">Brand New Detached Bungalows</a>
+                <a href="{{ url_for('launches', category='landed', type='Good Class Bungalow') }}">Brand New Good Class Bungalows</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>Buy resale landed homes in Singapore</h2>
+                <a href="{{ url_for('listings', category='landed', status='resale') }}">All Resale Landed Properties</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Inter-Terrace House') }}">Resale Inter Terraces</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Corner Terrace') }}">Resale Corner Terraces</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Semi-Detached House') }}">Resale Semi-Detached Houses</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Detached Bungalow') }}">Resale Detached Bungalows</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Good Class Bungalow') }}">Resale Good Class Bungalows</a>
+                <a href="{{ url_for('listings', type='Shophouse') }}">Resale Shophouses</a>
+            </section>
         </nav>
+        <div class="footer-bottom">
+            <div class="brand footer-brand"><img class="brand-logo" src="{{ url_for('static', filename='img/ssPropertyLOGO.png') }}" alt="SS Property"></div>
+            <small class="footer-legal-notice">A Team from SRI Pte Ltd (CEA Licence No. L3002382K) Copyright © 2026. All Rights Reserved.</small>
+            <nav class="footer-legal" aria-label="Legal information">
+                <a href="{{ url_for('disclaimer') }}">Disclaimer</a>
+                <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
+                <a href="{{ url_for('data_protection') }}">Data Protection</a>
+            </nav>
+        </div>
     </footer>
     <script>
         const searchToggle = document.querySelector('.mobile-search-toggle');

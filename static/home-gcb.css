@@ -1,0 +1,42 @@
+.property-portal .gcb-enquiry-listing-link {
+    color: inherit;
+    display: block;
+    height: 100%;
+}
+
+.property-portal .gcb-enquiry-image {
+    align-items: center;
+    background: radial-gradient(ellipse at 50% 110%, #51442b 0, #252219 42%, #171715 78%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 22px;
+    text-align: center;
+}
+
+.property-portal .gcb-enquiry-image span {
+    color: #e0c27e;
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .12em;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+}
+
+.property-portal .gcb-enquiry-image strong {
+    color: #f4efe5;
+    font-family: var(--serif);
+    font-size: clamp(24px, 2.2vw, 34px);
+    font-weight: 500;
+    line-height: 1.08;
+}
+
+.property-portal .gcb-enquiry-listing .listing-meta small {
+    line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+    .property-portal .gcb-enquiry-image strong {
+        font-size: 25px;
+    }
+}

@@ -1,0 +1,39 @@
+{% macro megamenu(eyebrow, view_all_label, view_all_url, col1_heading, col1_items, col2_heading, col2_items, promo, footer_note, footer_link_label, footer_link_url) %}
+<div class="mega-menu">
+    <div class="mega-menu-top">
+        <p class="mega-eyebrow">{{ eyebrow }}</p>
+        <a class="mega-view-all" href="{{ view_all_url }}">{{ view_all_label }} <span>→</span></a>
+    </div>
+    <div class="mega-menu-columns">
+        <div class="mega-column">
+            <p class="mega-column-heading">{{ col1_heading }}</p>
+            {% for item in col1_items %}
+            <a class="mega-item" href="{{ item.url }}">
+                <span class="mega-item-text"><strong>{{ item.title }}</strong><span>{{ item.text }}</span></span>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="mega-column">
+            <p class="mega-column-heading">{{ col2_heading }}</p>
+            {% for item in col2_items %}
+            <a class="mega-item" href="{{ item.url }}">
+                <span class="mega-item-text"><strong>{{ item.title }}</strong><span>{{ item.text }}</span></span>
+            </a>
+            {% endfor %}
+        </div>
+        <a class="mega-promo{% if promo.image %} has-image{% endif %}" href="{{ promo.url }}">
+            {% if promo.image %}<span class="mega-promo-image" style="background-image:url('{{ promo.image }}');"></span>{% endif %}
+            <span class="mega-promo-body">
+                <span class="mega-promo-eyebrow">{{ promo.eyebrow }}</span>
+                <strong>{{ promo.heading }}</strong>
+                <span class="mega-promo-text">{{ promo.text }}</span>
+                <span class="mega-promo-link">{{ promo.cta }} <span>→</span></span>
+            </span>
+        </a>
+    </div>
+    <div class="mega-menu-footer">
+        <p>{{ footer_note }}</p>
+        <a href="{{ footer_link_url }}">{{ footer_link_label }} <span>→</span></a>
+    </div>
+</div>
+{% endmacro %}
