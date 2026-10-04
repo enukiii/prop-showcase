@@ -365,6 +365,11 @@ def postal_districts():
     return render_template("postal_districts.html", **page_context("resources", districts=SINGAPORE_DISTRICTS))
 
 
+@app.route("/resources/loan-calculator")
+def loan_calculator():
+    return render_template("loan_calculator.html", **page_context("loan-calculator"))
+
+
 def parse_price(price_text):
     digits = "".join(char for char in price_text if char.isdigit())
     return int(digits) if digits else None

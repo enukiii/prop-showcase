@@ -67,6 +67,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='services-revamp.css', v='1') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='service-subpages.css', v='1') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='resources-revamp.css', v='1') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='loan-calculator.css', v='1') }}">
 </head>
 <body class="property-portal">
     <header class="site-header">
@@ -181,7 +182,7 @@
             </div>
             {% elif endpoint == 'resources' %}
             <div class="nav-dropdown">
-                <a class="{% if active_page in ['resources', 'market-trends', 'news-articles'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+                <a class="{% if active_page in ['resources', 'market-trends', 'news-articles', 'loan-calculator'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
                 <div class="nav-dropdown-menu">
                     {{ megamenu(
                         eyebrow="Guides & insight",
@@ -194,7 +195,7 @@
                         ],
                         col2_heading="Planning tools",
                         col2_items=[
-                            {"icon": "calculator", "title": "Property Value Calculator", "text": "Estimate what your property is worth.", "url": url_for('property_value_calculator')},
+                            {"icon": "calculator", "title": "Loan Calculator", "text": "Estimate monthly repayments for a home loan.", "url": url_for('loan_calculator')},
                             {"icon": "layers", "title": "Types of Properties", "text": "Understand Singapore's property categories.", "url": url_for('property_types_resource')},
                             {"icon": "pin", "title": "Postal Districts", "text": "Make sense of Singapore's district map.", "url": url_for('postal_districts')},
                         ],

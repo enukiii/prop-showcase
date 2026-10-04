@@ -18,14 +18,20 @@
     </div>
     {% endif %}
     {% if active_page == 'about' %}
-    <section class="about-copy about-story">
-        <p><strong>S Million Dollar Property</strong> is a real estate team under <strong>Singapore Realtors Inc. (SRI)</strong>, focused on helping clients navigate Singapore’s residential property market through professional property advisory, marketing, and transaction services.</p>
-        <p>The team brings together a group of real estate professionals who work collaboratively to provide clients with a structured and personalised approach to property buying, selling, and investment. With the support and resources of SRI, SS Million Dollar Property aims to combine market knowledge, property expertise, and effective marketing strategies to help clients make informed decisions.</p>
-        <p>Over time, the team has built its presence within Singapore’s competitive real estate industry by focusing on strong client relationships and professional service. Its work covers various aspects of the property journey, from understanding a client’s requirements and identifying suitable properties to marketing properties and supporting clients throughout the transaction process.</p>
-        <p>What sets SS Million Dollar Property apart is its team-based approach. Rather than operating individually, the team works together by sharing knowledge, market insights, resources, and experience. This allows its members to support one another while providing clients with a more comprehensive property service.</p>
-        <p>The team also places importance on digital and social media marketing as part of its approach to reaching property buyers and sellers. Through online platforms and property content, the team is able to showcase properties, communicate market information, and engage with a wider audience.</p>
-        <p>At its core, <strong>SS Million Dollar Property</strong> represents a collaborative real estate team that combines property expertise, marketing, and client advisory to serve the Singapore property market, supported by the wider network and resources of SRI.</p>
-    </section>
+    <div class="about-story-layout">
+        <section class="about-copy about-story">
+            <p><strong>S Million Dollar Property</strong> is a real estate team under <strong>Singapore Realtors Inc. (SRI)</strong>, focused on helping clients navigate Singapore’s residential property market through professional property advisory, marketing, and transaction services.</p>
+            <p>The team brings together a group of real estate professionals who work collaboratively to provide clients with a structured and personalised approach to property buying, selling, and investment. With the support and resources of SRI, SS Million Dollar Property aims to combine market knowledge, property expertise, and effective marketing strategies to help clients make informed decisions.</p>
+            <p>Over time, the team has built its presence within Singapore’s competitive real estate industry by focusing on strong client relationships and professional service. Its work covers various aspects of the property journey, from understanding a client’s requirements and identifying suitable properties to marketing properties and supporting clients throughout the transaction process.</p>
+            <p>What sets SS Million Dollar Property apart is its team-based approach. Rather than operating individually, the team works together by sharing knowledge, market insights, resources, and experience. This allows its members to support one another while providing clients with a more comprehensive property service.</p>
+            <p>The team also places importance on digital and social media marketing as part of its approach to reaching property buyers and sellers. Through online platforms and property content, the team is able to showcase properties, communicate market information, and engage with a wider audience.</p>
+            <p>At its core, <strong>SS Million Dollar Property</strong> represents a collaborative real estate team that combines property expertise, marketing, and client advisory to serve the Singapore property market, supported by the wider network and resources of SRI.</p>
+        </section>
+        <figure class="about-story-team-photo">
+            <img src="{{ url_for('static', filename='img/Team image.jpeg') }}" alt="The SS Property team">
+            <figcaption><span>SS Property</span> Integrity · Teamwork · Results</figcaption>
+        </figure>
+    </div>
     {% endif %}
 </section>
 <script>
