@@ -1,0 +1,76 @@
+.property-portal .about-tabs {
+    border-bottom: 1px solid #403a33;
+    display: flex;
+    gap: 8px;
+    margin: 0 auto 42px;
+    max-width: 1160px;
+}
+
+.property-portal .about-tab {
+    background: transparent;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    color: #a99f91;
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    margin-bottom: -1px;
+    padding: 14px 20px 13px;
+    transition: border-color .2s ease, color .2s ease;
+}
+
+.property-portal .about-tab:hover,
+.property-portal .about-tab:focus-visible {
+    color: #f4efe5;
+}
+
+.property-portal .about-tab.is-active {
+    border-bottom-color: #c6a15b;
+    color: #e0c27e;
+}
+
+.property-portal .about-tab:focus-visible {
+    outline: 2px solid #e0c27e;
+    outline-offset: 2px;
+}
+
+.property-portal .about-tab-panel[hidden] {
+    display: none !important;
+}
+
+.property-portal .about-tab-panel > .about-intro-copy {
+    margin-bottom: 52px;
+}
+
+.property-portal .about-tab-panel > .about-copy:not(.about-intro-copy) {
+    margin-bottom: 12px;
+}
+
+.property-portal .about-tab-panel > .team-heading {
+    margin: 0 auto 22px;
+    max-width: 1160px;
+}
+
+.property-portal .about-tab-panel > .about-image-grid {
+    margin-bottom: 12px;
+    max-width: 1160px;
+}
+
+@media (max-width: 600px) {
+    .property-portal .about-tabs {
+        gap: 0;
+        margin-bottom: 30px;
+    }
+
+    .property-portal .about-tab {
+        flex: 1;
+        font-size: 12px;
+        padding: 13px 10px;
+    }
+
+    .property-portal .about-tab-panel > .about-intro-copy {
+        margin-bottom: 36px;
+    }
+}

@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 from flask import Flask, render_template, request
 import pandas as pd
 from pathlib import Path
@@ -52,6 +55,7 @@ PROPERTY_TYPES = [
     "HDB Flat",
     "HDB Apartment",
     "Terraced House",
+    "Inter-Terrace House",
     "Corner Terrace",
     "Semi-Detached House",
     "Detached House",
@@ -67,17 +71,12 @@ PROPERTY_TYPES = [
     "Service Residence",
 ]
 
-SCHOOLS = [
-    "Nanyang Primary",
-    "Raffles Girls' Primary",
-    "St Margaret's Secondary",
-    "Hwa Chong Institution",
-    "Nanyang Girls' High",
-    "Singapore Chinese Girls",
-    "St Joseph's Institution",
-    "Anglo-Chinese School (Primary)",
-    "Anglo-Chinese School (Barker Road)",
-]
+SCHOOLS = json.loads((Path(app.root_path) / "static" / "schools.json").read_text(encoding="utf-8-sig"))
+MRT_LINES = json.loads((Path(app.root_path) / "static" / "mrt_lines.json").read_text(encoding="utf-8-sig"))
+PSF_BENCHMARKS = json.loads((Path(app.root_path) / "static" / "psf_benchmarks.json").read_text(encoding="utf-8-sig"))
+
+LANDED_TYPES = {"Terraced House", "Inter-Terrace House", "Corner Terrace", "Semi-Detached House", "Detached House", "Detached Bungalow", "Good Class Bungalow", "Cluster House", "Strata Landed"}
+CONDO_TYPES = {"Condominium", "Executive Condominium", "Luxury Apartment", "Penthouse", "Service Residence"}
 
 def _format_area(value):
     """Format a CSV area value for display without showing NaN."""
@@ -308,10 +307,12 @@ def shared_property_context():
 
 @app.route("/")
 def home():
-    just_listed = list(reversed(LISTINGS))[:4]
+    launch_listings = [listing for listing in LISTINGS if listing.get("is_launch")]
+    just_listed = [listing for listing in reversed(LISTINGS) if not listing.get("is_launch")][:4]
+    gcb_listings = [listing for listing in LISTINGS if listing["type"] == "Good Class Bungalow"]
     return render_template(
         "home.html",
-        **page_context("home", listings=LISTINGS, just_listed_listings=just_listed),
+        **page_context("home", launch_listings=launch_listings, just_listed_listings=just_listed, gcb_listings=gcb_listings),
     )
 
 
@@ -319,40 +320,54 @@ def home():
 def listings():
     districts = SINGAPORE_DISTRICTS
     property_types = PROPERTY_TYPES
-    selected_district = request.args.get("district", "")
-    selected_type = request.args.get("type", "")
+    selected_districts = request.args.getlist("district")
+    selected_types = request.args.getlist("type")
+    selected_category = request.args.get("category", "").strip().casefold()
+    sale_status = request.args.get("status", "").strip().casefold()
     query = request.args.get("q", "").strip()
     selected_school = request.args.get("school", "").strip()
-    filtered_listings = [listing for listing in LISTINGS if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold()) and (not selected_school or selected_school.casefold() in [school.casefold() for school in listing.get("schools_list", "").split("|")])]
-    return render_template("listings.html", **page_context("listings", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type, query=query, selected_school=selected_school))
+    selected_mrt = request.args.get("mrt", "").strip()
+    category_types = LANDED_TYPES if selected_category == "landed" else CONDO_TYPES if selected_category == "condo" else None
+    filtered_listings = [listing for listing in LISTINGS if (not selected_districts or listing["location"] in selected_districts) and (not selected_types or listing["type"] in selected_types) and (not category_types or listing["type"] in category_types) and (sale_status != "resale" or not listing.get("is_launch")) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold()) and (not selected_school or selected_school.casefold() in [school.casefold() for school in listing.get("schools_list", "").split("|")]) and (not selected_mrt or selected_mrt.casefold() in listing.get("mrt", "").casefold())]
+    return render_template("listings.html", **page_context("listings", listings=filtered_listings, districts=districts, property_types=property_types, selected_districts=selected_districts, selected_types=selected_types, query=query, selected_school=selected_school, selected_mrt=selected_mrt))
 
 
 @app.route("/new-launches")
 def launches():
-    launch_listings = LISTINGS
+    launch_listings = [listing for listing in LISTINGS if listing.get("is_launch")]
     districts = SINGAPORE_DISTRICTS
     property_types = PROPERTY_TYPES
-    selected_district = request.args.get("district", "")
-    selected_type = request.args.get("type", "")
+    selected_districts = request.args.getlist("district")
+    selected_types = request.args.getlist("type")
     launch_category = request.args.get("category", "").strip().casefold()
     query = request.args.get("q", "").strip()
-    landed_types = {"Terraced House", "Corner Terrace", "Semi-Detached House", "Detached House", "Detached Bungalow", "Good Class Bungalow", "Cluster House", "Strata Landed"}
-    condo_types = {"Condominium", "Executive Condominium", "Luxury Apartment", "Penthouse", "Service Residence"}
-    category_types = landed_types if launch_category == "landed" else condo_types if launch_category == "condo" else None
-    filtered_listings = [listing for listing in launch_listings if (not selected_district or listing["location"] == selected_district) and (not selected_type or listing["type"] == selected_type) and (not category_types or listing["type"] in category_types) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold())]
-    return render_template("listings.html", **page_context("launches", listings=filtered_listings, districts=districts, property_types=property_types, selected_district=selected_district, selected_type=selected_type, query=query, launch_category=launch_category))
+    category_types = LANDED_TYPES if launch_category == "landed" else CONDO_TYPES if launch_category == "condo" else None
+    filtered_listings = [listing for listing in launch_listings if (not selected_districts or listing["location"] in selected_districts) and (not selected_types or listing["type"] in selected_types) and (not category_types or listing["type"] in category_types) and (not query or query.casefold() in " ".join(str(value) for value in listing.values()).casefold())]
+    return render_template("listings.html", **page_context("launches", listings=filtered_listings, districts=districts, property_types=property_types, selected_districts=selected_districts, selected_types=selected_types, query=query, launch_category=launch_category))
 
 
 @app.route("/for-rent")
 def for_rent():
-    return render_template("listings.html", **page_context("rent", listings=LISTINGS, districts=SINGAPORE_DISTRICTS, property_types=PROPERTY_TYPES, selected_district="", selected_type="", query=""))
+    return render_template("listings.html", **page_context("rent", listings=[], districts=SINGAPORE_DISTRICTS, property_types=PROPERTY_TYPES, selected_districts=[], selected_types=[], query=""))
 
 
 @app.route("/search-by-school")
 def search_by_school():
     query = request.args.get("q", "").strip()
-    schools = [school for school in SCHOOLS if not query or school.casefold().startswith(query.casefold())]
+    schools = [school for school in SCHOOLS if not query or query.casefold() in school.casefold()]
     return render_template("school_search.html", **page_context("school-search", schools=schools, query=query))
+
+
+@app.route("/search-by-mrt")
+def search_by_mrt():
+    query = request.args.get("q", "").strip()
+    lines = []
+    for line in MRT_LINES:
+        stations = [station for station in line["stations"] if not query or query.casefold() in station.casefold()]
+        if stations:
+            lines.append({**line, "stations": stations})
+    total_stations = sum(len(line["stations"]) for line in lines)
+    return render_template("mrt_search.html", **page_context("mrt-search", lines=lines, query=query, total_stations=total_stations))
 
 
 @app.route("/property/<path:property_name>")
@@ -366,10 +381,10 @@ def property_detail(property_name):
 
 @app.route("/services")
 def services():
-    return render_template("text_page.html", **page_context("services", eyebrow="Our services", heading="A better way to <em>move.</em>", intro="From the first conversation to the final signature, our advice is clear, considered, and entirely yours.", items=[
-        {"title": "Buying, thoughtfully", "text": "A calm, informed search shaped around how you want to live, with access to homes you will not find everywhere.", "link_endpoint": "buy_with_us"},
-        {"title": "Selling, beautifully", "text": "We tell the story of your home with precision, introduce it to the right people, and handle every detail."},
-        {"title": "Letting, simply", "text": "Long-term partnerships for landlords who care about their property and the people who live in it."},
+    return render_template("services.html", **page_context("services", services=[
+        {"number": "01", "eyebrow": "For buyers", "title": "Find a home that fits your life.", "text": "A focused search shaped around your priorities. Compare suitable homes, understand the market and make your next move with a clear plan.", "link_endpoint": "buy_with_us", "link_label": "Explore buying"},
+        {"number": "02", "eyebrow": "For sellers", "title": "Bring your property to the right people.", "text": "Thoughtful pricing, considered presentation and purposeful marketing—supported by clear advice from the first conversation to completion.", "link_endpoint": "sell_with_us", "link_label": "Explore selling"},
+        {"number": "03", "eyebrow": "For landlords", "title": "Make leasing feel simpler.", "text": "Practical support to help you prepare, market and lease your property, while finding tenants who are the right fit.", "link_endpoint": "contact", "link_label": "Talk to our team"},
     ]))
 
 
@@ -378,9 +393,37 @@ def buy_with_us():
     return render_template("buy_with_us.html", **page_context("services"))
 
 
+@app.route("/sell-with-us")
+def sell_with_us():
+    return render_template("sell_with_us.html", **page_context("services"))
+
+
+@app.route("/home-valuation")
+def home_valuation():
+    return render_template("home_valuation.html", **page_context("services", property_types=PROPERTY_TYPES))
+
+
 @app.route("/resources")
 def resources():
     return render_template("resources.html", **page_context("resources"))
+
+
+@app.route("/resources/market-trends")
+def market_trends():
+    return render_template("resource_collection.html", **page_context("market-trends", eyebrow="SS Property / Resources", heading="Market <em>trends.</em>", intro="A practical view of the signals buyers and sellers watch when assessing Singapore property.", articles=[
+        {"title": "Private residential property index", "text": "Official data on prices, rentals, vacancy and supply in Singapore's private residential market.", "source": "Urban Redevelopment Authority", "image_credit": "Image: Urban Redevelopment Authority", "image": "https://isomer-user-content.by.gov.sg/467/eb9d7819-ed32-43b2-897d-2a11a9d19158/IMG01.jpg", "url": "https://www.ura.gov.sg/property-data/private-residential-properties/"},
+        {"title": "Prices and rentals", "text": "URA's latest quarterly chart for private residential prices and rentals.", "source": "Urban Redevelopment Authority", "image_credit": "Chart: Urban Redevelopment Authority", "image": "https://isomer-user-content.by.gov.sg/467/76d9451c-8062-43c7-aef1-1de9a6908575/IMG02.jpg", "url": "https://www.ura.gov.sg/news/media/pr26-57/"},
+        {"title": "New launches and take-up", "text": "Official data on developer launches and sales of private residential homes.", "source": "Urban Redevelopment Authority", "image_credit": "Chart: Urban Redevelopment Authority", "image": "https://isomer-user-content.by.gov.sg/467/5b462fce-0162-446b-8da9-15553173ec18/IMG04.jpg", "url": "https://www.ura.gov.sg/news/media/pr26-57/"},
+    ]))
+
+
+@app.route("/resources/news-articles")
+def news_articles():
+    return render_template("resource_collection.html", **page_context("news-articles", eyebrow="SS Property / Resources", heading="News <em>articles.</em>", intro="Property news and explainers to help you follow developments that may affect your next move.", articles=[
+        {"title": "Release of Q2 2026 real estate statistics", "text": "URA's official release covering prices, rentals, supply and private residential transactions.", "source": "Urban Redevelopment Authority", "image_credit": "Chart: Urban Redevelopment Authority", "image": "https://isomer-user-content.by.gov.sg/467/ffc0ec55-8891-48e3-b858-70f9404448b8/IMG05.jpg", "url": "https://www.ura.gov.sg/news/media/pr26-57/"},
+        {"title": "URA media releases", "text": "Official planning, development and property-market announcements from URA.", "source": "Urban Redevelopment Authority", "image_credit": "Image: Urban Redevelopment Authority", "image": "https://isomer-user-content.by.gov.sg/467/eb9d7819-ed32-43b2-897d-2a11a9d19158/IMG01.jpg", "url": "https://www.ura.gov.sg/news/media/"},
+        {"title": "Shorter waiting times for Toa Payoh and Sin Ming BTO flats", "text": "CNA reporting on planned BTO projects with waiting times under three years.", "source": "CNA", "image_credit": "Image: CNA", "image": "https://dam.mediacorp.sg/image/upload/s--LABtXPfr--/f_auto,q_auto/c_fill,g_center,h_598,w_747/v1/mediacorp/cna/image/2026/08/30/tp.png?itok=fKm7PqzE", "url": "https://www.channelnewsasia.com/singapore/1200-bto-flats-toay-payoh-sin-ming-shorter-waiting-times-6350066"},
+    ]))
 
 
 @app.route("/resources/postal-districts")
@@ -388,11 +431,40 @@ def postal_districts():
     return render_template("postal_districts.html", **page_context("resources", districts=SINGAPORE_DISTRICTS))
 
 
+@app.route("/resources/loan-calculator")
+def loan_calculator():
+    return render_template("loan_calculator.html", **page_context("loan-calculator"))
+
+
+def parse_price(price_text):
+    digits = "".join(char for char in price_text if char.isdigit())
+    return int(digits) if digits else None
+
+
+def listing_category(property_type):
+    if property_type in LANDED_TYPES:
+        return "landed"
+    if property_type in CONDO_TYPES:
+        return "condo"
+    return "hdb"
+
+
+@app.route("/resources/property-value-calculator")
+def property_value_calculator():
+    priced_listings = [
+        {**listing, "category": listing_category(listing["type"])}
+        for listing in sorted(LISTINGS, key=lambda listing: parse_price(listing["price"]) or 0)
+        if parse_price(listing["price"])
+    ]
+    return render_template("property_value_calculator.html", **page_context("resources", districts=SINGAPORE_DISTRICTS, psf_benchmarks=PSF_BENCHMARKS, listings=priced_listings, parse_price=parse_price))
+
+
 @app.route("/resources/property-types")
 def property_types_resource():
     property_groups = [
         {"title": "Landed properties", "description": "Private homes with their own land, offering more space and independence.", "types": [
             {"name": "Terraced House", "description": "A landed home joined to neighbouring houses on both sides."},
+            {"name": "Inter-Terrace House", "description": "A terrace home positioned between two neighbouring houses."},
             {"name": "Corner Terrace", "description": "An end-unit terrace with more land and additional natural light."},
             {"name": "Semi-Detached House", "description": "A landed home joined to one neighbouring house only."},
             {"name": "Detached House", "description": "A standalone landed home with space on all sides."},
@@ -422,9 +494,70 @@ def about():
     return render_template("about.html", **page_context("about"))
 
 
+@app.route("/our-people")
+def our_people():
+    return render_template("about.html", **page_context("our-people"))
+
+
 @app.route("/contact")
 def contact():
     return render_template("contact.html", **page_context("contact"))
+
+
+LEGAL_PAGES = {
+    "disclaimer": {
+        "eyebrow": "Legal information",
+        "title": "Disclaimer",
+        "intro": "Please read these terms before relying on information published on this website.",
+        "sections": [
+            {"title": "General information", "text": "The information on this website is provided for general reference only. It is not legal, financial, tax, property or investment advice, and should not be relied on as a substitute for independent professional advice."},
+            {"title": "Property details", "text": "Property descriptions, measurements, prices, availability, images and other details are believed to be accurate when published, but may change without notice. They are subject to contract, final verification and the seller's approval."},
+            {"title": "No offer or warranty", "text": "Nothing on this website constitutes an offer, representation or warranty. Prospective purchasers and tenants should carry out their own inspections, enquiries and due diligence before making any decision."},
+            {"title": "External content", "text": "Links and embedded content from third-party websites are provided for convenience. We are not responsible for their availability, content, privacy practices or accuracy."},
+        ],
+    },
+    "privacy_policy": {
+        "eyebrow": "Legal information",
+        "title": "Privacy Policy",
+        "intro": "This policy explains how personal information provided through this website is handled.",
+        "sections": [
+            {"title": "Information we collect", "text": "We may collect your name, email address, telephone number, property preferences and the contents of enquiries you send through the website."},
+            {"title": "How we use information", "text": "We use this information to respond to enquiries, provide requested property services, communicate relevant updates and improve our website and services."},
+            {"title": "Sharing and retention", "text": "Information is shared only where reasonably necessary to provide our services, meet legal obligations or work with trusted service providers. We retain it only for as long as necessary for these purposes or as required by law."},
+            {"title": "Cookies and external services", "text": "This website may use cookies and embedded third-party services. Those providers may collect information under their own privacy policies."},
+        ],
+    },
+    "data_protection": {
+        "eyebrow": "Legal information",
+        "title": "Data Protection",
+        "intro": "We take reasonable steps to protect personal data entrusted to us.",
+        "sections": [
+            {"title": "Safeguarding personal data", "text": "We use reasonable administrative, technical and physical safeguards to protect personal data from unauthorised access, collection, use, disclosure, copying, modification or disposal."},
+            {"title": "Your choices", "text": "You may ask about the personal data we hold about you, request correction of inaccurate information or withdraw consent for certain uses, subject to applicable legal and contractual requirements."},
+            {"title": "Marketing communications", "text": "You may opt out of marketing communications at any time by contacting us through the Contact page or using any unsubscribe option provided in the communication."},
+            {"title": "Policy updates", "text": "We may update these notices from time to time. The version published on this website applies from its publication date."},
+        ],
+    },
+}
+
+
+def render_legal_page(page_name):
+    return render_template("legal_page.html", **page_context("", **LEGAL_PAGES[page_name]))
+
+
+@app.route("/disclaimer")
+def disclaimer():
+    return render_legal_page("disclaimer")
+
+
+@app.route("/privacy-policy")
+def privacy_policy():
+    return render_legal_page("privacy_policy")
+
+
+@app.route("/data-protection")
+def data_protection():
+    return render_legal_page("data_protection")
 
 
 if __name__ == "__main__":

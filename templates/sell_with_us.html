@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Sell Your Property With Us - SS Property{% endblock %}
+{% block content %}
+<section class="service-detail-page service-sell-page">
+<section class="page-heading">
+    <p class="eyebrow">SS Property / Sell With Us</p>
+    <h1>Sell with a plan, not <em>guesswork.</em></h1>
+    <p>Thoughtful preparation and clear advice to help you bring your property to market with confidence.</p>
+</section>
+<section class="buy-with-us-story">
+    <div class="buy-with-us-copy">
+        <p class="eyebrow">Our approach</p>
+        <h2>A considered sale, from the start.</h2>
+        <p>We begin by understanding your property, your timing and what a successful sale looks like to you. From there, we can discuss pricing, preparation and a practical route to market.</p>
+        <p>We present each home with care and use focused digital marketing to put it in front of relevant buyers. You stay informed as interest develops and decisions need to be made.</p>
+        <p>From the first conversation to the final paperwork, our team helps keep the details organised and the process moving.</p>
+        <a class="button button-dark" href="{{ url_for('contact') }}">Start a conversation <span>↗</span></a>
+    </div>
+    <div class="buy-with-us-image">
+        <img src="{{ url_for('static', filename='img/HousesIMG/Coronation B7000/Coronation B7000 Landing.PNG') }}" alt="Landed property represented by SS Property">
+        <span>Presented with intention</span>
+    </div>
+</section>
+<section class="sell-highlights" aria-label="Selling service highlights">
+    <div><span>01</span><strong>Prepared with care</strong><p>Positioning, pricing and presentation planned around your property.</p></div>
+    <div><span>02</span><strong>Purposeful marketing</strong><p>Digital exposure designed to connect with relevant buyers.</p></div>
+    <div><span>03</span><strong>Clear communication</strong><p>Timely updates and practical guidance through each stage.</p></div>
+</section>
+ </section>
+{% endblock %}

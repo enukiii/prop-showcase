@@ -1,3 +1,95 @@
 {% extends "base.html" %}
 {% block title %}{% if active_page == 'rent' %}Properties for Rent - SS Property{% else %}All Listings - SS Property{% endif %}{% endblock %}
-{% block content %}<section class="listing-page-head"><div><p class="eyebrow">SS Property / Properties</p><h1>{% if active_page == 'launches' %}Newly Launched Properties <em>for sale</em>{% elif active_page == 'rent' %}Properties <em>for rent.</em>{% else %}All properties <em>for sale.</em>{% endif %}</h1><p>{% if active_page == 'launches' %}Browse our latest new launch homes and developments.{% elif active_page == 'rent' %}Explore homes available to rent across Singapore.{% else %}Explore our selection of homes across Singapore, chosen for their location, quality and potential.{% endif %}</p></div><a class="button button-dark" href="{{ url_for('contact') }}">Find my property <span>↗</span></a></section><section class="listing-toolbar"><strong>{{ listings|length }} properties found</strong><form method="get" class="listing-filters"><div class="district-filter"><label for="district">District</label><select id="district" name="district" onchange="this.form.submit()"><option value="">All districts</option>{% for district in districts %}<option value="{{ district }}" {% if selected_district == district %}selected{% endif %}>{{ district }}</option>{% endfor %}</select></div><div class="district-filter"><label for="type">Property type</label><select id="type" name="type" onchange="this.form.submit()"><option value="">All property types</option>{% for property_type in property_types %}<option value="{{ property_type }}" {% if selected_type == property_type %}selected{% endif %}>{{ property_type }}</option>{% endfor %}</select></div></form></section><section class="listing-grid listing-page-grid">{% if listings %}{% for listing in listings %}<article class="listing-card"><div class="listing-image wireframe-image"><span class="wireframe-label">PROPERTY IMAGE</span>{% if active_page == 'launches' %}<span class="tag">New launched</span>{% elif listing.tag %}<span class="tag">{{ listing.tag }}</span>{% endif %}</div><div class="listing-meta"><div><p class="listing-location">{{ listing.location }}</p><h3>{{ listing.name }}</h3><div class="property-pills"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span></div><small>{{ listing.details }}</small></div><strong>{{ listing.price }}</strong></div></article>{% endfor %}{% else %}<div class="empty-results"><h2>No properties found</h2><p>Try a different district or property type.</p></div>{% endif %}</section>{% endblock %}
+{% block content %}
+<section class="listing-page-head">
+    <div>
+        <p class="eyebrow">SS Property / Properties</p>
+        <h1>{% if active_page == 'launches' %}Newly Launched Properties <em>For Sale</em>{% elif active_page == 'rent' %}Properties <em>for rent.</em>{% else %}All properties <em>For Sale.</em>{% endif %}</h1>
+        <p>{% if active_page == 'launches' %}Browse our latest new launch homes and developments.{% elif active_page == 'rent' %}Explore homes available to rent across Singapore.{% else %}Explore our selection of homes across Singapore, chosen for their location, quality and potential.{% endif %}</p>
+    </div>
+    <a class="button button-dark" href="{{ url_for('contact') }}">Find my property <span>↗</span></a>
+</section>
+<section class="listing-toolbar">
+    <strong>{{ listings|length }} properties found</strong>
+    <form method="get" class="listing-filters">
+        <div class="district-filter property-type-filter">
+            <span class="property-type-label" id="district-filter-label">District</span>
+            <details class="property-type-picker property-district-picker" data-multiselect-picker="district">
+                <summary aria-labelledby="district-filter-label">
+                    <span data-filter-summary>{% if not selected_districts %}All districts{% elif selected_districts|length == 1 %}{{ selected_districts[0] }}{% else %}{{ selected_districts|length }} districts selected{% endif %}</span>
+                    <span class="property-type-chevron" aria-hidden="true"></span>
+                </summary>
+                <div class="property-type-menu">
+                    <div class="property-type-menu-heading">
+                        <span>Select one or more districts</span>
+                        <button type="button" data-clear-filter>Clear</button>
+                    </div>
+                    <div class="property-type-options property-district-options">
+                        {% for district in districts %}
+                        <label for="district-option-{{ loop.index }}">
+                            <input id="district-option-{{ loop.index }}" type="checkbox" name="district" value="{{ district }}" {% if district in selected_districts %}checked{% endif %}>
+                            <span>{{ district }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="property-type-menu-footer">
+                        <span data-filter-count>{{ selected_districts|length }} selected</span>
+                        <button type="submit">Apply filters</button>
+                    </div>
+                </div>
+            </details>
+        </div>
+        <div class="district-filter property-type-filter">
+            <span class="property-type-label" id="property-type-label">Property type</span>
+            <details class="property-type-picker" data-multiselect-picker="type">
+                <summary aria-labelledby="property-type-label">
+                    <span data-filter-summary>{% if not selected_types %}All property types{% elif selected_types|length == 1 %}{{ selected_types[0] }}{% else %}{{ selected_types|length }} types selected{% endif %}</span>
+                    <span class="property-type-chevron" aria-hidden="true"></span>
+                </summary>
+                <div class="property-type-menu">
+                    <div class="property-type-menu-heading">
+                        <span>Select one or more types</span>
+                        <button type="button" data-clear-filter>Clear</button>
+                    </div>
+                    <div class="property-type-options">
+                        {% for property_type in property_types %}
+                        <label for="property-type-{{ loop.index }}">
+                            <input id="property-type-{{ loop.index }}" type="checkbox" name="type" value="{{ property_type }}" {% if property_type in selected_types %}checked{% endif %}>
+                            <span>{{ property_type }}</span>
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <div class="property-type-menu-footer">
+                        <span data-filter-count>{{ selected_types|length }} selected</span>
+                        <button type="submit">Apply filters</button>
+                    </div>
+                </div>
+            </details>
+        </div>
+    </form>
+</section>
+<section class="listing-grid listing-page-grid">
+    {% if listings %}
+        {% for listing in listings %}
+        <article class="listing-card">
+            <div class="listing-image wireframe-image"{% if listing.image %} style="background-image: url('{{ listing.image }}');"{% endif %}>
+                {% if not listing.image %}<span class="wireframe-label">PROPERTY IMAGE</span>{% endif %}
+                {% if active_page == 'launches' %}<span class="tag">New launched</span>{% elif listing.tag %}<span class="tag">{{ listing.tag }}</span>{% endif %}
+            </div>
+            <div class="listing-meta">
+                <div>
+                    <p class="listing-location">{{ listing.location }}</p>
+                    <h3>{{ listing.name }}</h3>
+                    <div class="property-pills"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span></div>
+                    <small>{{ listing.details }}</small>
+                </div>
+                <strong>{{ listing.price }}</strong>
+            </div>
+        </article>
+        {% endfor %}
+    {% else %}
+        <div class="empty-results"><h2>No properties found</h2><p>Try a different district or property type.</p></div>
+    {% endif %}
+</section>
+<script src="{{ url_for('static', filename='property-type-multiselect.js', v='2') }}" defer></script>
+{% endblock %}

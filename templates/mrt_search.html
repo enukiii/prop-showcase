@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Search by MRT — SS Property{% endblock %}
+{% block content %}
+<section class="school-search-hero">
+    <div>
+        <p class="eyebrow">SS Property / Find a home</p>
+        <h1>Search by <em>MRT.</em></h1>
+        <p>Find Singapore homes near the MRT line and station that suits your commute.</p>
+    </div>
+    <form class="school-search-form" method="get" role="search">
+        <label for="mrt-search-input">Search MRT stations</label>
+        <input id="mrt-search-input" name="q" type="search" value="{{ query }}" placeholder="Search MRT stations" autocomplete="off">
+        <button type="submit" aria-label="Search MRT stations">↗</button>
+    </form>
+</section>
+<section class="school-directory-section mrt-directory-section">
+    <div class="school-directory-toolbar"><p><strong>{{ total_stations }}</strong> MRT &amp; LRT stations</p><span>Grouped by line</span></div>
+    {% if lines %}
+    {% for line in lines %}
+    <div class="mrt-line-group">
+        <div class="mrt-line-heading"><span class="mrt-line-badge" style="background:{{ line.color }}">{{ line.code }}</span><h2>{{ line.name }}</h2></div>
+        <div class="school-directory">
+        {% for station in line.stations %}
+        <a class="school-directory-item" href="{{ url_for('listings', mrt=station) }}">
+            <span class="item-number">{{ '%02d'|format(loop.index) }}</span>
+            <h2>{{ station }}</h2>
+            <span class="school-arrow" aria-hidden="true">↗</span>
+        </a>
+        {% endfor %}
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="school-search-empty"><h2>No MRT stations found</h2><p>Try another station name.</p></div>
+    {% endif %}
+</section>
+{% endblock %}
+

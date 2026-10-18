@@ -545,8 +545,6 @@
     .property-portal .listing-image,
     .property-portal .gallery-slide,
     .property-portal .wireframe-image {
-        background-color: transparent !important;
-        background-image: url("/static/img/farrer%20road%20landing%20image.png") !important;
         background-position: center !important;
         background-repeat: no-repeat !important;
         background-size: cover !important;

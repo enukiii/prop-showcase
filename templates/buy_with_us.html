@@ -1,28 +1,30 @@
 {% extends "base.html" %}
-{% block title %}Sell Your Property With Us - SS Property{% endblock %}
+{% block title %}Buy Property With Us - SS Property{% endblock %}
 {% block content %}
+<section class="service-detail-page service-buy-page">
 <section class="page-heading">
-    <p class="eyebrow">SS Property / Sell With Us</p>
-    <h1>Sell Your Property <em>With Us</em></h1>
-    <p>Set the price. We will shape the story, reach the right audience and guide the sale.</p>
+    <p class="eyebrow">SS Property / Buy With Us</p>
+    <h1>Find a home that feels <em>right.</em></h1>
+    <p>A clear, considered search—shaped around the way you want to live and what matters most to you.</p>
 </section>
 <section class="buy-with-us-story">
     <div class="buy-with-us-copy">
         <p class="eyebrow">Our approach</p>
-        <h2>Price You Decide, Property We Market</h2>
-        <p>Whether you are selling a home, a shop lot or a new development, we help you move forward with clarity and purpose.</p>
-        <p>Every property has a story. We position yours with thoughtful presentation, focused digital reach and marketing that connects it with the right buyer.</p>
-        <p>From smaller homes to major developments, our team brings the same care to every brief, creating genuine interest and a smoother path to completion.</p>
-        <a class="button button-dark" href="{{ url_for('contact') }}">Start a conversation <span>↗</span></a>
+        <h2>Your priorities set the direction.</h2>
+        <p>Start with what matters: the neighbourhood, the space, your budget and the plans you have for the years ahead. We use those priorities to focus the search—not add more noise to it.</p>
+        <p>We help you compare suitable properties, understand the details behind each option and prepare for viewings and negotiations with a clearer picture of the market.</p>
+        <p>From the first shortlist through to completion, you have a team to guide the process and keep each next step clear.</p>
+        <a class="button button-dark" href="{{ url_for('contact') }}">Begin your search <span>↗</span></a>
     </div>
     <div class="buy-with-us-image">
-        <img src="{{ url_for('static', filename='img/farrer road landing image.png') }}" alt="Landed property represented by SS Property">
-        <span>Presented with intention</span>
+        <img src="{{ url_for('static', filename='img/HousesIMG/Coronation B7000/Coronation B7000 Landing.PNG') }}" alt="Landed property available through SS Property">
+        <span>Find your place</span>
     </div>
 </section>
-<section class="sell-highlights" aria-label="Selling service highlights">
-    <div><span>01</span><strong>Strong visibility</strong><p>Digital tools and creative marketing that make your property easier to find.</p></div>
-    <div><span>02</span><strong>Qualified interest</strong><p>Clear positioning that brings the right people into the conversation.</p></div>
-    <div><span>03</span><strong>Steady guidance</strong><p>Practical support from the first decision through to completion.</p></div>
+<section class="sell-highlights" aria-label="Buying service highlights">
+    <div><span>01</span><strong>A focused shortlist</strong><p>Options that reflect your needs, location and budget.</p></div>
+    <div><span>02</span><strong>Useful context</strong><p>Clear comparisons on layout, value and neighbourhood.</p></div>
+    <div><span>03</span><strong>Guidance throughout</strong><p>Support from viewings and offers through to completion.</p></div>
 </section>
+ </section>
 {% endblock %}

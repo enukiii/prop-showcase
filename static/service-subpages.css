@@ -1,0 +1,205 @@
+.property-portal .service-detail-page {
+    background: #111;
+    color: #f4efe5;
+    min-height: 70vh;
+    padding-bottom: 20px;
+}
+
+.property-portal .service-detail-page .page-heading {
+    background:
+        radial-gradient(ellipse at 82% 25%, rgba(214, 181, 101, .10), transparent 36%),
+        linear-gradient(115deg, #211f1b, #111 70%);
+    border-bottom: 1px solid rgba(214, 181, 101, .15);
+    box-sizing: border-box;
+    margin: 0;
+    padding: clamp(58px, 8vw, 96px) max(5vw, calc((100% - 1280px) / 2)) 54px;
+    width: 100%;
+}
+
+.property-portal .service-detail-page .page-heading .eyebrow {
+    color: #d6b565;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .12em;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+}
+
+.property-portal .service-detail-page .page-heading h1 {
+    color: #f4efe5;
+    font-family: var(--sans);
+    font-size: clamp(46px, 7vw, 82px);
+    font-weight: 500;
+    letter-spacing: -.06em;
+    line-height: 1;
+    margin: 0 0 20px;
+    max-width: 980px;
+}
+
+.property-portal .service-detail-page .page-heading h1 em {
+    color: #d6b565;
+    font-family: var(--serif);
+    font-weight: 500;
+}
+
+.property-portal .service-detail-page .page-heading > p:last-child {
+    color: #b8afa1;
+    font-size: 15px;
+    line-height: 1.75;
+    margin: 0;
+    max-width: 650px;
+}
+
+.property-portal .service-detail-page .buy-with-us-story {
+    align-items: center;
+    gap: clamp(38px, 7vw, 100px);
+    max-width: 1280px;
+    padding: 68px 0 72px;
+    width: 90%;
+}
+
+.property-portal .service-detail-page .buy-with-us-copy h2 {
+    border-color: rgba(214, 181, 101, .24);
+    color: #f4efe5;
+    font-size: clamp(24px, 3vw, 34px);
+    font-weight: 500;
+    letter-spacing: -.04em;
+    line-height: 1.2;
+    padding-top: 22px;
+}
+
+.property-portal .service-detail-page .buy-with-us-copy p {
+    color: #b8afa1;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.property-portal .service-detail-page .buy-with-us-image {
+    border: 1px solid rgba(214, 181, 101, .24);
+    min-height: 420px;
+}
+
+.property-portal .service-detail-page .buy-with-us-image img {
+    filter: saturate(.82);
+}
+
+.property-portal .service-detail-page .buy-with-us-image span {
+    background: #171613;
+    border: 1px solid rgba(214, 181, 101, .3);
+    color: #e0c27e;
+}
+
+.property-portal .service-detail-page .sell-highlights {
+    border-color: rgba(214, 181, 101, .2);
+    max-width: 1280px;
+    padding: 28px 0 80px;
+    width: 90%;
+}
+
+.property-portal .service-detail-page .sell-highlights div {
+    border-color: #d6b565;
+}
+
+.property-portal .service-detail-page .sell-highlights span {
+    color: #d6b565;
+}
+
+.property-portal .service-detail-page .sell-highlights strong {
+    color: #f4efe5;
+    font-size: 15px;
+}
+
+.property-portal .service-detail-page .sell-highlights p {
+    color: #a99f91;
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.property-portal .service-valuation-page .home-valuation {
+    align-items: start;
+    gap: clamp(36px, 7vw, 96px);
+    max-width: 1280px;
+    padding: 58px 0 88px;
+    width: 90%;
+}
+
+.property-portal .service-valuation-page .home-valuation-copy h2 {
+    font-size: clamp(26px, 3vw, 36px);
+    font-weight: 500;
+    letter-spacing: -.045em;
+    line-height: 1.16;
+}
+
+.property-portal .service-valuation-page .home-valuation-form {
+    background: linear-gradient(145deg, #211f1c, #191817);
+    border-color: rgba(214, 181, 101, .22);
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .25);
+}
+
+.property-portal .service-valuation-page .home-valuation-form fieldset {
+    border-color: #403a33;
+}
+
+.property-portal .service-valuation-page .home-valuation-form input,
+.property-portal .service-valuation-page .home-valuation-form select,
+.property-portal .service-valuation-page .home-valuation-form textarea {
+    background: #151515;
+    border-color: #51483b;
+    color: #f4efe5;
+}
+
+.property-portal .service-valuation-page .home-valuation-form input::placeholder,
+.property-portal .service-valuation-page .home-valuation-form textarea::placeholder {
+    color: #837b6e;
+}
+
+.property-portal .service-valuation-page .home-valuation-form input:focus,
+.property-portal .service-valuation-page .home-valuation-form select:focus,
+.property-portal .service-valuation-page .home-valuation-form textarea:focus {
+    border-color: #d6b565;
+    outline-color: #d6b565;
+}
+
+.property-portal .service-valuation-page .home-valuation-form label > span,
+.property-portal .service-valuation-page .valuation-consent {
+    color: #d8cdbd;
+}
+
+.property-portal .service-valuation-page .home-valuation-form .button {
+    background: #d6b565;
+    border-color: #d6b565;
+    color: #15130f;
+}
+
+.property-portal .service-valuation-page .valuation-note {
+    color: #a99f91;
+}
+
+@media (max-width: 700px) {
+    .property-portal .service-detail-page .page-heading {
+        padding: 48px 6vw 40px;
+    }
+
+    .property-portal .service-detail-page .buy-with-us-story,
+    .property-portal .service-detail-page .sell-highlights,
+    .property-portal .service-valuation-page .home-valuation {
+        width: 88%;
+    }
+
+    .property-portal .service-detail-page .buy-with-us-story {
+        padding: 46px 0 54px;
+    }
+
+    .property-portal .service-detail-page .buy-with-us-image {
+        min-height: 280px;
+    }
+
+    .property-portal .service-detail-page .sell-highlights {
+        padding-bottom: 56px;
+    }
+
+    .property-portal .service-valuation-page .home-valuation {
+        padding: 40px 0 60px;
+    }
+}

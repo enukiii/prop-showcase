@@ -2,10 +2,13 @@
 {% block title %}Singapore Postal Districts — SS Property{% endblock %}
 {% block content %}
 <section class="postal-page">
-    <a class="back-link" href="{{ url_for('resources') }}">← Back to resources</a>
-    <p class="eyebrow">SS Property / Resources</p>
-    <h1>Singapore Postal<br>Districts <em>Map.</em></h1>
-    <p class="postal-intro">Explore Singapore's 28 postal districts and discover the neighbourhoods covered by each area.</p>
-    <div class="postal-grid">{% for district in districts %}<a href="{{ url_for('listings', district=district) }}"><strong>{{ district[:3] }}</strong><span>{{ district[4:] }}</span><b>↗</b></a>{% endfor %}</div>
+    <a class="resource-back-link" href="{{ url_for('resources') }}">← All resources</a>
+    <header class="resource-detail-heading">
+        <p class="eyebrow">SS Property / Neighbourhood guide</p>
+        <h1>Singapore, district<br>by <em>district.</em></h1>
+        <p class="postal-intro">Use the postal district codes to explore Singapore’s neighbourhoods. Choose a district to see matching properties.</p>
+        <div class="resource-detail-stat"><strong>28</strong><span>postal districts across Singapore</span></div>
+    </header>
+    <div class="postal-grid">{% for district in districts %}<a href="{{ url_for('listings', district=district) }}"><strong>{{ district[:3] }}</strong><span>{{ district[4:] }}</span><b aria-hidden="true">↗</b></a>{% endfor %}</div>
 </section>
 {% endblock %}

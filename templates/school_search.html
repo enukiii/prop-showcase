@@ -1,20 +1,24 @@
 {% extends "base.html" %}
 {% block title %}Search by School — SS Property{% endblock %}
 {% block content %}
-<section class="page-heading">
-    <p class="eyebrow">SS Property / Find a home</p>
-    <h1>Search by <em>school.</em></h1>
-    <p>Choose a school to view nearby properties.</p>
+<section class="school-search-hero">
+    <div>
+        <p class="eyebrow">SS Property / Find a home</p>
+        <h1>Search by <em>school.</em></h1>
+        <p>Find homes near the schools that matter to your family.</p>
+    </div>
     <form class="school-search-form" method="get" role="search">
         <label for="school-search-input">Search schools</label>
         <input id="school-search-input" name="q" type="search" value="{{ query }}" placeholder="Search schools" autocomplete="off">
         <button type="submit" aria-label="Search schools">↗</button>
     </form>
 </section>
-<section class="content-grid school-directory">
+<section class="school-directory-section">
+    <div class="school-directory-toolbar"><p><strong data-school-count>{{ schools|length }}</strong> schools</p><span>A–Z directory</span></div>
+    <div class="school-directory" data-school-directory>
     {% if schools %}
     {% for school in schools %}
-    <a class="content-item school-directory-item" href="{{ url_for('listings', school=school) }}">
+    <a class="school-directory-item" href="{{ url_for('listings', school=school) }}" data-school-name="{{ school|lower }}">
         <span class="item-number">{{ '%02d'|format(loop.index) }}</span>
         <h2>{{ school }}</h2>
         <span class="school-arrow" aria-hidden="true">↗</span>
@@ -23,5 +27,24 @@
     {% else %}
     <div class="school-search-empty"><h2>No schools found</h2><p>Try another school name.</p></div>
     {% endif %}
+    </div>
 </section>
+<script>
+(() => {
+    const input = document.querySelector('#school-search-input');
+    const directory = document.querySelector('[data-school-directory]');
+    const count = document.querySelector('[data-school-count]');
+    if (!input || !directory || !count) return;
+    const items = [...directory.querySelectorAll('[data-school-name]')];
+    input.addEventListener('input', () => {
+        const query = input.value.trim().toLowerCase();
+        const matches = items.filter(item => {
+            const visible = item.dataset.schoolName.includes(query);
+            item.hidden = !visible;
+            return visible;
+        });
+        count.textContent = matches.length;
+    });
+})();
+</script>
 {% endblock %}

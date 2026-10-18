@@ -1,0 +1,214 @@
+.property-portal .property-type-filter {
+    position: relative;
+}
+
+.property-portal .property-type-label {
+    color: #d6b565;
+    flex: 0 0 auto;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.property-portal .property-type-picker {
+    min-width: 230px;
+    position: relative;
+}
+
+.property-portal .property-type-picker > summary {
+    align-items: center;
+    background: #201f1c;
+    border: 1px solid rgba(214, 181, 101, .95);
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .02);
+    color: #f4efe5;
+    cursor: pointer;
+    display: flex;
+    font-size: 12px;
+    justify-content: space-between;
+    list-style: none;
+    min-height: 38px;
+    padding: 9px 12px;
+}
+
+.property-portal .property-type-picker > summary::-webkit-details-marker {
+    display: none;
+}
+
+.property-portal .property-type-picker > summary > span:first-child {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.property-portal .property-type-picker > summary::marker {
+    content: "";
+}
+
+.property-portal .property-type-picker[open] > summary,
+.property-portal .property-type-picker > summary:focus-visible {
+    border-color: #f0d087;
+    box-shadow: 0 0 0 2px rgba(198, 161, 91, .22);
+    outline: none;
+}
+
+.property-portal .property-type-chevron {
+    border-bottom: 1px solid #d6b565;
+    border-right: 1px solid #d6b565;
+    flex: 0 0 auto;
+    height: 7px;
+    margin: -4px 2px 0 12px;
+    transform: rotate(45deg);
+    width: 7px;
+}
+
+.property-portal .property-type-picker[open] .property-type-chevron {
+    margin-top: 4px;
+    transform: rotate(225deg);
+}
+
+.property-portal .property-type-menu {
+    background: #201f1c;
+    border: 1px solid rgba(214, 181, 101, .95);
+    border-radius: 10px;
+    box-shadow: 0 14px 34px rgba(0, 0, 0, .55);
+    min-width: 100%;
+    padding: 10px;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    width: min(390px, calc(100vw - 32px));
+    z-index: 30;
+}
+
+.property-portal .property-district-picker .property-type-menu {
+    width: min(480px, calc(100vw - 32px));
+}
+
+.property-portal .property-district-options {
+    grid-template-columns: 1fr;
+    max-height: 320px;
+}
+
+.property-portal .property-type-menu-heading,
+.property-portal .property-type-menu-footer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.property-portal .property-type-menu-heading {
+    border-bottom: 1px solid #403a33;
+    color: #b8afa1;
+    font-size: 11px;
+    padding: 3px 4px 10px;
+}
+
+.property-portal .property-type-menu-heading button {
+    background: transparent;
+    border: 0;
+    color: #e0c27e;
+    cursor: pointer;
+    font: inherit;
+    padding: 4px;
+}
+
+.property-portal .property-type-options {
+    display: grid;
+    gap: 2px 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-height: 270px;
+    overflow: auto;
+    padding: 7px 2px;
+    scrollbar-color: #76694f #171716;
+    scrollbar-width: thin;
+}
+
+.property-portal .property-type-options label {
+    align-items: center;
+    border-radius: 5px;
+    color: #f4efe5;
+    cursor: pointer;
+    display: flex;
+    font-size: 12px;
+    gap: 8px;
+    letter-spacing: 0;
+    min-height: 34px;
+    padding: 6px 7px;
+    text-transform: none;
+}
+
+.property-portal .property-type-options label > span {
+    line-height: 1.35;
+    min-width: 0;
+}
+
+.property-portal .property-type-options label:hover,
+.property-portal .property-type-options label:focus-within {
+    background: #302b22;
+}
+
+.property-portal .property-type-options input {
+    accent-color: #c6a15b;
+    flex: 0 0 auto;
+    height: 15px;
+    margin: 0;
+    width: 15px;
+}
+
+.property-portal .property-type-menu-footer {
+    border-top: 1px solid #403a33;
+    gap: 12px;
+    padding: 10px 2px 1px;
+}
+
+.property-portal .property-type-menu-footer span {
+    color: #b8afa1;
+    font-size: 11px;
+}
+
+.property-portal .property-type-menu-footer button {
+    background: #c6a15b;
+    border: 0;
+    border-radius: 5px;
+    color: #17130d;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 9px 12px;
+}
+
+.property-portal .property-type-menu-footer button:hover,
+.property-portal .property-type-menu-footer button:focus-visible {
+    background: #e0c27e;
+}
+
+.property-portal .property-type-picker :focus-visible {
+    outline: 2px solid #e0c27e;
+    outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+    .property-portal .property-type-filter {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 7px;
+    }
+
+    .property-portal .property-type-picker {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .property-portal .property-type-menu {
+        left: 0;
+        right: auto;
+        width: 100%;
+    }
+
+    .property-portal .property-district-picker .property-type-menu {
+        width: 100%;
+    }
+}

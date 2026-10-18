@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Home Loan Calculator | SS Property{% endblock %}
+{% block content %}
+<section class="resources-page loan-calculator-page">
+    <header class="resources-heading">
+        <a class="resource-back-link" href="{{ url_for('resources') }}">← All resources</a>
+        <p class="eyebrow">SS Property / Planning tool</p>
+        <h1>Plan your home loan <em>with clarity.</em></h1>
+        <p>Adjust the purchase price, down payment, interest rate and loan term to estimate monthly repayments.</p>
+    </header>
+
+    <section class="loan-calculator-layout" aria-label="Home loan repayment calculator">
+        <form class="loan-calc-form" data-loan-form>
+            <fieldset>
+                <legend>Loan details</legend>
+                <label>
+                    <span>Property purchase price</span>
+                    <div class="loan-calc-input-wrap"><span aria-hidden="true">S$</span><input name="price" type="number" min="1" step="1000" value="1500000" required inputmode="decimal"></div>
+                </label>
+                <div class="loan-calc-field-row">
+                    <label>
+                        <span>Down payment</span>
+                        <div class="loan-calc-input-wrap"><input name="down_payment" type="number" min="0" max="99" step="1" value="25" required inputmode="decimal"><span>%</span></div>
+                    </label>
+                    <label>
+                        <span>Annual interest rate</span>
+                        <div class="loan-calc-input-wrap"><input name="interest" type="number" min="0" max="30" step="0.1" value="3" required inputmode="decimal"><span>%</span></div>
+                    </label>
+                </div>
+                <label>
+                    <span>Loan term</span>
+                    <div class="loan-calc-input-wrap"><input name="years" type="number" min="1" max="35" step="1" value="25" required inputmode="numeric"><span>years</span></div>
+                </label>
+            </fieldset>
+            <p class="loan-calc-hint">This estimate assumes fixed monthly repayments and a constant interest rate for the full loan term.</p>
+        </form>
+
+        <aside class="loan-calc-results" aria-live="polite" aria-atomic="true">
+            <p class="eyebrow">Estimated repayment</p>
+            <p class="loan-calc-monthly" data-loan-out="monthly">S$0</p>
+            <p class="loan-calc-period">per month</p>
+            <dl>
+                <div><dt>Estimated loan amount</dt><dd data-loan-out="principal">—</dd></div>
+                <div><dt>Total interest over term</dt><dd data-loan-out="interest">—</dd></div>
+                <div><dt>Total paid over term</dt><dd data-loan-out="total">—</dd></div>
+            </dl>
+            <p class="loan-calc-disclaimer">Illustrative estimate only. Actual repayments depend on lender terms, rate changes, loan eligibility and fees. This is not a loan offer or financial advice.</p>
+            <a class="button button-dark" href="{{ url_for('contact') }}">Discuss your next move <span aria-hidden="true">↗</span></a>
+        </aside>
+    </section>
+</section>
+<script>
+(() => {
+    const form = document.querySelector('[data-loan-form]');
+    if (!form) return;
+
+    const output = name => document.querySelector(`[data-loan-out="${name}"]`);
+    const formatCurrency = value => 'S$' + Math.round(value).toLocaleString('en-SG');
+
+    const calculate = () => {
+        const data = new FormData(form);
+        const price = Math.max(0, Number(data.get('price')) || 0);
+        const downPaymentPercent = Math.min(99, Math.max(0, Number(data.get('down_payment')) || 0));
+        const annualRate = Math.max(0, Number(data.get('interest')) || 0) / 100;
+        const years = Math.max(1, Number(data.get('years')) || 1);
+        const principal = price * (1 - downPaymentPercent / 100);
+        const months = years * 12;
+        const monthlyRate = annualRate / 12;
+        const monthlyPayment = monthlyRate === 0
+            ? principal / months
+            : principal * monthlyRate / (1 - Math.pow(1 + monthlyRate, -months));
+        const totalPaid = monthlyPayment * months;
+
+        output('monthly').textContent = formatCurrency(monthlyPayment);
+        output('principal').textContent = formatCurrency(principal);
+        output('interest').textContent = formatCurrency(Math.max(0, totalPaid - principal));
+        output('total').textContent = formatCurrency(totalPaid);
+    };
+
+    form.addEventListener('input', calculate);
+    form.addEventListener('change', calculate);
+    calculate();
+})();
+</script>
+{% endblock %}

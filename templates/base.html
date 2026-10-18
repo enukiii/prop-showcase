@@ -1,4 +1,5 @@
 <!doctype html>
+{% from "_nav_megamenu.html" import megamenu %}
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -11,6 +12,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='portal-overrides.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='team-images.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='about-final.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='about-story.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='resources-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='postal-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='shared-listings.css') }}">
@@ -51,10 +53,21 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='logo-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='header-final.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='mobile-final.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='nav-dropdown-theme.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='nav-dropdown-theme.css', v='5') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='school-search.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='contact-faq.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='buy-with-us.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home-valuation.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-value-calculator.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='legal-pages.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='footer-property-links.css', v='6') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home-gcb.css', v='2') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home-image-carousel.css', v='5') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='property-type-multiselect.css', v='2') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='services-revamp.css', v='1') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='service-subpages.css', v='1') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='resources-revamp.css', v='1') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='loan-calculator.css', v='1') }}">
 </head>
 <body class="property-portal">
     <header class="site-header">
@@ -66,7 +79,134 @@
         <button class="mobile-menu-toggle" type="button" aria-controls="main-navigation" aria-expanded="false" aria-label="Open navigation"><span></span><span></span><span></span></button>
         <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
             {% for label, endpoint in nav_items %}
-            {% if endpoint == 'listings' %}<div class="nav-dropdown"><a class="{% if active_page in ['listings', 'rent', 'school-search', 'postal-districts'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('for_rent') }}">For Rent</a><a href="{{ url_for('search_by_school') }}">Search by School</a><a href="{{ url_for('postal_districts') }}">Search by District</a></div></div>{% elif endpoint == 'launches' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('launches', category='landed') }}">Brand-New Landed</a><a href="{{ url_for('launches', category='condo') }}">Brand-New Condominium</a></div></div>{% elif endpoint == 'services' %}<div class="nav-dropdown"><a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a><div class="nav-dropdown-menu"><a href="{{ url_for('services') }}#sell-with-us">Sell With Us</a><a href="{{ url_for('buy_with_us') }}">Buy With Us</a><a href="{{ url_for('services') }}#home-valuation">Home Valuation</a></div></div>{% else %}
+            {% if endpoint == 'listings' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page in ['listings', 'rent', 'school-search', 'mrt-search', 'postal-districts'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+                <div class="nav-dropdown-menu">
+                    {{ megamenu(
+                        eyebrow="Find a property",
+                        view_all_label="View All Listings",
+                        view_all_url=url_for('listings'),
+                        col1_heading="By property type",
+                        col1_items=[
+                            {"icon": "home", "title": "Brand-New Landed", "text": "Newly built homes, ready for a new chapter.", "url": url_for('launches', category='landed')},
+                            {"icon": "refresh", "title": "Resale Landed", "text": "Established homes in familiar neighbourhoods.", "url": url_for('listings', category='landed')},
+                            {"icon": "building", "title": "Condos & Apartments", "text": "Find your next city or neighbourhood home.", "url": url_for('listings', category='condo')},
+                            {"icon": "gem", "title": "Good Class Bungalows", "text": "Explore Singapore's most exclusive landed homes.", "url": url_for('listings', type='Good Class Bungalow')},
+                        ],
+                        col2_heading="More ways to explore",
+                        col2_items=[
+                            {"icon": "key", "title": "Properties for Rent", "text": "Find a home for your next chapter.", "url": url_for('for_rent')},
+                            {"icon": "pin", "title": "Search by District", "text": "Explore the neighbourhoods you love.", "url": url_for('postal_districts')},
+                            {"icon": "cap", "title": "Search by School", "text": "Find properties near your preferred schools.", "url": url_for('search_by_school')},
+                            {"icon": "grid", "title": "Search by MRT", "text": "Find homes near your preferred MRT line.", "url": url_for('search_by_mrt')},
+                        ],
+                        promo={"eyebrow": "Landed living", "heading": "Space to make your own.", "text": "Explore Singapore's landed neighbourhoods, from terraces to detached homes.", "cta": "Explore landed homes", "url": url_for('listings', category='landed'), "image": featured_listings[0].image},
+                        footer_note="Thinking of selling your property?",
+                        footer_link_label="Discover our seller services",
+                        footer_link_url=url_for('sell_with_us')
+                    ) }}
+                </div>
+            </div>
+            {% elif endpoint == 'launches' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+                <div class="nav-dropdown-menu">
+                    {{ megamenu(
+                        eyebrow="Discover what's next",
+                        view_all_label="All New Launches",
+                        view_all_url=url_for('launches'),
+                        col1_heading="New homes",
+                        col1_items=[
+                            {"icon": "home", "title": "Brand-New Landed", "text": "Newly built terraces, semi-Ds and bungalows.", "url": url_for('launches', category='landed')},
+                            {"icon": "building", "title": "Condos & Apartments", "text": "Explore new residential developments.", "url": url_for('launches', category='condo')},
+                        ],
+                        col2_heading="More project types",
+                        col2_items=[
+                            {"icon": "gem", "title": "Executive Condominiums", "text": "Hybrid living with private-condo features.", "url": url_for('launches', type='Executive Condominium')},
+                            {"icon": "grid", "title": "Mixed Developments", "text": "Residences alongside retail and lifestyle.", "url": url_for('launches', type='Mixed Development')},
+                        ],
+                        promo={"eyebrow": "Plan your next move", "heading": "Buying something brand new?", "text": "Get guidance on finding and choosing your next home.", "cta": "Speak to our team", "url": url_for('contact'), "image": featured_listings[2].image},
+                        footer_note="Get to know our agent team.",
+                        footer_link_label="Meet our team",
+                        footer_link_url=url_for('our_people')
+                    ) }}
+                </div>
+            </div>
+            {% elif endpoint == 'about' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page in ['about', 'our-people'] %}active{% endif %}" href="{{ url_for('about') }}">{{ label }}</a>
+                <div class="nav-dropdown-menu nav-dropdown-menu-about">
+                    {{ megamenu(
+                        eyebrow="About SS Property",
+                        view_all_label="Our Company",
+                        view_all_url=url_for('about'),
+                        col1_heading="Get to know us",
+                        col1_items=[
+                            {"title": "Our Company", "text": "Get to know SS Property and our approach.", "url": url_for('about')},
+                            {"title": "Our Team", "text": "Meet the people behind your next move.", "url": url_for('our_people')},
+                        ],
+                        col2_heading="",
+                        col2_items=[],
+                        promo={},
+                        footer_note="Looking for the right advisor?",
+                        footer_link_label="Meet our team",
+                        footer_link_url=url_for('our_people')
+                    ) }}
+                </div>
+            </div>
+            {% elif endpoint == 'services' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+                <div class="nav-dropdown-menu">
+                    {{ megamenu(
+                        eyebrow="Our services",
+                        view_all_label="All Services",
+                        view_all_url=url_for('services'),
+                        col1_heading="For buyers & sellers",
+                        col1_items=[
+                            {"icon": "key", "title": "Buy With Us", "text": "A calm, informed search shaped around you.", "url": url_for('buy_with_us')},
+                            {"icon": "handshake", "title": "Sell With Us", "text": "Positioning and negotiation, handled with care.", "url": url_for('sell_with_us')},
+                        ],
+                        col2_heading="Tools & guidance",
+                        col2_items=[
+                            {"icon": "calculator", "title": "Home Valuation", "text": "A considered view of your property's worth.", "url": url_for('home_valuation')},
+                            {"icon": "chart", "title": "Property Value Calculator", "text": "Estimate what your property is worth.", "url": url_for('property_value_calculator')},
+                        ],
+                        promo={"eyebrow": "Work with us", "heading": "Advice you can rely on.", "text": "From first search to final signature, our advisors guide every step.", "cta": "Meet our team", "url": url_for('our_people')},
+                        footer_note="Have a property to sell?",
+                        footer_link_label="Request a free valuation",
+                        footer_link_url=url_for('home_valuation')
+                    ) }}
+                </div>
+            </div>
+            {% elif endpoint == 'resources' %}
+            <div class="nav-dropdown">
+                <a class="{% if active_page in ['resources', 'market-trends', 'news-articles', 'loan-calculator'] %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
+                <div class="nav-dropdown-menu">
+                    {{ megamenu(
+                        eyebrow="Guides & insight",
+                        view_all_label="All Resources",
+                        view_all_url=url_for('resources'),
+                        col1_heading="Market insight",
+                        col1_items=[
+                            {"icon": "chart", "title": "Market Trends", "text": "Signals buyers and sellers watch closely.", "url": url_for('market_trends')},
+                            {"icon": "news", "title": "News Articles", "text": "Property news and explainers, curated.", "url": url_for('news_articles')},
+                        ],
+                        col2_heading="Planning tools",
+                        col2_items=[
+                            {"icon": "calculator", "title": "Loan Calculator", "text": "Estimate monthly repayments for a home loan.", "url": url_for('loan_calculator')},
+                            {"icon": "layers", "title": "Types of Properties", "text": "Understand Singapore's property categories.", "url": url_for('property_types_resource')},
+                            {"icon": "pin", "title": "Postal Districts", "text": "Make sense of Singapore's district map.", "url": url_for('postal_districts')},
+                        ],
+                        promo={"eyebrow": "Plan ahead", "heading": "Know before you buy.", "text": "Understand costs, districts and property types before you commit.", "cta": "Browse resources", "url": url_for('resources')},
+                        footer_note="Curious what your home is worth?",
+                        footer_link_label="Get a home valuation",
+                        footer_link_url=url_for('home_valuation')
+                    ) }}
+                </div>
+            </div>
+            {% else %}
             <a class="{% if active_page == endpoint %}active{% endif %}" href="{{ url_for(endpoint) }}">{{ label }}</a>
             {% endif %}
             {% endfor %}
@@ -82,10 +222,76 @@
     <main>{% block content %}{% endblock %}</main>
     {% if active_page not in ['home', 'postal-districts'] %}{% include '_just_listed.html' %}{% endif %}
     <footer class="site-footer">
-        <div class="brand footer-brand"><img class="brand-logo" src="{{ url_for('static', filename='img/ssPropertyLOGO.png') }}" alt="SS Property"></div>
-        <p>Property for better living.</p>
-        <small>© 2026 SS Property</small>
+        <nav class="footer-property-links" aria-label="Property listings">
+            <section class="footer-link-group">
+                <h2>Property for sale in Singapore</h2>
+                <a href="{{ url_for('listings') }}">All Properties for Sale</a>
+                <a href="{{ url_for('launches', category='landed') }}">Landed Properties (New Launch)</a>
+                <a href="{{ url_for('listings', category='landed', status='resale') }}">Landed Properties (Resale)</a>
+                <a href="{{ url_for('listings', category='condo') }}">Condominiums and Apartments</a>
+                <a href="{{ url_for('listings', type='Luxury Apartment') }}">Luxury Apartments</a>
+                <a href="{{ url_for('listings', type='Light Industrial') }}">Commercial</a>
+                <a href="{{ url_for('listings', type='Shophouse') }}">Shophouses</a>
+                <a href="{{ url_for('for_rent') }}">Properties for Rent</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>Buy brand new landed homes in Singapore</h2>
+                <a href="{{ url_for('launches', category='landed') }}">All Brand New Landed Properties</a>
+                <a href="{{ url_for('launches', category='landed', type='Inter-Terrace House') }}">Brand New Inter Terraces</a>
+                <a href="{{ url_for('launches', category='landed', type='Corner Terrace') }}">Brand New Corner Terraces</a>
+                <a href="{{ url_for('launches', category='landed', type='Semi-Detached House') }}">Brand New Semi-Detached Houses</a>
+                <a href="{{ url_for('launches', category='landed', type='Detached House') }}">Brand New Detached Houses</a>
+                <a href="{{ url_for('launches', category='landed', type='Detached Bungalow') }}">Brand New Detached Bungalows</a>
+                <a href="{{ url_for('launches', category='landed', type='Good Class Bungalow') }}">Brand New Good Class Bungalows</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>Buy resale landed homes in Singapore</h2>
+                <a href="{{ url_for('listings', category='landed', status='resale') }}">All Resale Landed Properties</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Inter-Terrace House') }}">Resale Inter Terraces</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Corner Terrace') }}">Resale Corner Terraces</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Semi-Detached House') }}">Resale Semi-Detached Houses</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Detached Bungalow') }}">Resale Detached Bungalows</a>
+                <a href="{{ url_for('listings', category='landed', status='resale', type='Good Class Bungalow') }}">Resale Good Class Bungalows</a>
+                <a href="{{ url_for('listings', type='Shophouse') }}">Resale Shophouses</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>New Launches Condominiums</h2>
+                <a href="{{ url_for('launches') }}">All New Launch Projects</a>
+                <a href="{{ url_for('launches', category='condo') }}">New Launch Condos and Apartments</a>
+                <a href="{{ url_for('launches', type='Executive Condominium') }}">Executive Condominiums</a>
+                <a href="{{ url_for('launches', type='Mixed Development') }}">Mixed Developments</a>
+            </section>
+        </nav>
+        <nav class="footer-quick-links" aria-label="More links">
+            <section class="footer-link-group">
+                <h2>Resources</h2>
+                <a href="{{ url_for('resources') }}">All Resources</a>
+                <a href="{{ url_for('market_trends') }}">Market Trends</a>
+                <a href="{{ url_for('news_articles') }}">News Articles</a>
+                <a href="{{ url_for('loan_calculator') }}">Loan Calculator</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>Social</h2>
+                <a href="https://www.facebook.com/profile.php?id=61586284606321" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="https://www.instagram.com/ssmilliondollarproperty" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>Company</h2>
+                <a href="{{ url_for('about') }}">About Us</a>
+                <a href="{{ url_for('our_people') }}">Our Team</a>
+            </section>
+        </nav>
+        <div class="footer-bottom">
+            <div class="brand footer-brand"><img class="brand-logo" src="{{ url_for('static', filename='img/ssPropertyLOGO.png') }}" alt="SS Property"></div>
+            <small class="footer-legal-notice">A Team from SRI Pte Ltd (CEA Licence No. L3002382K) Copyright © 2026. All Rights Reserved.</small>
+            <nav class="footer-legal" aria-label="Legal information">
+                <a href="{{ url_for('disclaimer') }}">Disclaimer</a>
+                <a href="{{ url_for('privacy_policy') }}">Privacy Policy</a>
+                <a href="{{ url_for('data_protection') }}">Data Protection</a>
+            </nav>
+        </div>
     </footer>
+    <script src="{{ url_for('static', filename='language.js', v='13') }}" defer></script>
     <script>
         const searchToggle = document.querySelector('.mobile-search-toggle');
         const siteSearch = document.querySelector('.site-search');
@@ -95,116 +301,6 @@
             siteSearch?.classList.toggle('is-open', !isOpen);
             if (!isOpen) document.querySelector('#site-search-input')?.focus();
         });
-
-            const scrollBefore = window.scrollY;
-            const mainBefore = document.querySelector('main')?.getBoundingClientRect().top;
-        const languageToggle = document.querySelector('.language-toggle');
-        const languageLabels = {
-            en: { 'all-listings': 'All Listings', 'new-launches': 'New Launches', services: 'Services', resources: 'Resources', 'about-us': 'About Us', contact: 'Contact', action: 'Book a conversation' },
-            zh: { 'all-listings': '所有房源', 'new-launches': '新楼盘', services: '服务', resources: '资讯', 'about-us': '关于我们', contact: '联系我们', action: '预约咨询' }
-        };
-        const pageTranslations = {
-            'Newly Launched Properties for sale': '最新上市房源',
-            'All properties for sale.': '精选房源',
-            'Explore our selection of homes across Singapore, chosen for their location, quality and potential.': '探索我们精选的新加坡房源，兼顾地段、品质与发展潜力。',
-            'Browse our latest new launch homes and developments.': '浏览我们最新推出的住宅与楼盘。',
-            'View all new launches': '查看所有新楼盘',
-            'View all listings': '查看所有房源',
-            'Find my property': '寻找我的理想房产',
-            'Search properties': '搜索房产',
-            'District': '区域',
-            'Property type': '房产类型',
-            'All districts': '所有区域',
-            'All property types': '所有房产类型',
-            'Property for better living.': '为更美好的生活寻找理想房产。'
-        };
-        const originalPageText = new Map();
-        const languageElements = document.querySelectorAll('h1, h2, .button, .listing-page-head p:last-child, .listing-toolbar strong, .district-filter label, .site-search label, .site-footer p');
-        languageElements.forEach(element => {
-            originalPageText.set(element, element.matches('.button') ? element.firstChild.textContent.trim() : element.textContent.trim());
-        });
-        const reserveLanguageSpace = () => {
-            languageElements.forEach(element => {
-                const original = originalPageText.get(element);
-                const translation = pageTranslations[original];
-                if (!translation || element.dataset.languageSpaceReserved) return;
-                const originalHeight = element.getBoundingClientRect().height;
-                const originalWidth = element.getBoundingClientRect().width;
-                const textNode = element.matches('.button') ? element.firstChild : element;
-                const originalText = textNode.textContent;
-                textNode.textContent = translation;
-                const translatedHeight = element.getBoundingClientRect().height;
-                const translatedWidth = element.getBoundingClientRect().width;
-                textNode.textContent = originalText;
-                element.style.minHeight = `${Math.ceil(Math.max(originalHeight, translatedHeight))}px`;
-                if (element.matches('.button')) {
-                    const stableWidth = `${Math.ceil(Math.max(originalWidth, translatedWidth))}px`;
-                    element.style.minWidth = stableWidth;
-                    element.style.width = stableWidth;
-                }
-                element.dataset.languageSpaceReserved = 'true';
-            });
-            document.querySelectorAll('.main-nav > a:not(.mobile-menu-action)').forEach(link => {
-                if (link.dataset.languageSpaceReserved) return;
-                const endpoint = link.getAttribute('href')?.split('/').pop();
-                const english = languageLabels.en[endpoint];
-                const chinese = languageLabels.zh[endpoint];
-                if (!english || !chinese) return;
-                const original = link.textContent;
-                const originalWidth = link.getBoundingClientRect().width;
-                link.textContent = chinese;
-                const translatedWidth = link.getBoundingClientRect().width;
-                link.textContent = original;
-                link.style.minWidth = `${Math.ceil(Math.max(originalWidth, translatedWidth))}px`;
-                link.dataset.languageSpaceReserved = 'true';
-            });
-        };
-        reserveLanguageSpace();
-        const setLanguage = nextLanguage => {
-            languageToggle.dataset.language = nextLanguage;
-            document.documentElement.lang = nextLanguage === 'zh' ? 'zh-CN' : 'en';
-            const labels = languageLabels[nextLanguage];
-            document.querySelectorAll('.main-nav > a:not(.mobile-menu-action)').forEach(link => {
-                const endpoint = link.getAttribute('href')?.split('/').pop();
-                if (endpoint && labels[endpoint]) link.textContent = labels[endpoint];
-            });
-            document.querySelectorAll('.header-action, .mobile-menu-action').forEach(link => {
-                link.firstChild.textContent = labels.action;
-            });
-            document.querySelectorAll('h1, h2, .button, .listing-page-head p:last-child, .listing-toolbar strong, .district-filter label, .site-search label, .site-footer p').forEach(element => {
-                const original = originalPageText.get(element);
-                if (!original) return;
-                const translation = pageTranslations[original];
-                if (nextLanguage === 'zh' && translation) {
-                    if (element.matches('.button')) element.firstChild.textContent = translation;
-                    else element.textContent = translation;
-                } else if (nextLanguage === 'en') {
-                    if (element.matches('.button')) element.firstChild.textContent = original;
-                    else element.textContent = original;
-                }
-            });
-            document.querySelectorAll('.listing-toolbar strong').forEach(element => {
-                const match = originalPageText.get(element)?.match(/^(\d+) properties found$/);
-                if (match) element.textContent = nextLanguage === 'zh' ? `${match[1]} 套房源` : `${match[1]} properties found`;
-            });
-            document.querySelectorAll('select option').forEach(option => {
-                const original = option.dataset.originalText || option.textContent.trim();
-                option.dataset.originalText = original;
-                if (nextLanguage === 'zh') option.textContent = pageTranslations[original] || original;
-                else option.textContent = original;
-            });
-            const searchInput = document.querySelector('#site-search-input');
-            if (searchInput) searchInput.placeholder = nextLanguage === 'zh' ? '按名称、区域或房产类型搜索' : 'Search by name, district or property type';
-            languageToggle.classList.toggle('is-zh', nextLanguage === 'zh');
-            localStorage.setItem('ss-property-language', nextLanguage);
-            requestAnimationFrame(() => {
-                const mainAfter = document.querySelector('main')?.getBoundingClientRect().top;
-                const shift = mainAfter - mainBefore;
-                window.scrollTo(0, Math.max(0, scrollBefore + shift));
-            });
-        };
-        languageToggle?.addEventListener('click', () => setLanguage(languageToggle.dataset.language === 'en' ? 'zh' : 'en'));
-        if (localStorage.getItem('ss-property-language') === 'zh') setLanguage('zh');
 
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const mainNavigation = document.querySelector('.main-nav');

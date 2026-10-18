@@ -3,9 +3,10 @@
 {% block content %}
 <section class="property-types-page">
     <div class="property-types-heading">
-        <p class="eyebrow">SS Property / Resources</p>
-        <h1>Types of properties <em>in Singapore.</em></h1>
-        <p>Explore the main categories of homes available in Singapore and the property types within each one.</p>
+        <a class="resource-back-link" href="{{ url_for('resources') }}">← All resources</a>
+        <p class="eyebrow">SS Property / Property basics</p>
+        <h1>Understand the types<br>of property <em>in Singapore.</em></h1>
+        <p>A straightforward guide to common residential categories, how they differ and the terms you may encounter while exploring the market.</p>
     </div>
     <section class="property-types-grid">
         {% for group in property_groups %}
