@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{% if active_page == 'our-people' %}Our People | SS Property{% else %}About SS Property{% endif %}{% endblock %}
 {% block content %}
-<section class="about-page">
+<section class="about-page{% if active_page == 'our-people' %} our-people-page{% endif %}">
     {% if active_page == 'about' %}
     <section class="about-copy about-intro-copy">
         <p class="eyebrow">About us</p>
@@ -34,11 +34,4 @@
     </div>
     {% endif %}
 </section>
-<script>
-    document.querySelectorAll('.team-bio-toggle').forEach(button => {
-        button.addEventListener('click', () => {
-            button.closest('.team-member').classList.toggle('is-open', !button.classList.contains('team-bio-back'));
-        });
-    });
-</script>
 {% endblock %}

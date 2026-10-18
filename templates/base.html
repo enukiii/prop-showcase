@@ -60,7 +60,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='home-valuation.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='property-value-calculator.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='legal-pages.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='footer-property-links.css', v='3') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='footer-property-links.css', v='6') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='home-gcb.css', v='2') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='home-image-carousel.css', v='5') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='property-type-multiselect.css', v='2') }}">
@@ -253,6 +253,32 @@
                 <a href="{{ url_for('listings', category='landed', status='resale', type='Detached Bungalow') }}">Resale Detached Bungalows</a>
                 <a href="{{ url_for('listings', category='landed', status='resale', type='Good Class Bungalow') }}">Resale Good Class Bungalows</a>
                 <a href="{{ url_for('listings', type='Shophouse') }}">Resale Shophouses</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>New Launches Condominiums</h2>
+                <a href="{{ url_for('launches') }}">All New Launch Projects</a>
+                <a href="{{ url_for('launches', category='condo') }}">New Launch Condos and Apartments</a>
+                <a href="{{ url_for('launches', type='Executive Condominium') }}">Executive Condominiums</a>
+                <a href="{{ url_for('launches', type='Mixed Development') }}">Mixed Developments</a>
+            </section>
+        </nav>
+        <nav class="footer-quick-links" aria-label="More links">
+            <section class="footer-link-group">
+                <h2>Resources</h2>
+                <a href="{{ url_for('resources') }}">All Resources</a>
+                <a href="{{ url_for('market_trends') }}">Market Trends</a>
+                <a href="{{ url_for('news_articles') }}">News Articles</a>
+                <a href="{{ url_for('loan_calculator') }}">Loan Calculator</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>Social</h2>
+                <a href="https://www.facebook.com/profile.php?id=61586284606321" target="_blank" rel="noopener noreferrer">Facebook</a>
+                <a href="https://www.instagram.com/ssmilliondollarproperty" target="_blank" rel="noopener noreferrer">Instagram</a>
+            </section>
+            <section class="footer-link-group">
+                <h2>Company</h2>
+                <a href="{{ url_for('about') }}">About Us</a>
+                <a href="{{ url_for('our_people') }}">Our Team</a>
             </section>
         </nav>
         <div class="footer-bottom">
