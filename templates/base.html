@@ -291,6 +291,7 @@
             </nav>
         </div>
     </footer>
+    <script src="{{ url_for('static', filename='language.js', v='13') }}" defer></script>
     <script>
         const searchToggle = document.querySelector('.mobile-search-toggle');
         const siteSearch = document.querySelector('.site-search');
@@ -300,115 +301,6 @@
             siteSearch?.classList.toggle('is-open', !isOpen);
             if (!isOpen) document.querySelector('#site-search-input')?.focus();
         });
-
-            const scrollBefore = window.scrollY;
-            const mainBefore = document.querySelector('main')?.getBoundingClientRect().top;
-        const languageToggle = document.querySelector('.language-toggle');
-        const languageLabels = {
-            en: { 'all-listings': 'All Listings', 'new-launches': 'New Launches', services: 'Services', resources: 'Resources', 'about-us': 'About Us', contact: 'Contact', action: 'Book a conversation' },
-            zh: { 'all-listings': '所有房源', 'new-launches': '新楼盘', services: '服务', resources: '资讯', 'about-us': '关于我们', contact: '联系我们', action: '预约咨询' }
-        };
-        const pageTranslations = {
-            'Newly Launched Properties For Sale': '最新上市房源',
-            'All properties For Sale.': '精选房源',
-            'Explore our selection of homes across Singapore, chosen for their location, quality and potential.': '探索我们精选的新加坡房源，兼顾地段、品质与发展潜力。',
-            'Browse our latest new launch homes and developments.': '浏览我们最新推出的住宅与楼盘。',
-            'View all new launches': '查看所有新楼盘',
-            'View all listings': '查看所有房源',
-            'Find my property': '寻找我的理想房产',
-            'Search properties': '搜索房产',
-            'District': '区域',
-            'Property type': '房产类型',
-            'All districts': '所有区域',
-            'All property types': '所有房产类型'
-        };
-        const originalPageText = new Map();
-        const languageElements = document.querySelectorAll('h1, h2, .button, .listing-page-head p:last-child, .listing-toolbar strong, .district-filter label, .site-search label, .site-footer p');
-        languageElements.forEach(element => {
-            originalPageText.set(element, element.matches('.button') ? element.firstChild.textContent.trim() : element.textContent.trim());
-        });
-        const reserveLanguageSpace = () => {
-            languageElements.forEach(element => {
-                const original = originalPageText.get(element);
-                const translation = pageTranslations[original];
-                if (!translation || element.dataset.languageSpaceReserved) return;
-                const originalHeight = element.getBoundingClientRect().height;
-                const originalWidth = element.getBoundingClientRect().width;
-                const textNode = element.matches('.button') ? element.firstChild : element;
-                const originalText = textNode.textContent;
-                textNode.textContent = translation;
-                const translatedHeight = element.getBoundingClientRect().height;
-                const translatedWidth = element.getBoundingClientRect().width;
-                textNode.textContent = originalText;
-                element.style.minHeight = `${Math.ceil(Math.max(originalHeight, translatedHeight))}px`;
-                if (element.matches('.button')) {
-                    const stableWidth = `${Math.ceil(Math.max(originalWidth, translatedWidth))}px`;
-                    element.style.minWidth = stableWidth;
-                    element.style.width = stableWidth;
-                }
-                element.dataset.languageSpaceReserved = 'true';
-            });
-            document.querySelectorAll('.main-nav > a:not(.mobile-menu-action)').forEach(link => {
-                if (link.dataset.languageSpaceReserved) return;
-                const endpoint = link.getAttribute('href')?.split('/').pop();
-                const english = languageLabels.en[endpoint];
-                const chinese = languageLabels.zh[endpoint];
-                if (!english || !chinese) return;
-                const original = link.textContent;
-                const originalWidth = link.getBoundingClientRect().width;
-                link.textContent = chinese;
-                const translatedWidth = link.getBoundingClientRect().width;
-                link.textContent = original;
-                link.style.minWidth = `${Math.ceil(Math.max(originalWidth, translatedWidth))}px`;
-                link.dataset.languageSpaceReserved = 'true';
-            });
-        };
-        reserveLanguageSpace();
-        const setLanguage = nextLanguage => {
-            languageToggle.dataset.language = nextLanguage;
-            document.documentElement.lang = nextLanguage === 'zh' ? 'zh-CN' : 'en';
-            const labels = languageLabels[nextLanguage];
-            document.querySelectorAll('.main-nav > a:not(.mobile-menu-action)').forEach(link => {
-                const endpoint = link.getAttribute('href')?.split('/').pop();
-                if (endpoint && labels[endpoint]) link.textContent = labels[endpoint];
-            });
-            document.querySelectorAll('.header-action, .mobile-menu-action').forEach(link => {
-                link.firstChild.textContent = labels.action;
-            });
-            document.querySelectorAll('h1, h2, .button, .listing-page-head p:last-child, .listing-toolbar strong, .district-filter label, .site-search label, .site-footer p').forEach(element => {
-                const original = originalPageText.get(element);
-                if (!original) return;
-                const translation = pageTranslations[original];
-                if (nextLanguage === 'zh' && translation) {
-                    if (element.matches('.button')) element.firstChild.textContent = translation;
-                    else element.textContent = translation;
-                } else if (nextLanguage === 'en') {
-                    if (element.matches('.button')) element.firstChild.textContent = original;
-                    else element.textContent = original;
-                }
-            });
-            document.querySelectorAll('.listing-toolbar strong').forEach(element => {
-                const match = originalPageText.get(element)?.match(/^(\d+) properties found$/);
-                if (match) element.textContent = nextLanguage === 'zh' ? `${match[1]} 套房源` : `${match[1]} properties found`;
-            });
-            document.querySelectorAll('select option').forEach(option => {
-                const original = option.dataset.originalText || option.textContent.trim();
-                option.dataset.originalText = original;
-                if (nextLanguage === 'zh') option.textContent = pageTranslations[original] || original;
-                else option.textContent = original;
-            });
-            const searchInput = document.querySelector('#site-search-input');
-            if (searchInput) searchInput.placeholder = nextLanguage === 'zh' ? '按名称、区域或房产类型搜索' : 'Search by name, district or property type';
-            languageToggle.classList.toggle('is-zh', nextLanguage === 'zh');
-            localStorage.setItem('ss-property-language', nextLanguage);
-            requestAnimationFrame(() => {
-                const mainAfter = document.querySelector('main')?.getBoundingClientRect().top;
-                const shift = mainAfter - mainBefore;
-                window.scrollTo(0, Math.max(0, scrollBefore + shift));
-            });
-        };
-        languageToggle?.addEventListener('click', () => setLanguage(languageToggle.dataset.language === 'en' ? 'zh' : 'en'));
-        if (localStorage.getItem('ss-property-language') === 'zh') setLanguage('zh');
 
         const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
         const mainNavigation = document.querySelector('.main-nav');

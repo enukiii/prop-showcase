@@ -191,8 +191,15 @@
         event.preventDefault();
         if (!validate(true)) return;
         const data = new FormData(form);
-        const subject = encodeURIComponent('Property enquiry: {{ listing.name }}');
-        const body = encodeURIComponent([
+        const chinese = document.documentElement.lang === 'zh-CN';
+        const subject = encodeURIComponent(`${chinese ? '房产咨询' : 'Property enquiry'}: {{ listing.name }}`);
+        const body = encodeURIComponent(chinese ? [
+            '房产：{{ listing.name }}',
+            `姓名：${data.get('name')}`,
+            `电子邮件：${data.get('email')}`,
+            `电话：${data.get('phone')}`,
+            `留言：${data.get('message')}`
+        ].join('\n') : [
             'Property: {{ listing.name }}',
             `Name: ${data.get('name')}`,
             `Email: ${data.get('email')}`,
@@ -200,7 +207,9 @@
             `Message: ${data.get('message')}`
         ].join('\n'));
         window.location.href = `mailto:ssmilliondollarproperty@gmail.com?subject=${subject}&body=${body}`;
-        form.querySelector('[data-enquiry-note]').textContent = 'Your email app should now be open with the enquiry addressed to SS Property.';
+        form.querySelector('[data-enquiry-note]').textContent = chinese
+            ? '您的电子邮件应用现应已打开，并已填写寄给 SS Property 的咨询内容。'
+            : 'Your email app should now be open with the enquiry addressed to SS Property.';
     });
 })();
 </script>
