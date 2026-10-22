@@ -4,12 +4,12 @@
 <div class="home-listings-only">
 	<section class="home-image-carousel" data-home-carousel aria-label="Featured properties" aria-roledescription="carousel">
 		<div class="home-image-carousel-track">
-			{% for listing in launch_listings[:4] %}
-			<article class="home-image-slide{% if loop.first %} is-active{% endif %}" data-home-slide role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ launch_listings[:4]|length }}: {{ listing.name }}" aria-hidden="{{ 'false' if loop.first else 'true' }}">
+			{% for listing in carousel_listings %}
+			<article class="home-image-slide{% if loop.first %} is-active{% endif %}" data-home-slide role="group" aria-roledescription="slide" aria-label="{{ loop.index }} of {{ carousel_listings|length }}: {{ listing.name }}" aria-hidden="{{ 'false' if loop.first else 'true' }}">
 				<div class="home-image-photo">
 					<img src="{{ listing.image }}" alt="{{ listing.name }}" {% if loop.first %}fetchpriority="high"{% else %}loading="eager"{% endif %}>
 					<span class="home-image-location">{{ listing.location }}</span>
-					<a class="home-image-view" href="{{ url_for('property_detail', property_name=listing.name) }}">View property <span aria-hidden="true">↗</span></a>
+					<a class="home-image-view" href="{{ url_for('property_detail', property_name=listing.id) }}">View property <span aria-hidden="true">↗</span></a>
 					<div class="home-image-specs"><span>FEATURES</span><strong>{{ listing.type }}</strong><small>{{ listing.details }}</small></div>
 				</div>
 				<div class="home-image-promo">
@@ -23,27 +23,35 @@
 			</article>
 			{% endfor %}
 		</div>
-		{% if launch_listings|length > 1 %}
+		{% if carousel_listings|length > 1 %}
 		<div class="home-image-carousel-controls" aria-label="Slideshow controls">
 			<button type="button" data-home-prev aria-label="Previous image">←</button>
 			<div class="home-image-carousel-dots" role="group" aria-label="Choose an image">
-				{% for listing in launch_listings[:4] %}<button type="button" data-home-dot="{{ loop.index0 }}" class="{% if loop.first %}is-active{% endif %}" aria-label="Show image {{ loop.index }}" {% if loop.first %}aria-current="true"{% endif %}></button>{% endfor %}
+				{% for listing in carousel_listings %}<button type="button" data-home-dot="{{ loop.index0 }}" class="{% if loop.first %}is-active{% endif %}" aria-label="Show image {{ loop.index }}" {% if loop.first %}aria-current="true"{% endif %}></button>{% endfor %}
 			</div>
 			<button type="button" data-home-next aria-label="Next image">→</button>
 		</div>
 		{% endif %}
 	</section>
+	{% if launch_listings %}
 	<section class="home-listing-section">
 		<div class="home-section-heading"><h2>Brand-New Landed Properties <em>For Sale</em></h2><a class="button button-dark" href="{{ url_for('launches') }}">View all new launches <span>↗</span></a></div>
 		<div class="listing-grid home-card-grid">{% for listing in launch_listings[0:4] %}<article class="listing-card"><div class="listing-image wireframe-image"{% if listing.image %} style="background-image: url('{{ listing.image }}');"{% endif %}>{% if not listing.image %}<span class="wireframe-label">PROPERTY IMAGE</span>{% endif %}<span class="tag">New launched</span></div><div class="listing-meta"><div><p class="listing-location">{{ listing.location }}</p><h3>{{ listing.name }}</h3><div class="property-pills"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span></div><small>{{ listing.details }}</small></div><strong>{{ listing.price }}</strong></div></article>{% endfor %}</div>
 	</section>
+	{% endif %}
 	<section class="home-listing-section">
 		<div class="home-section-heading"><h2>Resale Properties <em>For Sale</em></h2><a class="button button-dark" href="{{ url_for('listings') }}">View all listings <span>↗</span></a></div>
 		<div class="listing-grid home-card-grid">{% for listing in just_listed_listings %}<article class="listing-card"><div class="listing-image wireframe-image"{% if listing.image %} style="background-image: url('{{ listing.image }}');"{% endif %}>{% if not listing.image %}<span class="wireframe-label">PROPERTY IMAGE</span>{% endif %}</div><div class="listing-meta"><div><p class="listing-location">{{ listing.location }}</p><h3>{{ listing.name }}</h3><div class="property-pills"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span></div><small>{{ listing.details }}</small></div><strong>{{ listing.price }}</strong></div></article>{% endfor %}</div>
 	</section>
 	<section class="home-listing-section sentosa-listing-section">
 		<div class="home-section-heading"><h2>Sentosa Cove Properties <em>For Sale</em></h2><a class="button button-dark" href="{{ url_for('contact') }}">Enquire about Sentosa <span>↗</span></a></div>
-		<div class="listing-grid home-card-grid"><article class="listing-card sentosa-listing-card"><div class="listing-image wireframe-image"><span class="wireframe-label">SENTOSA COVE</span></div><div class="listing-meta"><div><p class="listing-location">Sentosa Cove</p><h3>Waterfront homes</h3><div class="property-pills"><span>Luxury residences</span><span>By enquiry</span></div><small>Private waterfront and marina-facing homes selected around your brief.</small></div><strong>Available on request</strong></div></article></div>
+		<div class="listing-grid home-card-grid">
+			{% for listing in sentosa_listings %}
+			<article class="listing-card"><div class="listing-image wireframe-image"{% if listing.image %} style="background-image: url('{{ listing.image }}');"{% endif %}>{% if not listing.image %}<span class="wireframe-label">PROPERTY IMAGE</span>{% endif %}</div><div class="listing-meta"><div><p class="listing-location">{{ listing.location }}</p><h3>{{ listing.name }}</h3><div class="property-pills"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span></div><small>{{ listing.details }}</small></div><strong>{{ listing.price }}</strong></div></article>
+			{% else %}
+			<article class="listing-card sentosa-listing-card"><div class="listing-image wireframe-image"><span class="wireframe-label">SENTOSA COVE</span></div><div class="listing-meta"><div><p class="listing-location">Sentosa Cove</p><h3>Waterfront homes</h3><div class="property-pills"><span>By enquiry</span></div><small>Ask our team about current availability.</small></div><strong>Available on request</strong></div></article>
+			{% endfor %}
+		</div>
 	</section>
 	<section class="home-listing-section gcb-listing-section">
 		<div class="home-section-heading"><h2>Good Class Bungalows <em>For Sale</em></h2>{% if gcb_listings %}<a class="button button-dark" href="{{ url_for('listings', type='Good Class Bungalow') }}">View GCB listings <span>↗</span></a>{% endif %}</div>

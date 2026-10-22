@@ -1,9 +1,8 @@
 import json
 from pathlib import Path
+from urllib.parse import quote
 
 from flask import Flask, render_template, request
-import pandas as pd
-from pathlib import Path
 import re
 
 app = Flask(__name__)
@@ -78,77 +77,304 @@ PSF_BENCHMARKS = json.loads((Path(app.root_path) / "static" / "psf_benchmarks.js
 LANDED_TYPES = {"Terraced House", "Inter-Terrace House", "Corner Terrace", "Semi-Detached House", "Detached House", "Detached Bungalow", "Good Class Bungalow", "Cluster House", "Strata Landed"}
 CONDO_TYPES = {"Condominium", "Executive Condominium", "Luxury Apartment", "Penthouse", "Service Residence"}
 
+IMAGE_ROOT = Path(app.root_path) / "static" / "img" / "HousesIMG"
+IMAGE_SUFFIXES = {".jpg", ".jpeg", ".png", ".webp", ".gif"}
+
+
 def _format_area(value):
-    """Format a CSV area value for display without showing NaN."""
-    if pd.isna(value) or str(value).strip() == "":
+    if value is None or str(value).strip() == "":
         return "Available on request"
-    return f"{int(float(value)):,} sq ft"
+    try:
+        return f"{int(float(value)):,} sq ft"
+    except (TypeError, ValueError):
+        return f"{value} sq ft"
 
 
-def _format_price(value):
-    if pd.isna(value) or str(value).strip() == "":
+def _format_price(value, fallback=""):
+    if value is not None:
+        return f"S${int(value):,}"
+    fallback = str(fallback).strip()
+    if not fallback:
         return "Price on request"
-    price = str(value).strip()
-    return price.replace("$", "S$")
+    return fallback.replace("$", "S$", 1) if fallback.startswith("$") else fallback
 
 
-def normalise_listing(row, district):
-    property_type = str(row["Type"]).strip()
-    property_type = {
-        "Semi D": "Semi-Detached House",
-        "Detached": "Detached House",
-    }.get(property_type, property_type)
-    house_number = str(row["House No"]).strip()
-    address = str(row["Address"]).strip()
-    bedrooms = str(row["Bedroom"]).strip()
-    bathrooms = str(row["Bathroom"]).strip()
-    land_size = _format_area(row["Land Size"])
-    built_up = _format_area(row["Build Up"])
-    remarks = "" if pd.isna(row["Remarks"]) else str(row["Remarks"]).strip()
-    condition = "" if pd.isna(row["Condition"]) else str(row["Condition"]).strip()
+def _normalise_image_text(value):
+    value = str(value).casefold()
+    value = re.sub(r"\brd\b", "road", value)
+    value = re.sub(r"\bave\b", "avenue", value)
+    value = re.sub(r"\bst\b", "street", value)
+    return re.sub(r"[^a-z0-9]", "", value)
 
+
+def _image_address_keys(address):
+    key = _normalise_image_text(address)
+    suffixes = ("road", "avenue", "street", "crescent", "drive", "close", "lane", "walk")
+    reduced_key = next((key[:-len(suffix)] for suffix in suffixes if key.endswith(suffix)), key)
+    return {candidate for candidate in (key, reduced_key) if candidate}
+
+
+
+def _natural_sort_key(value):
+    return tuple(
+        (1, int(part)) if part.isdigit() else (0, part.casefold())
+        for part in re.split(r"(\d+)", str(value))
+    )
+
+
+def _build_image_index():
+    image_index = []
+    if not IMAGE_ROOT.is_dir():
+        return image_index
+
+    for folder in IMAGE_ROOT.iterdir():
+        if not folder.is_dir():
+            continue
+        files = sorted(
+            (
+                path for path in folder.rglob("*")
+                if path.is_file() and path.suffix.casefold() in IMAGE_SUFFIXES
+            ),
+            key=lambda path: _natural_sort_key(path.relative_to(folder).as_posix()),
+        )
+        if files:
+            folder_numbers = {
+                number
+                for number in re.findall(r"\d+[a-z]?", folder.name.casefold())
+                if len(number) < 6
+            }
+            image_index.append({
+                "folder": folder,
+                "key": _normalise_image_text(folder.name),
+                "numbers": folder_numbers,
+                "files": files,
+            })
+    return image_index
+
+
+def _image_url(path):
+    relative_path = path.relative_to(Path(app.root_path) / "static").as_posix()
+    return f"{app.static_url_path}/{quote(relative_path, safe='/')}"
+
+
+def _listing_images(record, image_index):
+    image_manifest = record.get("images")
+    if isinstance(image_manifest, dict):
+        listing_id = record.get("id", "unknown")
+        image_root = IMAGE_ROOT.resolve()
+        folder_name = image_manifest.get("folder")
+        if not isinstance(folder_name, str) or not folder_name or Path(folder_name).name != folder_name:
+            raise ValueError(f"Listing {listing_id!r} has an invalid image folder name: {folder_name!r}")
+        folder = (IMAGE_ROOT / folder_name).resolve()
+        try:
+            folder.relative_to(image_root)
+        except ValueError:
+            raise ValueError(f"Listing {listing_id!r} image folder is outside HousesIMG: {folder_name!r}") from None
+        if not folder.is_dir():
+            raise FileNotFoundError(f"Listing {listing_id!r} image folder does not exist: {folder}")
+
+        def manifest_image_url(relative_path, category):
+            if not relative_path:
+                return ""
+            if not isinstance(relative_path, str):
+                raise ValueError(f"Listing {listing_id!r} has an invalid {category} image path: {relative_path!r}")
+            path = (folder / str(relative_path)).resolve()
+            try:
+                path.relative_to(folder)
+            except ValueError:
+                raise ValueError(f"Listing {listing_id!r} {category} image is outside its folder: {relative_path!r}") from None
+            if not path.is_file() or path.suffix.casefold() not in IMAGE_SUFFIXES:
+                raise FileNotFoundError(f"Listing {listing_id!r} {category} image does not exist or is unsupported: {relative_path!r}")
+            return _image_url(path)
+
+        def manifest_image_list(key):
+            paths = image_manifest.get(key, [])
+            if not isinstance(paths, list):
+                raise ValueError(f"Listing {listing_id!r} image field {key!r} must be a list")
+            return [
+                url for url in (manifest_image_url(item, key) for item in paths)
+                if url
+            ]
+
+        def manifest_document_list():
+            paths = image_manifest.get("documents", [])
+            if not isinstance(paths, list):
+                raise ValueError(f"Listing {listing_id!r} image field 'documents' must be a list")
+            documents = []
+            for relative_path in paths:
+                if not isinstance(relative_path, str):
+                    raise ValueError(f"Listing {listing_id!r} has an invalid document path: {relative_path!r}")
+                path = (folder / relative_path).resolve()
+                try:
+                    path.relative_to(folder)
+                except ValueError:
+                    raise ValueError(f"Listing {listing_id!r} document is outside its folder: {relative_path!r}") from None
+                if not path.is_file() or path.suffix.casefold() != ".pdf":
+                    raise FileNotFoundError(f"Listing {listing_id!r} PDF document does not exist: {relative_path!r}")
+                documents.append(_image_url(path))
+            return documents
+
+        landing = manifest_image_url(image_manifest.get("landing"), "landing")
+        gallery = manifest_image_list("gallery")
+        if landing and landing not in gallery:
+            gallery.insert(0, landing)
+        return {
+            "image": landing or (gallery[0] if gallery else ""),
+            "gallery": gallery,
+            "interior_images": manifest_image_list("interiors"),
+            "floor_plan_images": manifest_image_list("floorPlans"),
+            "documents": manifest_document_list(),
+        }
+
+    house_numbers = {
+        number
+        for number in re.findall(r"\d+[a-z]?", str(record.get("houseNumber", "")).casefold())
+        if len(number) < 6
+    }
+    address_keys = _image_address_keys(record.get("address", ""))
+    address_matches = []
+    exact_matches = []
+    for folder in image_index:
+        matched_key = max((key for key in address_keys if key in folder["key"]), key=len, default="")
+        if matched_key:
+            candidate = (matched_key, folder)
+            address_matches.append(candidate)
+            if not house_numbers or house_numbers.issubset(folder["numbers"]):
+                exact_matches.append(candidate)
+
+    matches = exact_matches or (address_matches if len(address_matches) == 1 else [])
+
+    if not matches:
+        return {"image": "", "gallery": [], "interior_images": [], "floor_plan_images": [], "documents": []}
+
+    _, match = min(
+        matches,
+        key=lambda item: (-len(item[0]), len(item[1]["key"]), item[1]["folder"].name.casefold()),
+    )
+    folder = match["folder"]
+
+    def is_floor_plan(path):
+        return any(
+            "floor plan" in part.casefold().replace("_", " ")
+            or "floorplan" in part.casefold()
+            for part in path.relative_to(folder).parts
+        )
+
+    gallery_files = [path for path in match["files"] if not is_floor_plan(path)]
+    if not gallery_files:
+        gallery_files = match["files"]
+    gallery_files.sort(key=lambda path: (
+        "landing" not in path.name.casefold() and "cover" not in path.name.casefold(),
+        "video" in path.parent.as_posix().casefold(),
+        _natural_sort_key(path.as_posix()),
+    ))
+    gallery = [_image_url(path) for path in gallery_files]
     return {
-        "name": f"{house_number} {address}",
-        "location": district,
-        "address": address,
-        "type": property_type,
-        "condition": condition,
-        "tenure": str(row["Tenure"]).strip(),
-        "price": _format_price(row["Price"]),
-        "details": f"{bedrooms} beds  ·  {bathrooms} baths  ·  Land {land_size}",
-        "description": remarks or f"A {condition.lower()} {property_type.lower()} at {address}.",
-        "land_size": land_size,
-        "built_up": built_up,
-        "top": "" if pd.isna(row["TOP"]) else str(row["TOP"]).strip(),
-        "features": remarks,
-        "facing": str(row["Facing"]).strip(),
-        "developer": "" if pd.isna(row["Developer"]) else str(row["Developer"]).strip(),
-        "lister": "" if pd.isna(row["Lister"]) else str(row["Lister"]).strip(),
-        "privyr": "" if pd.isna(row["Privy"]) else str(row["Privy"]).strip(),
-        "image": "",
-        "tag": condition or "New",
+        "image": gallery[0] if gallery else "",
+        "gallery": gallery,
+        "interior_images": [
+            _image_url(path) for path in gallery_files
+            if "interior" in path.name.casefold() or "interial" in path.name.casefold()
+        ],
+        "floor_plan_images": [_image_url(path) for path in match["files"] if is_floor_plan(path)],
+        "documents": [],
     }
 
 
+def _display_count(value):
+    return "" if value is None or str(value).strip() == "" else str(value)
+
+
 def load_listings():
+    data_path = Path(app.root_path) / "data" / "listings.json"
+    payload = json.loads(data_path.read_text(encoding="utf-8"))
+    if payload.get("schemaVersion") != 1 or not isinstance(payload.get("listings"), list):
+        raise ValueError(f"Unsupported listing data format in {data_path}")
+
     district_names = {
         district.split(" ", 1)[0]: district
         for district in SINGAPORE_DISTRICTS
     }
+    image_index = _build_image_index()
     listings = []
+    listing_ids = set()
 
-    for csv_path in sorted(Path("data").glob("SSP Listing - D*.csv")):
-        match = re.fullmatch(r"SSP Listing - (D\d+)\.csv", csv_path.name)
-        if not match:
-            continue
-        district_code = match.group(1).upper()
-        district = district_names.get(district_code, district_code)
-        dataframe = pd.read_csv(csv_path)
-        dataframe.columns = dataframe.columns.str.strip()
-        listings.extend(
-            normalise_listing(row, district)
-            for _, row in dataframe.iterrows()
-        )
+    for record in payload["listings"]:
+        listing_id = record["id"]
+        if listing_id in listing_ids:
+            raise ValueError(f"Duplicate listing id: {listing_id}")
+        listing_ids.add(listing_id)
+
+        editorial = record.get("editorial") or {}
+        editorial_is_verified = editorial.get("verified") is True
+        has_editorial_content = bool(editorial)
+        house_number = str(record.get("houseNumber", "")).strip()
+        address = str(record.get("address", "")).strip()
+        property_type = editorial.get("propertyType") or record.get("propertyType", "")
+        condition = str(record.get("condition", "")).strip()
+        bedrooms = _display_count(record.get("bedrooms"))
+        bathrooms = _display_count(record.get("bathrooms"))
+        land_size = _format_area(record.get("landSizeSqft"))
+        built_up = _format_area(record.get("builtUpSqft"))
+        district_code = str(record.get("districtCode", "")).upper()
+        location = district_names.get(district_code, district_code)
+        price = _format_price(record.get("priceSgd"), record.get("priceText", ""))
+        description = editorial.get("description", "")
+        if not description:
+            description = f"A {condition.lower()} {str(property_type).lower()} at {address}." if condition else f"A {str(property_type).lower()} at {address}."
+        description_paragraphs = editorial.get("descriptionParagraphs") or [description]
+        highlights = editorial.get("highlights", [])
+        schools = editorial.get("schools", [])
+        transport = editorial.get("transport", [])
+        media = _listing_images(record, image_index)
+
+        listings.append({
+            "id": listing_id,
+            "name": f"{house_number} {address}".strip(),
+            "location": location,
+            "district_code": district_code,
+            "address": address,
+            "type": property_type,
+            "condition": condition,
+            "tenure": record.get("tenure", ""),
+            "price": price,
+            "price_sgd": record.get("priceSgd"),
+            "price_psf": record.get("pricePerSqft") if record.get("pricePerSqft") is not None else round(record["priceSgd"] / record["landSizeSqft"]) if record.get("priceSgd") and record.get("landSizeSqft") else None,
+            "details": f"{bedrooms or '—'} beds  ·  {bathrooms or '—'} baths  ·  Land {land_size}",
+            "description": description,
+            "description_paragraphs": description_paragraphs,
+            "land_size": land_size,
+            "built_up": built_up,
+            "top": record.get("top", ""),
+            "features": ", ".join(highlights),
+            "highlights": highlights,
+            "schools": schools,
+            "schools_list": "|".join(school.get("name", "") for school in schools),
+            "transport": transport,
+            "mrt": next((item.get("destination", "") for item in transport if "mrt" in item.get("destination", "").casefold()), ""),
+            "facing": record.get("facing", ""),
+            "developer": record.get("developer", ""),
+            "lister": record.get("lister", ""),
+            "collection": editorial.get("collection", ""),
+            "note": editorial.get("note", ""),
+            "floor_plan_description": editorial.get("floorPlanDescription", ""),
+            "floors": editorial.get("floors"),
+            "has_mezzanine": editorial.get("mezzanine", False),
+            "frontage_meters": editorial.get("frontageMeters"),
+            "width_meters": editorial.get("widthMeters"),
+            "depth_meters": editorial.get("depthMeters"),
+            "editorial_status": "verified" if editorial_is_verified else "draft" if has_editorial_content else "",
+            "verification_notes": editorial.get("verificationNotes", []),
+            "floor_plan": "",
+            "video_url": editorial.get("videoUrl", ""),
+            "is_launch": bool(record.get("isLaunch", False)),
+            "image": media["image"],
+            "gallery": media["gallery"],
+            "interior_images": media["interior_images"],
+            "floor_plan_images": media["floor_plan_images"],
+            "documents": media["documents"],
+            "tag": record.get("tag", condition or "New"),
+        })
 
     return listings
 
@@ -302,17 +528,38 @@ def page_context(active_page, **extra):
 
 @app.context_processor
 def shared_property_context():
-    return {"featured_listings": LISTINGS}
+    featured_property_image = next((listing["image"] for listing in LISTINGS if listing["image"]), "")
+    return {"featured_listings": LISTINGS, "featured_property_image": featured_property_image}
 
 
 @app.route("/")
 def home():
     launch_listings = [listing for listing in LISTINGS if listing.get("is_launch")]
+    carousel_candidates = [
+        listing for listing in launch_listings
+        if listing.get("image")
+    ] + [
+        listing for listing in LISTINGS
+        if listing.get("image") and not listing.get("is_launch")
+    ]
+    carousel_listings = []
+    seen_images = set()
+    for listing in carousel_candidates:
+        if listing["image"] in seen_images:
+            continue
+        seen_images.add(listing["image"])
+        carousel_listings.append(listing)
+        if len(carousel_listings) == 4:
+            break
     just_listed = [listing for listing in reversed(LISTINGS) if not listing.get("is_launch")][:4]
     gcb_listings = [listing for listing in LISTINGS if listing["type"] == "Good Class Bungalow"]
+    sentosa_listings = [
+        listing for listing in LISTINGS
+        if "sentosa" in f"{listing['name']} {listing['location']}".casefold()
+    ]
     return render_template(
         "home.html",
-        **page_context("home", launch_listings=launch_listings, just_listed_listings=just_listed, gcb_listings=gcb_listings),
+        **page_context("home", launch_listings=launch_listings, carousel_listings=carousel_listings, just_listed_listings=just_listed, gcb_listings=gcb_listings, sentosa_listings=sentosa_listings),
     )
 
 
@@ -372,7 +619,7 @@ def search_by_mrt():
 
 @app.route("/property/<path:property_name>")
 def property_detail(property_name):
-    listing = next((item for item in LISTINGS if item["name"] == property_name), None)
+    listing = next((item for item in LISTINGS if item["id"] == property_name or item["name"] == property_name), None)
     if listing is None:
         return "Property not found", 404
     gallery = listing.get("gallery", [listing["image"]])

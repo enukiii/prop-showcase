@@ -1,0 +1,2613 @@
+{
+  "schemaVersion": 1,
+  "listings": [
+    {
+      "id": "d10-79-hillcrest-road",
+      "houseNumber": "79",
+      "address": "Hillcrest Road",
+      "districtCode": "D11",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 3129,
+      "builtUpSqft": 6681,
+      "priceSgd": 14800000,
+      "priceText": "",
+      "top": "June 2026",
+      "facing": "East",
+      "remarks": "Plot B",
+      "developer": "",
+      "lister": "Joyce",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 2
+      },
+      "editorial": {
+        "verified": true,
+        "propertyType": "Semi-Detached House",
+        "description": "A brand new pair of luxury semi-detached homes on Hillcrest Road, thoughtfully designed for multi-generational living with spacious layouts, premium finishes, and everyday convenience.",
+        "descriptionParagraphs": [
+          "Experience luxurious modern living in a brand new semi-detached residence along the prestigious Hillcrest Road, in one of Singapore's sought-after landed enclaves.",
+          "Thoughtfully designed with spacious layouts, premium finishes, and elegant architectural details, these homes offer comfort and convenience for multi-generational families.",
+          "Conveniently located near Adam Road Food Centre and surrounded by lifestyle amenities, cafes, and daily conveniences."
+        ],
+        "floors": 2,
+        "attic": true,
+        "highlights": [
+          "Brand new pair of luxury semi-detached homes",
+          "2 storeys with attic",
+          "Approx. land size: 3,129 sqft each",
+          "Approx. built-up area: 6,700 sqft each",
+          "5 spacious en-suite bedrooms",
+          "Private swimming pool",
+          "Private lift serving all floors",
+          "Parking for 3 cars",
+          "Helper room with bathroom",
+          "Powder room for guests",
+          "Marble flooring on Level 1",
+          "Timber flooring on Levels 2 and 3",
+          "Fully custom-fitted kitchen with premium V-ZUG appliances",
+          "1F: car porch, lift, living and dining areas, wet kitchen, bathroom, helper room and bathroom, and store room",
+          "2F: lift, master bedroom, and 2 en-suite bedrooms",
+          "3F: lift and 2 en-suite bedrooms",
+          "Within 1km of Raffles Girls' Primary School",
+          "Nanyang Primary School within 1-2km",
+          "Near Adam Road Food Centre, cafes, and daily amenities"
+        ],
+        "schools": [
+          {
+            "name": "Raffles Girls' Primary School",
+            "distance": "within 1km"
+          },
+          {
+            "name": "Nanyang Primary School",
+            "distance": "within 1-2km"
+          },
+          {
+            "name": "Singapore Chinese Girls' School",
+            "distance": "within 1-2km"
+          },
+          {
+            "name": "St. Margaret's Secondary School",
+            "distance": "nearby"
+          },
+          {
+            "name": "Hwa Chong Institution",
+            "distance": "nearby"
+          },
+          {
+            "name": "Nanyang Girls' High School",
+            "distance": "nearby"
+          },
+          {
+            "name": "St. Joseph's Institution",
+            "distance": "nearby"
+          },
+          {
+            "name": "Anglo-Chinese School (Primary)",
+            "distance": "nearby"
+          },
+          {
+            "name": "Anglo-Chinese School (Barker Road)",
+            "distance": "nearby"
+          }
+        ],
+        "transport": [
+          {
+            "destination": "Botanic Gardens MRT Station",
+            "distanceMeters": 550
+          }
+        ],
+        "collection": "Gallop Park Road Collection: Plot 1 Semi-Detached, land 2,957 sqft / built-up approx. 5,607 sqft, $13.5 million (sold). Plot 2 Semi-Detached, land 2,583 sqft / built-up approx. 5,231 sqft, $12.5 million. Plot 3 Detached, land 4,224 sqft / built-up approx. 7,250 sqft, $17.5 million.",
+        "note": "All information and measurements are approximate, subject to final survey, and do not form part of any offer, contract, warranty, or representation. Photos may include artist impressions or AI-generated images for illustration purposes only.",
+        "originalListing": "Brand New Pair of Luxury Semi-Detached Homes at Hillcrest Road | Prime District 11. 2 Storey with Attic. Approx. Land Size: 3,129 sqft each. Approx. Built-Up: 6,700 sqft each. 5 Spacious En-Suite Bedrooms. Private Swimming Pool. Private Lift serving all floors. Parking for 3 Cars. Helper's Room with Bathroom. Powder Room for Guests. Marble Flooring on Level 1. Timber Flooring on Levels 2 and 3. Fully custom-fitted kitchen with premium V-ZUG appliances. Within 1km: Raffles Girls' Primary School. Within 1-2km: Nanyang Primary School and Singapore Chinese Girls. Approx. 550m to Botanic Gardens MRT station. Nearby Adam Road Food Centre, cafes and daily amenities. The source also refers to District 10 in its closing paragraph and existing CSV records classify these addresses as D10."
+      },
+      "images": {
+        "folder": "d10-79-hillcrest-road",
+        "folderPath": "static/img/HousesIMG/d10-79-hillcrest-road",
+        "landing": "landing.jpg",
+        "floorPlans": [
+          "floor plan 1.jpg",
+          "floor plan 2.jpg",
+          "floor plan 3.jpg",
+          "floor plan 4.jpg",
+          "floor plan 5.jpg",
+          "floor plan 6.jpg",
+          "floor plan 7.jpg"
+        ],
+        "interiors": [
+          "interior 1.jpg",
+          "interior 2.jpg",
+          "interior 3.jpg",
+          "interior 4.jpg",
+          "interior 5.jpg",
+          "interior 6.jpg",
+          "interior 7.jpg",
+          "interior 8.jpg",
+          "interior 9.jpg",
+          "interior 10.jpg",
+          "interior 11.jpg",
+          "interior 13.jpg",
+          "interior 14.jpg",
+          "interior 15.jpg",
+          "interior 16.jpg",
+          "interior 17.jpg",
+          "interior 18.jpg",
+          "interior 19.jpg"
+        ],
+        "gallery": [
+          "landing.jpg",
+          "interior 1.jpg",
+          "interior 2.jpg",
+          "interior 3.jpg",
+          "interior 4.jpg",
+          "interior 5.jpg",
+          "interior 6.jpg",
+          "interior 7.jpg",
+          "interior 8.jpg",
+          "interior 9.jpg",
+          "interior 10.jpg",
+          "interior 11.jpg",
+          "interior 13.jpg",
+          "interior 14.jpg",
+          "interior 15.jpg",
+          "interior 16.jpg",
+          "interior 17.jpg",
+          "interior 18.jpg",
+          "interior 19.jpg",
+          "exterior render 1.jpg"
+        ],
+        "documents": []
+      },
+      "pricePerSqft": 4743
+    },
+    {
+      "id": "d10-79a-hillcrest-road",
+      "houseNumber": "79A",
+      "address": "Hillcrest Road",
+      "districtCode": "D11",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 3129,
+      "builtUpSqft": 6702,
+      "priceSgd": 14800000,
+      "priceText": "",
+      "top": "June 2026",
+      "facing": "East",
+      "remarks": "Plot A",
+      "developer": "",
+      "lister": "Joyce",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 3
+      },
+      "editorial": {
+        "verified": true,
+        "propertyType": "Semi-Detached House",
+        "description": "A brand new pair of luxury semi-detached homes on Hillcrest Road, thoughtfully designed for multi-generational living with spacious layouts, premium finishes, and everyday convenience.",
+        "descriptionParagraphs": [
+          "Experience luxurious modern living in a brand new semi-detached residence along the prestigious Hillcrest Road, in one of Singapore's sought-after landed enclaves.",
+          "Thoughtfully designed with spacious layouts, premium finishes, and elegant architectural details, these homes offer comfort and convenience for multi-generational families.",
+          "Conveniently located near Adam Road Food Centre and surrounded by lifestyle amenities, cafes, and daily conveniences."
+        ],
+        "floors": 2,
+        "attic": true,
+        "highlights": [
+          "Brand new pair of luxury semi-detached homes",
+          "2 storeys with attic",
+          "Approx. land size: 3,129 sqft each",
+          "Approx. built-up area: 6,700 sqft each",
+          "5 spacious en-suite bedrooms",
+          "Private swimming pool",
+          "Private lift serving all floors",
+          "Parking for 3 cars",
+          "Helper room with bathroom",
+          "Powder room for guests",
+          "Marble flooring on Level 1",
+          "Timber flooring on Levels 2 and 3",
+          "Fully custom-fitted kitchen with premium V-ZUG appliances",
+          "1F: car porch, lift, living and dining areas, wet kitchen, bathroom, helper room and bathroom, and store room",
+          "2F: lift, master bedroom, and 2 en-suite bedrooms",
+          "3F: lift and 2 en-suite bedrooms",
+          "Within 1km of Raffles Girls' Primary School",
+          "Nanyang Primary School within 1-2km",
+          "Near Adam Road Food Centre, cafes, and daily amenities"
+        ],
+        "schools": [
+          {
+            "name": "Raffles Girls' Primary School",
+            "distance": "within 1km"
+          },
+          {
+            "name": "Nanyang Primary School",
+            "distance": "within 1-2km"
+          },
+          {
+            "name": "Singapore Chinese Girls' School",
+            "distance": "within 1-2km"
+          },
+          {
+            "name": "St. Margaret's Secondary School",
+            "distance": "nearby"
+          },
+          {
+            "name": "Hwa Chong Institution",
+            "distance": "nearby"
+          },
+          {
+            "name": "Nanyang Girls' High School",
+            "distance": "nearby"
+          },
+          {
+            "name": "St. Joseph's Institution",
+            "distance": "nearby"
+          },
+          {
+            "name": "Anglo-Chinese School (Primary)",
+            "distance": "nearby"
+          },
+          {
+            "name": "Anglo-Chinese School (Barker Road)",
+            "distance": "nearby"
+          }
+        ],
+        "transport": [
+          {
+            "destination": "Botanic Gardens MRT Station",
+            "distanceMeters": 550
+          }
+        ],
+        "collection": "Gallop Park Road Collection: Plot 1 Semi-Detached, land 2,957 sqft / built-up approx. 5,607 sqft, $13.5 million (sold). Plot 2 Semi-Detached, land 2,583 sqft / built-up approx. 5,231 sqft, $12.5 million. Plot 3 Detached, land 4,224 sqft / built-up approx. 7,250 sqft, $17.5 million.",
+        "note": "All information and measurements are approximate, subject to final survey, and do not form part of any offer, contract, warranty, or representation. Photos may include artist impressions or AI-generated images for illustration purposes only.",
+        "originalListing": "Brand New Pair of Luxury Semi-Detached Homes at Hillcrest Road | Prime District 11. 2 Storey with Attic. Approx. Land Size: 3,129 sqft each. Approx. Built-Up: 6,700 sqft each. 5 Spacious En-Suite Bedrooms. Private Swimming Pool. Private Lift serving all floors. Parking for 3 Cars. Helper's Room with Bathroom. Powder Room for Guests. Marble Flooring on Level 1. Timber Flooring on Levels 2 and 3. Fully custom-fitted kitchen with premium V-ZUG appliances. Within 1km: Raffles Girls' Primary School. Within 1-2km: Nanyang Primary School and Singapore Chinese Girls. Approx. 550m to Botanic Gardens MRT station. Nearby Adam Road Food Centre, cafes and daily amenities. The source also refers to District 10 in its closing paragraph and existing CSV records classify these addresses as D10."
+      },
+      "images": {
+        "folder": "d10-79a-hillcrest-road",
+        "folderPath": "static/img/HousesIMG/d10-79a-hillcrest-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      },
+      "pricePerSqft": 4743
+    },
+    {
+      "id": "d10-41-fernhill-road",
+      "houseNumber": "41",
+      "address": "Fernhill Road",
+      "districtCode": "D10",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 3087,
+      "builtUpSqft": 7441,
+      "priceSgd": 14980000,
+      "priceText": "",
+      "top": "2026",
+      "facing": "North",
+      "remarks": "Plot 1, 5+1",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 4
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d10-41-fernhill-road",
+        "folderPath": "static/img/HousesIMG/d10-41-fernhill-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d10-36-fernhill-road",
+      "houseNumber": "36",
+      "address": "Fernhill Road",
+      "districtCode": "D10",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 3896,
+      "builtUpSqft": 9500,
+      "priceSgd": 20000000,
+      "pricePerSqft": 5133,
+      "priceText": "",
+      "top": "",
+      "facing": "South",
+      "remarks": "",
+      "developer": "Owner",
+      "lister": "Joyce",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 5
+      },
+      "editorial": {
+        "verified": true,
+        "propertyType": "Semi-Detached House",
+        "description": "A brand new freehold semi-detached home on Fernhill Road, designed for multi-generational living with generous space, refined lifestyle features, and convenient access to Orchard Road and nearby schools.",
+        "descriptionParagraphs": [
+          "Experience elevated luxury living at 36 Fernhill, a stunning brand new freehold semi-detached residence thoughtfully designed for modern multi-generational families seeking prestige, space, and convenience in one of Singapore's most coveted residential neighbourhoods.",
+          "Positioned within a superb District 10 location, this architectural home combines expansive interiors, refined lifestyle features, and exceptional connectivity just minutes from Orchard Road and prestigious schools."
+        ],
+        "floors": 4,
+        "mezzanine": true,
+        "frontageMeters": 12,
+        "highlights": [
+          "Brand new freehold semi-detached home",
+          "Prime District 10 address",
+          "Approx. land size: 3,896 sqft",
+          "Approx. built-up: 9,500 sqft",
+          "South facing",
+          "Wide frontage of approx. 12 m",
+          "4-storey layout with mezzanine",
+          "Private swimming pool",
+          "Lift serving all floors (wheelchair accessible)",
+          "Parks 3-4 cars",
+          "Double-volume high-ceiling living and dining area",
+          "Rooftop garden sitting area",
+          "5 spacious en-suite bedrooms",
+          "3 family or entertainment areas, convertible into bedrooms",
+          "Spacious family zones for entertainment and gatherings",
+          "Functional layout with privacy across all levels",
+          "Ideal for large or extended families",
+          "Elegant architectural design with abundant natural light"
+        ],
+        "schools": [
+          {
+            "name": "Singapore Chinese Girls' School",
+            "distance": "within 1km"
+          },
+          {
+            "name": "Anglo-Chinese School (Junior)",
+            "distance": "within 1-2km"
+          },
+          {
+            "name": "Anglo-Chinese School (Primary)",
+            "distance": "within 1-2km"
+          },
+          {
+            "name": "Nanyang Primary School",
+            "distance": "within 1-2km"
+          }
+        ],
+        "transport": [
+          {
+            "destination": "Stevens MRT Station",
+            "time": 10,
+            "unit": "minutes",
+            "mode": "walk"
+          },
+          {
+            "destination": "Orchard Road",
+            "time": 5,
+            "unit": "minutes",
+            "mode": "drive"
+          }
+        ],
+        "originalListing": "Fernhill Road | Brand New FREEHOLD Semi-Detached Home | Prime District 10. Experience elevated luxury living at 36 Fernhill, a stunning brand new freehold semi-detached residence thoughtfully designed for modern multi-generational families seeking prestige, space and convenience in one of Singapore's most coveted residential neighbourhoods. Positioned within a superb District 10 location, this architectural home combines expansive interiors, refined lifestyle features and exceptional connectivity just minutes from Orchard Road and prestigious schools. Brand New FREEHOLD Semi-Detached Home. Approx. Land Size: 3,896 sqft. Approx. Built-Up: 9,500 sqft. South Facing. Wide Frontage of approx. 12m. 4-Storey with Mezzanine. Private Swimming Pool. Lift serving all floors (Wheelchair Accessible). Parks 3-4 Cars. Double-volume high ceiling living and dining area. Rooftop garden sitting area. 5 Spacious En-Suite Bedrooms. 3 Family / Entertainment Areas (convertible into bedrooms). Functional layout ideal for large or extended families. Approx. 10 mins walk to Stevens MRT Station. Approx. 5 mins drive to Orchard Road. Within 1km to Singapore Chinese Girls' School. Within 1-2km to Anglo-Chinese School (Junior), Anglo-Chinese School (Primary), and Nanyang Primary School."
+      },
+      "images": {
+        "folder": "d10-36-fernhill-road",
+        "folderPath": "static/img/HousesIMG/d10-36-fernhill-road",
+        "landing": "landing.jpg",
+        "floorPlans": [
+          "floor plan 1.jpg",
+          "floor plan 2.jpg",
+          "floor plan 3.jpg",
+          "floor plan 4.jpg",
+          "floor plan 5.jpg",
+          "floor plan 6.jpg"
+        ],
+        "interiors": [
+          "interior 1.jpg",
+          "interior 2.jpg",
+          "interior 3.jpg",
+          "interior 4.jpg",
+          "interior 5.jpg",
+          "interior 6.jpg",
+          "interior 7.jpg",
+          "interior 8.jpg",
+          "interior 9.jpg",
+          "interior 10.jpg",
+          "interior 11.jpg",
+          "interior 12.jpg",
+          "interior 13.jpg",
+          "interior 14.jpg",
+          "interior 15.jpg",
+          "interior 16.jpg",
+          "interior 17.jpg",
+          "interior 18.jpg"
+        ],
+        "gallery": [
+          "landing.jpg",
+          "interior 1.jpg",
+          "interior 2.jpg",
+          "interior 3.jpg",
+          "interior 4.jpg",
+          "interior 5.jpg",
+          "interior 6.jpg",
+          "interior 7.jpg",
+          "interior 8.jpg",
+          "interior 9.jpg",
+          "interior 10.jpg",
+          "interior 11.jpg",
+          "interior 12.jpg",
+          "interior 13.jpg",
+          "interior 14.jpg",
+          "interior 15.jpg",
+          "interior 16.jpg",
+          "interior 17.jpg",
+          "interior 18.jpg"
+        ]
+      }
+    },
+    {
+      "id": "d10-7-coronation-road",
+      "houseNumber": "7",
+      "address": "Coronation Road",
+      "districtCode": "D10",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 4,
+      "bathrooms": 5,
+      "landSizeSqft": 2539,
+      "builtUpSqft": 7000,
+      "priceSgd": 13200000,
+      "priceText": "",
+      "top": "Q3 2026",
+      "facing": "N/W",
+      "remarks": "",
+      "developer": "Same owner as 36 FH",
+      "lister": "Joyce",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 6
+      },
+      "editorial": {
+        "verified": true,
+        "propertyType": "Semi-Detached House",
+        "description": "A 4-storey semi-detached home with a private lift serving all floors, a swimming pool and a functional layout, just 6 minutes' walk to Tan Kah Kee MRT and within 1km of Raffles Girls' and Nanyang Primary.",
+        "descriptionParagraphs": [
+          "Experience luxurious modern living in this brand new freehold semi-detached residence located within one of District 10's most prestigious landed enclaves.",
+          "Thoughtfully designed for modern multi-generational living, this elegant 4-storey home combines spacious interiors, premium lifestyle features and exceptional convenience - all within walking distance to renowned schools, MRT station and daily amenities."
+        ],
+        "floors": 4,
+        "widthMeters": 10.6,
+        "depthMeters": 25.6,
+        "highlights": [
+          "Brand new freehold semi-detached",
+          "Estimated TOP: Q3 2026",
+          "Approx. land size: 2,539 sqft",
+          "Approx. built-up: 7,000 sqft",
+          "Width 10.6m and depth 25.6m",
+          "4-storey layout with swimming pool",
+          "Private lift serving all floors (wheelchair accessible)",
+          "4 en-suite bedrooms",
+          "1 en-suite helper's room",
+          "2 family living areas",
+          "Rooftop garden sitting area",
+          "Double volume high ceiling living area",
+          "Parking for at least 3 cars",
+          "Functional layout ideal for multi-generational living"
+        ],
+        "schools": [
+          {
+            "name": "Nanyang Primary School",
+            "distance": "within 1km"
+          },
+          {
+            "name": "Raffles Girls' Primary School",
+            "distance": "within 1km"
+          },
+          {
+            "name": "Nanyang Kindergarten - Pre Nursery & Nursery Campus",
+            "distance": "nearby"
+          },
+          {
+            "name": "Nanyang Kindergarten - K1 & K2 Campus",
+            "distance": "nearby"
+          },
+          {
+            "name": "Singapore Chinese Girls' School",
+            "distance": "within 2km"
+          }
+        ],
+        "transport": [
+          {
+            "destination": "Coronation Shopping Plaza",
+            "time": 1,
+            "unit": "minutes",
+            "mode": "walk",
+            "amenities": [
+              "Supermarket",
+              "Restaurants",
+              "Gym",
+              "Tuition centres"
+            ]
+          },
+          {
+            "destination": "Tan Kah Kee MRT Station",
+            "time": 6,
+            "unit": "minutes",
+            "mode": "walk",
+            "line": "Downtown Line"
+          },
+          {
+            "destination": "Orchard Road",
+            "time": 5,
+            "unit": "minutes",
+            "mode": "drive"
+          }
+        ],
+        "originalListing": "District 10 - Superb Location | Brand New Freehold Semi-Detached. Experience luxurious modern living in this brand new freehold semi-detached residence located within one of District 10's most prestigious landed enclaves. Thoughtfully designed for modern multi-generational living, this elegant 4-storey home combines spacious interiors, premium lifestyle features and exceptional convenience - all within walking distance to renowned schools, MRT station and daily amenities. Estimated TOP: Q3 2026. Land size: 2,539 sqft. Built-up: 7,000 sqft. Width 10.6m and depth 25.6m. 4-storey layout with swimming pool. Private lift serving all floors (wheelchair accessible). 4 en-suite bedrooms. 1 en-suite helper's room. 2 family living areas. Rooftop garden sitting area. Double volume high ceiling living area. Parking for at least 3 cars. 1 min walk to Coronation Shopping Plaza (supermarket, restaurants, gym, tuition centres). 6 mins walk to Tan Kah Kee MRT Station (Downtown Line). 5 mins drive to Orchard Road. Within 1km: Nanyang Primary School and Raffles Girls' Primary School. Nearby: Nanyang Kindergarten Pre Nursery & Nursery Campus and K1 & K2 Campus. Singapore Chinese Girls' School within 2km."
+      },
+      "pricePerSqft": 5198,
+      "images": {
+        "folder": "d10-7-coronation-road",
+        "folderPath": "static/img/HousesIMG/d10-7-coronation-road",
+        "landing": "landing.jpg",
+        "floorPlans": [
+          "floor plan 1.jpg",
+          "floor plan 2.jpg",
+          "floor plan 3.jpg",
+          "floor plan 4.jpg"
+        ],
+        "interiors": [
+          "interior 1.jpg",
+          "interior 2.jpg",
+          "interior 3.jpg",
+          "interior 4.jpg",
+          "interior 5.jpg",
+          "interior 6.jpg",
+          "interior 7.jpg"
+        ],
+        "gallery": [
+          "landing.jpg",
+          "interior 1.jpg",
+          "interior 2.jpg",
+          "interior 3.jpg",
+          "interior 4.jpg",
+          "interior 5.jpg",
+          "interior 6.jpg",
+          "interior 7.jpg"
+        ]
+      }
+    },
+    {
+      "id": "d10-18-robin-close",
+      "houseNumber": "18",
+      "address": "Robin Close",
+      "districtCode": "D10",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 4,
+      "landSizeSqft": 3277,
+      "builtUpSqft": 8506,
+      "priceSgd": 14800000,
+      "priceText": "",
+      "top": "",
+      "facing": "East",
+      "remarks": "3 ensuite bedroom",
+      "developer": "LFC",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 7
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d10-18-robin-close",
+        "folderPath": "static/img/HousesIMG/d10-18-robin-close",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d10-18a-robin-close",
+      "houseNumber": "18A",
+      "address": "Robin Close",
+      "districtCode": "D10",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 4,
+      "landSizeSqft": 3266,
+      "builtUpSqft": 8526,
+      "priceSgd": 14800000,
+      "priceText": "",
+      "top": "",
+      "facing": "East",
+      "remarks": "3 ensuite bedroom",
+      "developer": "LFC",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 8
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d10-18a-robin-close",
+        "folderPath": "static/img/HousesIMG/d10-18a-robin-close",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d10-1-tan-boon-chong-ave",
+      "houseNumber": "1",
+      "address": "Tan Boon Chong Ave",
+      "districtCode": "D10",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 7,
+      "landSizeSqft": 6018,
+      "builtUpSqft": 11218,
+      "priceSgd": 24500000,
+      "priceText": "",
+      "top": "",
+      "facing": "N/W",
+      "remarks": "6 ensuite, 3 entertainment rm, 1 powder rm, helper rm, pool, park 3-4 cars",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 9
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d10-1-tan-boon-chong-ave",
+        "folderPath": "static/img/HousesIMG/d10-1-tan-boon-chong-ave",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d10-1a-tan-boon-chong-ave",
+      "houseNumber": "1A",
+      "address": "Tan Boon Chong Ave",
+      "districtCode": "D10",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 4661,
+      "builtUpSqft": 10831,
+      "priceSgd": 19800000,
+      "priceText": "",
+      "top": "",
+      "facing": "N/W",
+      "remarks": "5 ensuite, 3 entertainment rm, 1 powder rm, helper rm, pool, park 3-4 cars",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 10
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d10-1a-tan-boon-chong-ave",
+        "folderPath": "static/img/HousesIMG/d10-1a-tan-boon-chong-ave",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d10-65-duchess-avenue",
+      "houseNumber": "65",
+      "address": "Duchess Avenue",
+      "districtCode": "D10",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 7,
+      "landSizeSqft": 4355,
+      "builtUpSqft": 9346,
+      "priceSgd": 19800000,
+      "priceText": "",
+      "top": "Q4 2027",
+      "facing": "East",
+      "remarks": "",
+      "developer": "",
+      "lister": "Lynn",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 11
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d10-65-duchess-avenue",
+        "folderPath": "static/img/HousesIMG/d10-65-duchess-avenue",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d10-96-farrer-road",
+      "houseNumber": "96",
+      "address": "Farrer Road",
+      "districtCode": "D10",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 4224,
+      "builtUpSqft": 7250,
+      "priceSgd": 17500000,
+      "priceText": "",
+      "top": "Q2 2026",
+      "facing": "",
+      "remarks": "Plot 3",
+      "developer": "Homestant",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D10.csv",
+        "row": 12
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d10-96-farrer-road",
+        "folderPath": "static/img/HousesIMG/d10-96-farrer-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d10-1-fir-avenue",
+      "houseNumber": "1",
+      "address": "Fir Avenue",
+      "districtCode": "D10",
+      "propertyType": "Semi-Detached House",
+      "condition": "",
+      "tenure": "",
+      "bedrooms": 6,
+      "bathrooms": 7,
+      "landSizeSqft": 3174,
+      "builtUpSqft": 5000,
+      "priceSgd": 9500000,
+      "pricePerSqft": 2993,
+      "priceText": "",
+      "top": "",
+      "facing": "",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "tag": "",
+      "source": {
+        "type": "manual",
+        "providedBy": "user"
+      },
+      "editorial": {
+        "verified": true,
+        "propertyType": "Semi-Detached House",
+        "description": "Modern luxury meets family comfort in this spacious semi-detached home, with six bedrooms, seven bathrooms, and convenient access to Sixth Avenue MRT and nearby schools.",
+        "descriptionParagraphs": [
+          "Modern Luxury Meets Family Comfort. Discover this stunning 5,000 sqft semi-detached home, where space, style, and convenience come together.",
+          "Experience a spacious family home with approximately 3,174 sqft of land and 5,000 sqft of built-up area. Its basement, generous living spaces, and bedroom layout are designed for modern family living.",
+          "A rare blend of elegance, comfort, and location in a quiet yet central setting."
+        ],
+        "highlights": [
+          "Land size: 3,174 sqft",
+          "Built-up area: approx. 5,000 sqft",
+          "6 bedrooms and 7 bathrooms",
+          "Basement entertainment room or private gym",
+          "Level 1: grand living and dining areas, kitchen, powder room, helper's room and bathroom",
+          "Level 2: 4 bedrooms, including 2 en-suites and 2 sharing a bathroom",
+          "Level 3: 2 en-suite bedrooms",
+          "Wide frontage fits 2 cars",
+          "Bright, well-proportioned spaces for modern family living",
+          "Quiet yet central location"
+        ],
+        "schools": [
+          {
+            "name": "Methodist Girls' School (Primary)",
+            "distance": "within 1km"
+          },
+          {
+            "name": "Nanyang Primary School",
+            "distance": "nearby"
+          },
+          {
+            "name": "Henry Park Primary School",
+            "distance": "nearby"
+          },
+          {
+            "name": "Raffles Girls' Primary School",
+            "distance": "nearby"
+          }
+        ],
+        "transport": [
+          {
+            "destination": "Sixth Avenue MRT Station",
+            "distanceMeters": 650
+          }
+        ],
+        "originalListing": "Fir Ave 1 D10 SD L3174 B5000 $9.5m $2993psf. Modern Luxury Meets Family Comfort. Discover this stunning 5,000 sqft Semi-Detached home, where space, style, and convenience come together. Land: 3,175 sqft; Built-up: Approx. 5,000 sqft. 6 Bedrooms; 7 Bathrooms. Basement: Entertainment room or private gym. Level 1: Grand living and dining, kitchen, powder room, helper's room and bath. Level 2: 4 bedrooms (2 en-suites + 2 with shared bath). Level 3: 2 en-suite bedrooms. Just 650m from Sixth Avenue MRT. Within 1km of Methodist Girls' School (Primary), close to Nanyang, Henry Park and Raffles Girls' Primary. Wide frontage fits 2 cars with ease. Bright, well-proportioned spaces designed for modern family living. Quiet yet central location."
+      },
+      "images": {
+        "folder": "d10-1-fir-avenue",
+        "folderPath": "static/img/HousesIMG/d10-1-fir-avenue",
+        "landing": "landing.jpg",
+        "floorPlans": [],
+        "interiors": [
+          "interior 1.jpg",
+          "interior 2.jpg",
+          "interior 3.jpg",
+          "interior 4.jpg",
+          "interior 5.jpg",
+          "interior 6.jpg",
+          "interior 7.jpg",
+          "interior 8.jpg",
+          "interior 9.jpg",
+          "interior 10.jpg",
+          "interior 11.jpg"
+        ],
+        "gallery": [
+          "landing.jpg",
+          "interior 1.jpg",
+          "interior 2.jpg",
+          "interior 3.jpg",
+          "interior 4.jpg",
+          "interior 5.jpg",
+          "interior 6.jpg",
+          "interior 7.jpg",
+          "interior 8.jpg",
+          "interior 9.jpg",
+          "interior 10.jpg",
+          "interior 11.jpg"
+        ]
+      }
+    },
+    {
+      "id": "d10-gallop-park-road-plot-2",
+      "houseNumber": "Plot 2",
+      "address": "Gallop Park Road",
+      "districtCode": "D10",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": "",
+      "landSizeSqft": 2583,
+      "builtUpSqft": 5231,
+      "priceSgd": 12500000,
+      "pricePerSqft": 4839,
+      "priceText": "",
+      "top": "June 2026",
+      "facing": "",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "tag": "Brand new",
+      "source": {
+        "type": "manual",
+        "providedBy": "user"
+      },
+      "editorial": {
+        "verified": true,
+        "propertyType": "Semi-Detached House",
+        "description": "A brand new freehold semi-detached home on Gallop Park Road, with five en-suite bedrooms, a home lift, and convenient access to Botanic Gardens MRT and nearby schools.",
+        "descriptionParagraphs": [
+          "A 2.5-storey semi-detached home offering 2,583 sqft of freehold land and approximately 5,231 sqft of built-up area.",
+          "Designed for comfortable family living, the home includes five en-suite bedrooms, a home lift, and a practical layout across three levels.",
+          "Outside street parking is available. Botanic Gardens MRT station is approximately 550m away."
+        ],
+        "highlights": [
+          "Five en-suite bedrooms",
+          "Home lift",
+          "Outside street parking available",
+          "1F: car porch, lift, living and dining areas, wet kitchen, bathroom, helper room and bathroom, and store room",
+          "2F: lift, master bedroom, and 2 en-suite bedrooms",
+          "3F: lift and 2 en-suite bedrooms",
+          "Land size: 2,583 sqft, freehold",
+          "Built-up area: approximately 5,231 sqft"
+        ],
+        "schools": [
+          {
+            "name": "Nanyang Primary School",
+            "distance": "within 1km"
+          },
+          {
+            "name": "Raffles Girls' Primary School",
+            "distance": "within 1-2km"
+          },
+          {
+            "name": "Singapore Chinese Girls' School",
+            "distance": "within 1-2km"
+          },
+          {
+            "name": "St. Margaret's Secondary School",
+            "distance": "nearby"
+          },
+          {
+            "name": "Hwa Chong Institution",
+            "distance": "nearby"
+          },
+          {
+            "name": "Nanyang Girls' High School",
+            "distance": "nearby"
+          },
+          {
+            "name": "St. Joseph's Institution",
+            "distance": "nearby"
+          },
+          {
+            "name": "Anglo-Chinese School (Primary)",
+            "distance": "nearby"
+          },
+          {
+            "name": "Anglo-Chinese School (Barker Road)",
+            "distance": "nearby"
+          }
+        ],
+        "transport": [
+          {
+            "destination": "Botanic Gardens MRT Station",
+            "distanceMeters": 550
+          }
+        ],
+        "collection": "Gallop Park Road Collection: Plot 1 Semi-Detached, land 2,957 sqft / built-up approximately 5,607 sqft, $13.5 million (sold). Plot 2 Semi-Detached, land 2,583 sqft / built-up approximately 5,231 sqft, $12.5 million. Plot 3 Detached, land 4,224 sqft / built-up approximately 7,250 sqft, $17.5 million; see the separate 96 Farrer Road listing.",
+        "note": "Information and measurements are approximate and subject to final survey; they do not form part of any offer, contract, or warranty.",
+        "originalListing": "Gallop Park Road SD L2583 $12.5m B5231 $4839psf. D10 Gallop Park Road. 2.5 Story Semi D. Land Size: 2,583 sqft (Freehold). Built-Up: 5,231 sqft. TOP June 2026. Asking: $12.5m ($4,839 PSF). 5 Ensuite Bedrooms, Home Lift. Outside Street Parking Available. 1F: Car Porch, Lift, Living, Dining, Wet Kitchen, Bathroom, Helper's Room/Bathroom, Store Room. 2F: Lift, Master Bedroom, 2 Ensuite Bedrooms. 3F: Lift, 2 Ensuite Bedrooms. Within 1km: Nanyang Primary School. Within 1-2km: Raffles Girls Primary and Singapore Chinese Girls. 550m to Botanic Gardens MRT station. Plot 1 Semi D, Land 2,957 sqft/Built in approx. 5,607 sqft - $13.5 million (Sold). Plot 2 Semi D, Land 2,583 sqft/Built in approx. 5,231 sqft - $12.5 million. Plot 3 Detached, Land 4,224 sqft/Built in approx. 7,250 sqft - $17.5 million. Proximity to Prestigious Schools: Nanyang Primary; Raffles Girls' Primary; St Margaret's Secondary; Hwa Chong Institution; Nanyang Girls' High; Singapore Chinese Girls; St Joseph's Institution; Anglo-Chinese School (Primary); Anglo-Chinese School (Barker Road). Note: Information and measurements are approximate and subject to final survey; they do not form part of any offer, contract, or warranty."
+      },
+      "images": {
+        "folder": "d10-gallop-park-road-plot-2",
+        "folderPath": "static/img/HousesIMG/d10-gallop-park-road-plot-2",
+        "landing": "landing.jpg",
+        "floorPlans": [
+          "floor plan 1.jpg"
+        ],
+        "interiors": [
+          "interior 1.jpg",
+          "interior 2.jpg"
+        ],
+        "gallery": [
+          "landing.jpg",
+          "interior 1.jpg",
+          "interior 2.jpg"
+        ]
+      }
+    },
+    {
+      "id": "d11-12a-chancery-hill-road",
+      "houseNumber": "12A",
+      "address": "CHANCERY HILL ROAD",
+      "districtCode": "D11",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "7+1",
+      "bathrooms": "",
+      "landSizeSqft": 2861,
+      "builtUpSqft": 7493,
+      "priceSgd": 13888000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "West",
+      "remarks": "",
+      "developer": "SL Capital",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 2
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-12a-chancery-hill-road",
+        "folderPath": "static/img/HousesIMG/d11-12a-chancery-hill-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-12-chancery-hill-road",
+      "houseNumber": "12",
+      "address": "CHANCERY HILL ROAD",
+      "districtCode": "D11",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "7+1",
+      "bathrooms": "",
+      "landSizeSqft": 2785,
+      "builtUpSqft": 7493,
+      "priceSgd": 13588000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "West",
+      "remarks": "",
+      "developer": "SL Capital",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 3
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-12-chancery-hill-road",
+        "folderPath": "static/img/HousesIMG/d11-12-chancery-hill-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-10a-chancery-hill-road",
+      "houseNumber": "10A",
+      "address": "CHANCERY HILL ROAD",
+      "districtCode": "D11",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "6+1",
+      "bathrooms": "",
+      "landSizeSqft": 2680,
+      "builtUpSqft": 6560,
+      "priceSgd": 12888000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "West",
+      "remarks": "",
+      "developer": "SL Capital",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 4
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-10a-chancery-hill-road",
+        "folderPath": "static/img/HousesIMG/d11-10a-chancery-hill-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-10-chancery-hill-road",
+      "houseNumber": "10",
+      "address": "CHANCERY HILL ROAD",
+      "districtCode": "D11",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "6+1",
+      "bathrooms": "",
+      "landSizeSqft": 2564,
+      "builtUpSqft": 6561,
+      "priceSgd": 12388000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "West",
+      "remarks": "",
+      "developer": "SL Capital",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 5
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-10-chancery-hill-road",
+        "folderPath": "static/img/HousesIMG/d11-10-chancery-hill-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-8a-chancery-hill-road",
+      "houseNumber": "8A",
+      "address": "CHANCERY HILL ROAD",
+      "districtCode": "D11",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "6+1",
+      "bathrooms": "",
+      "landSizeSqft": 5433,
+      "builtUpSqft": 10374,
+      "priceSgd": 23288000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "West",
+      "remarks": "",
+      "developer": "SL Capital",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 6
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-8a-chancery-hill-road",
+        "folderPath": "static/img/HousesIMG/d11-8a-chancery-hill-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-8-chancery-hill-road",
+      "houseNumber": "8",
+      "address": "CHANCERY HILL ROAD",
+      "districtCode": "D11",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "6+1",
+      "bathrooms": "",
+      "landSizeSqft": 4644,
+      "builtUpSqft": 9448,
+      "priceSgd": 19888000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "West",
+      "remarks": "",
+      "developer": "SL Capital",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 7
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-8-chancery-hill-road",
+        "folderPath": "static/img/HousesIMG/d11-8-chancery-hill-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-14-dyson-road",
+      "houseNumber": "14",
+      "address": "DYSON ROAD",
+      "districtCode": "D11",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "7+1",
+      "bathrooms": "",
+      "landSizeSqft": 5623,
+      "builtUpSqft": 10277,
+      "priceSgd": 23988000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "East",
+      "remarks": "",
+      "developer": "SL Capital",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 8
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-14-dyson-road",
+        "folderPath": "static/img/HousesIMG/d11-14-dyson-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-16-dyson-road",
+      "houseNumber": "16",
+      "address": "DYSON ROAD",
+      "districtCode": "D11",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "6+1",
+      "bathrooms": "",
+      "landSizeSqft": 5385,
+      "builtUpSqft": 9804,
+      "priceSgd": 23188000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "East",
+      "remarks": "",
+      "developer": "SL Capital",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 9
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-16-dyson-road",
+        "folderPath": "static/img/HousesIMG/d11-16-dyson-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-62-kheam-hock-road",
+      "houseNumber": "62",
+      "address": "Kheam Hock Road",
+      "districtCode": "D11",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 7,
+      "landSizeSqft": 4832,
+      "builtUpSqft": 9531,
+      "priceSgd": 18000000,
+      "priceText": "",
+      "top": "2027 Q3",
+      "facing": "West",
+      "remarks": "",
+      "developer": "ARC Corp",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 10
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-62-kheam-hock-road",
+        "folderPath": "static/img/HousesIMG/d11-62-kheam-hock-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-64-kheam-hock-road",
+      "houseNumber": "64",
+      "address": "Kheam Hock Road",
+      "districtCode": "D11",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 7,
+      "landSizeSqft": 5686,
+      "builtUpSqft": 11000,
+      "priceSgd": 20000000,
+      "priceText": "",
+      "top": "2027 Q3",
+      "facing": "West",
+      "remarks": "",
+      "developer": "ARC Corp",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 11
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-64-kheam-hock-road",
+        "folderPath": "static/img/HousesIMG/d11-64-kheam-hock-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-2b-vanda-road",
+      "houseNumber": "2B",
+      "address": "Vanda Road",
+      "districtCode": "D11",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 4233,
+      "builtUpSqft": 8340,
+      "priceSgd": 18388000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "West",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 12
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-2b-vanda-road",
+        "folderPath": "static/img/HousesIMG/d11-2b-vanda-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-2b-jalan-naga-sari",
+      "houseNumber": "2B",
+      "address": "Jalan Naga Sari",
+      "districtCode": "D11",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 3785,
+      "builtUpSqft": 7847,
+      "priceSgd": 16388000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "East",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 13
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-2b-jalan-naga-sari",
+        "folderPath": "static/img/HousesIMG/d11-2b-jalan-naga-sari",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-50-green-bank-park",
+      "houseNumber": "50",
+      "address": "Green Bank Park",
+      "districtCode": "D11",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 3312,
+      "builtUpSqft": 5436,
+      "priceSgd": 9500000,
+      "priceText": "",
+      "top": "Q3 2026",
+      "facing": "West",
+      "remarks": "",
+      "developer": "Tong Eng",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 14
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-50-green-bank-park",
+        "folderPath": "static/img/HousesIMG/d11-50-green-bank-park",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-52-green-bank-park",
+      "houseNumber": "52",
+      "address": "Green Bank Park",
+      "districtCode": "D11",
+      "propertyType": "Semi-Detached House",
+      "condition": "",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 3132,
+      "builtUpSqft": 5446,
+      "priceSgd": 10000000,
+      "priceText": "",
+      "top": "Q3 2026",
+      "facing": "West",
+      "remarks": "",
+      "developer": "Tong Eng",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 15
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-52-green-bank-park",
+        "folderPath": "static/img/HousesIMG/d11-52-green-bank-park",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d11-54-green-bank-park",
+      "houseNumber": "54",
+      "address": "Green Bank Park",
+      "districtCode": "D11",
+      "propertyType": "Detached House",
+      "condition": "",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 10,
+      "landSizeSqft": 4843,
+      "builtUpSqft": 8342,
+      "priceSgd": 15000000,
+      "priceText": "",
+      "top": "Q3 2026",
+      "facing": "West",
+      "remarks": "",
+      "developer": "Tong Eng",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D11.csv",
+        "row": 16
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d11-54-green-bank-park",
+        "folderPath": "static/img/HousesIMG/d11-54-green-bank-park",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d13-34a-mackerrow-road",
+      "houseNumber": "34A",
+      "address": "Mackerrow Road",
+      "districtCode": "D13",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 7,
+      "bathrooms": 7,
+      "landSizeSqft": 3106,
+      "builtUpSqft": 7200,
+      "priceSgd": 9480000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "South",
+      "remarks": "Plot 1, 5 cars & 7 ensuite bedrooms",
+      "developer": "",
+      "lister": "Joyce",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D13.csv",
+        "row": 2
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d13-34a-mackerrow-road",
+        "folderPath": "static/img/HousesIMG/d13-34a-mackerrow-road",
+        "landing": "landing.jpg",
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": [
+          "landing.jpg"
+        ]
+      }
+    },
+    {
+      "id": "d13-34-mackerrow-road",
+      "houseNumber": "34",
+      "address": "Mackerrow Road",
+      "districtCode": "D13",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 7,
+      "bathrooms": 7,
+      "landSizeSqft": 3209,
+      "builtUpSqft": 7200,
+      "priceSgd": 9680000,
+      "priceText": "",
+      "top": "2027 Q2",
+      "facing": "South",
+      "remarks": "Plot 2, 5 cars & 7 ensuite bedrooms",
+      "developer": "",
+      "lister": "Joyce",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D13.csv",
+        "row": 3
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d13-34-mackerrow-road",
+        "folderPath": "static/img/HousesIMG/d13-34-mackerrow-road",
+        "landing": "landing.jpg",
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": [
+          "landing.jpg"
+        ]
+      }
+    },
+    {
+      "id": "d15-53-lorong-g-telok-kurau",
+      "houseNumber": "53",
+      "address": "Lorong G Telok Kurau",
+      "districtCode": "D15",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 2966,
+      "builtUpSqft": 6311,
+      "priceSgd": 8800000,
+      "priceText": "",
+      "top": "Q4 2026",
+      "facing": "SE",
+      "remarks": "",
+      "developer": "JG Land",
+      "lister": "Lynn",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 2
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-53-lorong-g-telok-kurau",
+        "folderPath": "static/img/HousesIMG/d15-53-lorong-g-telok-kurau",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-53a-lorong-g-telok-kurau",
+      "houseNumber": "53A",
+      "address": "Lorong G Telok Kurau",
+      "districtCode": "D15",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 2742,
+      "builtUpSqft": 5765,
+      "priceSgd": 8500000,
+      "priceText": "",
+      "top": "Q4 2026",
+      "facing": "SE",
+      "remarks": "",
+      "developer": "JG Land",
+      "lister": "Lynn",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 3
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-53a-lorong-g-telok-kurau",
+        "folderPath": "static/img/HousesIMG/d15-53a-lorong-g-telok-kurau",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-11-jedburgh-garden",
+      "houseNumber": "11",
+      "address": "Jedburgh Garden",
+      "districtCode": "D15",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 7,
+      "landSizeSqft": 2150,
+      "builtUpSqft": 5026,
+      "priceSgd": 8800000,
+      "priceText": "",
+      "top": "Q3 2027",
+      "facing": "NE",
+      "remarks": "",
+      "developer": "Pebble Green",
+      "lister": "Lynn",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 4
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-11-jedburgh-garden",
+        "folderPath": "static/img/HousesIMG/d15-11-jedburgh-garden",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-6-and-6a-tay-lian-teck",
+      "houseNumber": "6 and 6A",
+      "address": "Tay Lian Teck",
+      "districtCode": "D15",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 2484,
+      "builtUpSqft": 6178,
+      "priceSgd": 8780000,
+      "priceText": "",
+      "top": "Q3 2026",
+      "facing": "W",
+      "remarks": "",
+      "developer": "Norton",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 5
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-6-and-6a-tay-lian-teck",
+        "folderPath": "static/img/HousesIMG/d15-6-and-6a-tay-lian-teck",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-133-upper-east-coast-road",
+      "houseNumber": "133",
+      "address": "Upper East Coast Road",
+      "districtCode": "D15",
+      "propertyType": "Corner T",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 2842,
+      "builtUpSqft": 5926,
+      "priceSgd": 8380000,
+      "priceText": "",
+      "top": "Q3 2028",
+      "facing": "S",
+      "remarks": "",
+      "developer": "Regin",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 6
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-133-upper-east-coast-road",
+        "folderPath": "static/img/HousesIMG/d15-133-upper-east-coast-road",
+        "landing": "landing.jpg",
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": [
+          "landing.jpg"
+        ]
+      }
+    },
+    {
+      "id": "d15-133a-upper-east-coast-road",
+      "houseNumber": "133a",
+      "address": "Upper East Coast Road",
+      "districtCode": "D15",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 2082,
+      "builtUpSqft": 5160,
+      "priceSgd": 7180000,
+      "priceText": "",
+      "top": "Q3 2028",
+      "facing": "S",
+      "remarks": "",
+      "developer": "Regin",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 7
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-133a-upper-east-coast-road",
+        "folderPath": "static/img/HousesIMG/d15-133a-upper-east-coast-road",
+        "landing": "landing.jpg",
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": [
+          "landing.jpg"
+        ]
+      }
+    },
+    {
+      "id": "d15-135-upper-east-coast-road",
+      "houseNumber": "135",
+      "address": "Upper East Coast Road",
+      "districtCode": "D15",
+      "propertyType": "Corner T",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 2766,
+      "builtUpSqft": 5858,
+      "priceSgd": 8330000,
+      "priceText": "",
+      "top": "Q3 2028",
+      "facing": "S",
+      "remarks": "",
+      "developer": "Regin",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 8
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-135-upper-east-coast-road",
+        "folderPath": "static/img/HousesIMG/d15-135-upper-east-coast-road",
+        "landing": "landing.jpg",
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": [
+          "landing.jpg"
+        ]
+      }
+    },
+    {
+      "id": "d15-23-aida-street",
+      "houseNumber": "23",
+      "address": "Aida Street",
+      "districtCode": "D15",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 3003,
+      "builtUpSqft": 5900,
+      "priceSgd": 8580000,
+      "priceText": "",
+      "top": "",
+      "facing": "SE",
+      "remarks": "",
+      "developer": "Da Vinci",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 9
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-23-aida-street",
+        "folderPath": "static/img/HousesIMG/d15-23-aida-street",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-23a-aida-street",
+      "houseNumber": "23a",
+      "address": "Aida Street",
+      "districtCode": "D15",
+      "propertyType": "Semi-Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 3003,
+      "builtUpSqft": 5900,
+      "priceSgd": 8580000,
+      "priceText": "",
+      "top": "",
+      "facing": "SE",
+      "remarks": "",
+      "developer": "Da Vinci",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 10
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-23a-aida-street",
+        "folderPath": "static/img/HousesIMG/d15-23a-aida-street",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-26a-siglap-road",
+      "houseNumber": "26a",
+      "address": "Siglap Road",
+      "districtCode": "D15",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "landSizeSqft": 4343,
+      "builtUpSqft": 9280,
+      "priceSgd": 15400000,
+      "priceText": "",
+      "top": "Q4 2026",
+      "facing": "S",
+      "remarks": "",
+      "developer": "7's",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 11
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-26a-siglap-road",
+        "folderPath": "static/img/HousesIMG/d15-26a-siglap-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-26c-siglap-road",
+      "houseNumber": "26c",
+      "address": "Siglap Road",
+      "districtCode": "D15",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "landSizeSqft": 4327,
+      "builtUpSqft": 9407,
+      "priceSgd": 15400000,
+      "priceText": "",
+      "top": "Q4 2026",
+      "facing": "S",
+      "remarks": "",
+      "developer": "7's",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 12
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-26c-siglap-road",
+        "folderPath": "static/img/HousesIMG/d15-26c-siglap-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-24-siglap-road",
+      "houseNumber": "24",
+      "address": "Siglap Road",
+      "districtCode": "D15",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 6,
+      "landSizeSqft": 4524,
+      "builtUpSqft": 8315,
+      "priceSgd": 16500000,
+      "priceText": "",
+      "top": "Q1 2028",
+      "facing": "S",
+      "remarks": "",
+      "developer": "7's",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 13
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-24-siglap-road",
+        "folderPath": "static/img/HousesIMG/d15-24-siglap-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-150-onan-road",
+      "houseNumber": "150",
+      "address": "Onan Road",
+      "districtCode": "D15",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "landSizeSqft": 1762,
+      "builtUpSqft": 5185,
+      "priceSgd": 7500000,
+      "priceText": "",
+      "top": "Q4 2027",
+      "facing": "NE",
+      "remarks": "",
+      "developer": "7's",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 14
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-150-onan-road",
+        "folderPath": "static/img/HousesIMG/d15-150-onan-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-152-onan-road",
+      "houseNumber": "152",
+      "address": "Onan Road",
+      "districtCode": "D15",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "landSizeSqft": 1744,
+      "builtUpSqft": 5140,
+      "priceSgd": 7500000,
+      "priceText": "",
+      "top": "Q4 2027",
+      "facing": "NE",
+      "remarks": "",
+      "developer": "7's",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 15
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-152-onan-road",
+        "folderPath": "static/img/HousesIMG/d15-152-onan-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-154-onan-road",
+      "houseNumber": "154",
+      "address": "Onan Road",
+      "districtCode": "D15",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "landSizeSqft": 1754,
+      "builtUpSqft": 5185,
+      "priceSgd": 7500000,
+      "priceText": "",
+      "top": "Q4 2027",
+      "facing": "NE",
+      "remarks": "",
+      "developer": "7's",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 16
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-154-onan-road",
+        "folderPath": "static/img/HousesIMG/d15-154-onan-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d15-3-bournemouth-road",
+      "houseNumber": "3",
+      "address": "Bournemouth Road",
+      "districtCode": "D15",
+      "propertyType": "Detached House",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 6,
+      "bathrooms": 8,
+      "landSizeSqft": 4359,
+      "builtUpSqft": 8826,
+      "priceSgd": 16600000,
+      "priceText": "",
+      "top": "Q1 2026",
+      "facing": "E",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D15.csv",
+        "row": 17
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d15-3-bournemouth-road",
+        "folderPath": "static/img/HousesIMG/d15-3-bournemouth-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d16-58a-meragi-road",
+      "houseNumber": "58a",
+      "address": "Meragi Road",
+      "districtCode": "D16",
+      "propertyType": "Corner T",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 3240,
+      "builtUpSqft": 6414,
+      "priceSgd": 7300000,
+      "priceText": "",
+      "top": "Q2 2026",
+      "facing": "",
+      "remarks": "",
+      "developer": "LFC",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D16.csv",
+        "row": 2
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d16-58a-meragi-road",
+        "folderPath": "static/img/HousesIMG/d16-58a-meragi-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d16-8-jalan-tanjong",
+      "houseNumber": "8",
+      "address": "Jalan Tanjong",
+      "districtCode": "D16",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 7,
+      "landSizeSqft": 2040,
+      "builtUpSqft": 6800,
+      "priceSgd": 7500000,
+      "priceText": "",
+      "top": "Q1 2027",
+      "facing": "",
+      "remarks": "can close $6.5m",
+      "developer": "GOODLAND",
+      "lister": "Sean",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D16.csv",
+        "row": 3
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d16-8-jalan-tanjong",
+        "folderPath": "static/img/HousesIMG/d16-8-jalan-tanjong",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d19-1-taman-sireh",
+      "houseNumber": "1",
+      "address": "Taman Sireh",
+      "districtCode": "D19",
+      "propertyType": "Corner T",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 3454,
+      "builtUpSqft": 8147,
+      "priceSgd": 9880000,
+      "priceText": "",
+      "top": "TOP",
+      "facing": "SW",
+      "remarks": "",
+      "developer": "Tian Yue Development",
+      "lister": "Lynn",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D19.csv",
+        "row": 2
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d19-1-taman-sireh",
+        "folderPath": "static/img/HousesIMG/d19-1-taman-sireh",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d20-62-jalan-kuras",
+      "houseNumber": "62",
+      "address": "Jalan Kuras",
+      "districtCode": "D20",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 2381,
+      "builtUpSqft": 7299,
+      "priceSgd": 7380000,
+      "priceText": "",
+      "top": "Q1 2027",
+      "facing": "W",
+      "remarks": "Entertainment and Study",
+      "developer": "JS Home",
+      "lister": "Lynn/Joyce",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D20.csv",
+        "row": 2
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d20-62-jalan-kuras",
+        "folderPath": "static/img/HousesIMG/d20-62-jalan-kuras",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d20-38-casuarina-road",
+      "houseNumber": "38",
+      "address": "Casuarina Road",
+      "districtCode": "D20",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "landSizeSqft": 1501,
+      "builtUpSqft": 4670,
+      "priceSgd": 5480000,
+      "priceText": "",
+      "top": "Q2 2027",
+      "facing": "W",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D20.csv",
+        "row": 3
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d20-38-casuarina-road",
+        "folderPath": "static/img/HousesIMG/d20-38-casuarina-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d20-88-casuarina-road",
+      "houseNumber": "88",
+      "address": "Casuarina Road",
+      "districtCode": "D20",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "landSizeSqft": 1514,
+      "builtUpSqft": 3648,
+      "priceSgd": 5880000,
+      "priceText": "",
+      "top": "Q3 2026",
+      "facing": "W",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D20.csv",
+        "row": 4
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d20-88-casuarina-road",
+        "folderPath": "static/img/HousesIMG/d20-88-casuarina-road",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d20-82-jalan-chengam",
+      "houseNumber": "82",
+      "address": "Jalan Chengam",
+      "districtCode": "D20",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 2082,
+      "builtUpSqft": 4700,
+      "priceSgd": 7500000,
+      "priceText": "",
+      "top": "Q4 2026",
+      "facing": "W",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D20.csv",
+        "row": 5
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d20-82-jalan-chengam",
+        "folderPath": "static/img/HousesIMG/d20-82-jalan-chengam",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d20-48-jalan-gelenggang",
+      "houseNumber": "48",
+      "address": "Jalan Gelenggang",
+      "districtCode": "D20",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 8,
+      "landSizeSqft": 2036,
+      "builtUpSqft": 5780,
+      "priceSgd": 6680000,
+      "priceText": "",
+      "top": "Q4 2026",
+      "facing": "W",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D20.csv",
+        "row": 6
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d20-48-jalan-gelenggang",
+        "folderPath": "static/img/HousesIMG/d20-48-jalan-gelenggang",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d20-34-jalan-leban",
+      "houseNumber": "34",
+      "address": "Jalan Leban",
+      "districtCode": "D20",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 6,
+      "landSizeSqft": 1955,
+      "builtUpSqft": 5132,
+      "priceSgd": 6680000,
+      "priceText": "",
+      "top": "Q1 2027",
+      "facing": "W",
+      "remarks": "",
+      "developer": "",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D20.csv",
+        "row": 7
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d20-34-jalan-leban",
+        "folderPath": "static/img/HousesIMG/d20-34-jalan-leban",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d23-23-jalan-zamrud",
+      "houseNumber": "23",
+      "address": "Jalan Zamrud",
+      "districtCode": "D23",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "5+1",
+      "bathrooms": 6,
+      "landSizeSqft": 1868,
+      "builtUpSqft": 3875,
+      "priceSgd": 6580000,
+      "priceText": "",
+      "top": "Q42026",
+      "facing": "N/W",
+      "remarks": "",
+      "developer": "",
+      "lister": "Lynn",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D23.csv",
+        "row": 2
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d23-23-jalan-zamrud",
+        "folderPath": "static/img/HousesIMG/d23-23-jalan-zamrud",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d23-99-hillview-crescent",
+      "houseNumber": "99",
+      "address": "Hillview Crescent",
+      "districtCode": "D23",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": "6+1",
+      "bathrooms": 7,
+      "landSizeSqft": 2653,
+      "builtUpSqft": 7240,
+      "priceSgd": 7180000,
+      "priceText": "",
+      "top": "TOP",
+      "facing": "S",
+      "remarks": "",
+      "developer": "",
+      "lister": "Sean/Lynn",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D23.csv",
+        "row": 3
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d23-99-hillview-crescent",
+        "folderPath": "static/img/HousesIMG/d23-99-hillview-crescent",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    },
+    {
+      "id": "d27-23-jalan-sankam",
+      "houseNumber": "23",
+      "address": "Jalan Sankam",
+      "districtCode": "D27",
+      "propertyType": "Terrace",
+      "condition": "Brand new",
+      "tenure": "Freehold",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "landSizeSqft": 1771,
+      "builtUpSqft": 4834,
+      "priceSgd": 6200000,
+      "priceText": "",
+      "top": "Q3 2026",
+      "facing": "SW",
+      "remarks": "",
+      "developer": "7's",
+      "lister": "",
+      "isLaunch": false,
+      "source": {
+        "type": "csv",
+        "file": "SSP Listing - D27.csv",
+        "row": 2
+      },
+      "editorial": null,
+      "images": {
+        "folder": "d27-23-jalan-sankam",
+        "folderPath": "static/img/HousesIMG/d27-23-jalan-sankam",
+        "landing": null,
+        "floorPlans": [],
+        "interiors": [],
+        "gallery": []
+      }
+    }
+  ]
+}

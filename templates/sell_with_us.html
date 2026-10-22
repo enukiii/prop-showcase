@@ -17,7 +17,7 @@
         <a class="button button-dark" href="{{ url_for('contact') }}">Start a conversation <span>↗</span></a>
     </div>
     <div class="buy-with-us-image">
-        <img src="{{ url_for('static', filename='img/HousesIMG/Coronation B7000/Coronation B7000 Landing.PNG') }}" alt="Landed property represented by SS Property">
+        {% if featured_property_image %}<img src="{{ featured_property_image }}" alt="Landed property represented by SS Property">{% endif %}
         <span>Presented with intention</span>
     </div>
 </section>
