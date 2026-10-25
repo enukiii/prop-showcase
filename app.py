@@ -215,9 +215,7 @@ def _listing_images(record, image_index):
             return documents
 
         landing = manifest_image_url(image_manifest.get("landing"), "landing")
-        gallery = manifest_image_list("gallery")
-        if landing and landing not in gallery:
-            gallery.insert(0, landing)
+        gallery = manifest_image_list("gallery") if "gallery" in image_manifest else ([landing] if landing else [])
         return {
             "image": landing or (gallery[0] if gallery else ""),
             "gallery": gallery,
@@ -327,6 +325,8 @@ def load_listings():
         schools = editorial.get("schools", [])
         transport = editorial.get("transport", [])
         media = _listing_images(record, image_index)
+        if not (media["image"] or media["gallery"] or media["interior_images"] or media["floor_plan_images"]):
+            continue
 
         listings.append({
             "id": listing_id,
@@ -373,7 +373,8 @@ def load_listings():
             "interior_images": media["interior_images"],
             "floor_plan_images": media["floor_plan_images"],
             "documents": media["documents"],
-            "tag": record.get("tag", condition or "New"),
+            "tag": record.get("tag", ""),
+            "is_featured": bool(record.get("isFeatured", False)),
         })
 
     return listings
@@ -535,6 +536,17 @@ def shared_property_context():
 @app.route("/")
 def home():
     launch_listings = [listing for listing in LISTINGS if listing.get("is_launch")]
+    explicitly_branded_new = [
+        listing for listing in LISTINGS
+        if listing.get("condition", "").casefold() == "brand new"
+        or str(listing.get("tag", "")).casefold() == "brand new"
+    ]
+    explicitly_branded_new_ids = {listing["id"] for listing in explicitly_branded_new}
+    brand_new_listings = explicitly_branded_new + [
+        listing for listing in launch_listings
+        if listing["id"] not in explicitly_branded_new_ids
+    ]
+    brand_new_listings.sort(key=lambda listing: not listing.get("is_featured", False))
     carousel_candidates = [
         listing for listing in launch_listings
         if listing.get("image")
@@ -551,7 +563,11 @@ def home():
         carousel_listings.append(listing)
         if len(carousel_listings) == 4:
             break
-    just_listed = [listing for listing in reversed(LISTINGS) if not listing.get("is_launch")][:4]
+    brand_new_ids = {listing["id"] for listing in brand_new_listings}
+    just_listed = [
+        listing for listing in reversed(LISTINGS)
+        if not listing.get("is_launch") and listing["id"] not in brand_new_ids
+    ][:4]
     gcb_listings = [listing for listing in LISTINGS if listing["type"] == "Good Class Bungalow"]
     sentosa_listings = [
         listing for listing in LISTINGS
@@ -559,7 +575,7 @@ def home():
     ]
     return render_template(
         "home.html",
-        **page_context("home", launch_listings=launch_listings, carousel_listings=carousel_listings, just_listed_listings=just_listed, gcb_listings=gcb_listings, sentosa_listings=sentosa_listings),
+        **page_context("home", launch_listings=launch_listings, brand_new_listings=brand_new_listings, carousel_listings=carousel_listings, just_listed_listings=just_listed, gcb_listings=gcb_listings, sentosa_listings=sentosa_listings),
     )
 
 
@@ -622,7 +638,7 @@ def property_detail(property_name):
     listing = next((item for item in LISTINGS if item["id"] == property_name or item["name"] == property_name), None)
     if listing is None:
         return "Property not found", 404
-    gallery = listing.get("gallery", [listing["image"]])
+    gallery = listing.get("gallery", [])
     return render_template("property_detail.html", **page_context("listings", listing=listing, gallery=gallery))
 
 

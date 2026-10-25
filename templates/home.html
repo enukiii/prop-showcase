@@ -33,10 +33,10 @@
 		</div>
 		{% endif %}
 	</section>
-	{% if launch_listings %}
+	{% if brand_new_listings %}
 	<section class="home-listing-section">
-		<div class="home-section-heading"><h2>Brand-New Landed Properties <em>For Sale</em></h2><a class="button button-dark" href="{{ url_for('launches') }}">View all new launches <span>↗</span></a></div>
-		<div class="listing-grid home-card-grid">{% for listing in launch_listings[0:4] %}<article class="listing-card"><div class="listing-image wireframe-image"{% if listing.image %} style="background-image: url('{{ listing.image }}');"{% endif %}>{% if not listing.image %}<span class="wireframe-label">PROPERTY IMAGE</span>{% endif %}<span class="tag">New launched</span></div><div class="listing-meta"><div><p class="listing-location">{{ listing.location }}</p><h3>{{ listing.name }}</h3><div class="property-pills"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span></div><small>{{ listing.details }}</small></div><strong>{{ listing.price }}</strong></div></article>{% endfor %}</div>
+		<div class="home-section-heading"><h2>Brand-New Landed Properties <em>For Sale</em></h2><a class="button button-dark" href="{{ url_for('listings') }}">View all listings <span>↗</span></a></div>
+		<div class="listing-grid home-card-grid">{% for listing in brand_new_listings[0:4] %}<article class="listing-card"><div class="listing-image wireframe-image"{% if listing.image %} style="background-image: url('{{ listing.image }}');"{% endif %}>{% if not listing.image %}<span class="wireframe-label">PROPERTY IMAGE</span>{% endif %}{% if listing.tag %}<span class="tag">{{ listing.tag }}</span>{% endif %}</div><div class="listing-meta"><div><p class="listing-location">{{ listing.location }}</p><h3>{{ listing.name }}</h3><div class="property-pills"><span>{{ listing.type }}</span><span>{{ listing.tenure|default('Freehold') }}</span></div><small>{{ listing.details }}</small></div><strong>{{ listing.price }}</strong></div></article>{% endfor %}</div>
 	</section>
 	{% endif %}
 	<section class="home-listing-section">
